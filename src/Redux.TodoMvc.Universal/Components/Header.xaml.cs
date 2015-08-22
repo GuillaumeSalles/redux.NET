@@ -35,7 +35,7 @@ namespace Redux.TodoMvc.Universal.Components
 
         private void MarkAllCheckBox_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            App.Store.Dispatch(new MarkAllSignal
+            App.Store.Dispatch(new MarkAllTodos
             {
                 IsMarked = MarkAllCheckBox.IsChecked.Value
             });

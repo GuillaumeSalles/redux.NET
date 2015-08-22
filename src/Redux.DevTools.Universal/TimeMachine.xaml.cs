@@ -9,14 +9,14 @@ namespace Redux.DevTools.Universal
 {
     public sealed partial class TimeMachine : UserControl
     {
-        private IStore<TimeTravelState> _store;
-        private TimeTravelState _lastState;
+        private IStore<TimeMachineState> _store;
+        private TimeMachineState _lastState;
         
         public TimeMachine()
         {
             this.InitializeComponent();
 
-            _store = (IStore<TimeTravelState>)Application.Current.Resources["TimeMachineStore"];
+            _store = (IStore<TimeMachineState>)Application.Current.Resources["TimeMachineStore"];
 
             _store.Subscribe(state =>
             {

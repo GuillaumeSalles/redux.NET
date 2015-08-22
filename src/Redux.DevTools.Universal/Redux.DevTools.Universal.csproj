@@ -113,11 +113,13 @@
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="TimeMachineReducer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeMachine.xaml.cs">
       <DependentUpon>TimeMachine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TimeMachineState.cs" />
+    <Compile Include="TimeMachineStore.cs" />
     <Content Include="Properties\Redux.DevTools.Universal.rd.xml" />
   </ItemGroup>
   <ItemGroup>

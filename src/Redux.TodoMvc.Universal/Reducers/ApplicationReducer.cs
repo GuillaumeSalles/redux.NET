@@ -11,8 +11,8 @@ namespace Redux.TodoMvc.Universal.Reducers
                 new AddTodoReducer(),
                 new MarkTodoReducer(),
                 new DeleteTodoReducer(),
-                new ClearMarkedReducer(),
-                new MarkAllReducer()
+                new ClearMarkedTodosReducer(),
+                new MarkAllTodosReducer()
             };
         }
 

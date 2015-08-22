@@ -22,7 +22,7 @@ namespace Redux.TodoMvc.Universal
             };
 
             //Store = new Store<ApplicationState>(initialState,new ApplicationReducer().Execute);
-            Store = new TimeTravellerStore<ApplicationState>(initialState, new ApplicationReducer().Execute);
+            Store = new TimeMachineStore<ApplicationState>(initialState, new ApplicationReducer().Execute);
         }
         
         protected override void OnLaunched(LaunchActivatedEventArgs e)
