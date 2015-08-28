@@ -51,6 +51,11 @@ namespace Redux.DevTools.Universal
         {
             _lastState = state;
 
+            Shield.Visibility = state.IsPaused ? Visibility.Visible : Visibility.Collapsed;
+
+            PauseButton.Visibility = state.IsPaused ? Visibility.Collapsed : Visibility.Visible;
+            PlayButton.Visibility = state.IsPaused ? Visibility.Visible : Visibility.Collapsed;
+
             SignalPositionsSlider.Value = state.Position;
             SignalPositionsSlider.Maximum = state.Signals.Count;
 
@@ -79,6 +84,22 @@ namespace Redux.DevTools.Universal
             {
                 Position = (int)SignalPositionsSlider.Value
             });
+        }
+
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (TimeMachineStore == null)
+                return;
+
+            TimeMachineStore.Dispatch(new ResumeTimeMachineSignal());
+        }
+
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (TimeMachineStore == null)
+                return;
+
+            TimeMachineStore.Dispatch(new PauseTimeMachineSignal());
         }
     }
 }

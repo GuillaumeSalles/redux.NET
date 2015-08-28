@@ -12,16 +12,11 @@
                         BorderBrush="{TemplateBinding BorderBrush}"
                         BorderThickness="{TemplateBinding BorderThickness}">
                         <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="Auto"/>
-                            </Grid.ColumnDefinitions>
                             <ContentPresenter 
                                 Content="{TemplateBinding Content}" 
                                 ContentTemplate="{TemplateBinding ContentTemplate}"/>
                             <local:TimeMachine
-                                TimeMachineStore="{TemplateBinding TimeMachineStore}"
-                                Grid.Column="1"/>
+                                TimeMachineStore="{TemplateBinding TimeMachineStore}"/>
                         </Grid>
                     </Border>
                 </ControlTemplate>
