@@ -3,10 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:Redux.DevTools.Universal">
 
-    <Style TargetType="Frame">
+    <Style TargetType="local:DevFrame">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="Frame">
+                <ControlTemplate TargetType="local:DevFrame">
                     <Border
                         Background="{TemplateBinding Background}"
                         BorderBrush="{TemplateBinding BorderBrush}"
@@ -20,6 +20,7 @@
                                 Content="{TemplateBinding Content}" 
                                 ContentTemplate="{TemplateBinding ContentTemplate}"/>
                             <local:TimeMachine
+                                TimeMachineStore="{TemplateBinding TimeMachineStore}"
                                 Grid.Column="1"/>
                         </Grid>
                     </Border>

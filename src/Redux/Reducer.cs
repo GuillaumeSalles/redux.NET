@@ -39,9 +39,4 @@ namespace Redux
 
         protected abstract TState Execute(TState previousState, TSignal signal);
     }
-
-    public interface ISignal
-    {
-
-    }
 }

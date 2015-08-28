@@ -29,11 +29,13 @@ namespace Redux.TodoMvc.Universal
         {
             Frame rootFrame = Window.Current.Content as Frame;
             
-            Resources.Add("TimeMachineStore", Store);
-
             if (rootFrame == null)
             {
-                rootFrame = new Frame();
+                //rootFrame = new Frame();
+                rootFrame = new DevFrame
+                {
+                    TimeMachineStore = (IStore<TimeMachineState>)Store
+                };
                 Window.Current.Content = rootFrame;
             }
 
