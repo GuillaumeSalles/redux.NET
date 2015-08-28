@@ -69,7 +69,8 @@ namespace Redux.DevTools.Universal
 
         private void SignalPositionsSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            if (TimeMachineStore == null || SignalPositionsSlider.Value == _lastState.Position)
+            if (TimeMachineStore == null 
+                || SignalPositionsSlider.Value == _lastState.Position)
             {
                 return;
             }

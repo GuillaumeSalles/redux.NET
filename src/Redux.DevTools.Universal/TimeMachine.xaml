@@ -18,6 +18,7 @@
         <Slider
             x:Name="SignalPositionsSlider"
             Minimum="0"
+            Maximum="0"
             HorizontalAlignment="Stretch"
             Margin="20"
             ValueChanged="SignalPositionsSlider_ValueChanged"/>
