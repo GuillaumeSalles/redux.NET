@@ -99,7 +99,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ApplicationState.cs" />
+    <Compile Include="States\ApplicationState.cs" />
     <Compile Include="Components\Footer.xaml.cs">
       <DependentUpon>Footer.xaml</DependentUpon>
     </Compile>
@@ -124,6 +124,8 @@
     <Compile Include="Reducers\CompleteAllTodosReducer.cs" />
     <Compile Include="Reducers\CompleteTodoReducer.cs" />
     <Compile Include="Signals\Signals.cs" />
+    <Compile Include="States\Todo.cs" />
+    <Compile Include="States\TodosFilter.cs" />
   </ItemGroup>
   <ItemGroup>
     <AppxManifest Include="Package.appxmanifest">

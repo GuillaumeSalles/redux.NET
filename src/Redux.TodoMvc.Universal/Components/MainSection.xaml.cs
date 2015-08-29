@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
+using Redux.TodoMvc.Universal.States;
 
 namespace Redux.TodoMvc.Universal.Components
 {

@@ -4,6 +4,7 @@ using System.Reactive.Linq;
 using System.Collections.Immutable;
 using Windows.UI.Xaml;
 using Redux.TodoMvc.Universal.Signals;
+using Redux.TodoMvc.Universal.States;
 
 namespace Redux.TodoMvc.Universal.Components
 {

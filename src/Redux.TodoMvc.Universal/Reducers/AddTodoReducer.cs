@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Immutable;
-using System.Linq;
 using Redux.TodoMvc.Universal.Signals;
+using Redux.TodoMvc.Universal.States;
 
 namespace Redux.TodoMvc.Universal.Reducers
 {

@@ -1,9 +1,10 @@
-﻿using Redux.DevTools.Universal;
-using Redux.TodoMvc.Universal.Reducers;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Redux.DevTools.Universal;
+using Redux.TodoMvc.Universal.Reducers;
+using Redux.TodoMvc.Universal.States;
 
 namespace Redux.TodoMvc.Universal
 {

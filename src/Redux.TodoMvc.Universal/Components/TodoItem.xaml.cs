@@ -1,6 +1,7 @@
-﻿using Redux.TodoMvc.Universal.Signals;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
+using Redux.TodoMvc.Universal.Signals;
+using Redux.TodoMvc.Universal.States;
 
 namespace Redux.TodoMvc.Universal.Components
 {
