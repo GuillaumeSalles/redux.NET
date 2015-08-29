@@ -18,6 +18,8 @@ namespace Redux.TodoMvc.Universal.Components
                 ActiveTodoCounterTextBlock.Text = GetActiveTodosCounterMessage(state.Todos);
 
                 ClearActiveTodoButton.Visibility = ClearActiveTodoButtonVisibility(state.Todos);
+
+                CheckFilter(state.Filter);
             });
         }
 
@@ -26,6 +28,22 @@ namespace Redux.TodoMvc.Universal.Components
             var activeTodoCount = todos.Count(todo => !todo.IsCompleted);
             var itemWord = activeTodoCount <= 1 ? "item" : "items";
             return activeTodoCount + " " + itemWord + " left";
+        }
+
+        private void CheckFilter(TodosFilter filter)
+        {
+            if(filter == TodosFilter.All)
+            {
+                AllFilter.IsChecked = true;
+            }
+            else if(filter == TodosFilter.Completed)
+            {
+                CompletedFilter.IsChecked = true;
+            }
+            else if(filter == TodosFilter.InProgress)
+            {
+                InProgressFilter.IsChecked = true;
+            }
         }
 
         private Visibility ClearActiveTodoButtonVisibility(ImmutableArray<Todo> todos)
