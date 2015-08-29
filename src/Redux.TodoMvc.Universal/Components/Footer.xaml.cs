@@ -23,19 +23,19 @@ namespace Redux.TodoMvc.Universal.Components
 
         private string GetActiveTodosCounterMessage(ImmutableArray<Todo> todos)
         {
-            var activeTodoCount = todos.Count(todo => !todo.IsMarked);
+            var activeTodoCount = todos.Count(todo => !todo.IsCompleted);
             var itemWord = activeTodoCount <= 1 ? "item" : "items";
             return activeTodoCount + " " + itemWord + " left";
         }
 
         private Visibility ClearActiveTodoButtonVisibility(ImmutableArray<Todo> todos)
         {
-            return todos.Any(todo => todo.IsMarked) ? Visibility.Visible : Visibility.Collapsed;
+            return todos.Any(todo => todo.IsCompleted) ? Visibility.Visible : Visibility.Collapsed;
         }
 
         private void ClearActiveTodoButton_Click(object sender, RoutedEventArgs e)
         {
-            App.Store.Dispatch(new ClearMarkedSignal());
+            App.Store.Dispatch(new ClearCompletedTodosSignal());
         }
 
         private void FilterTodos(TodosFilter filter)
@@ -56,9 +56,9 @@ namespace Redux.TodoMvc.Universal.Components
             FilterTodos(TodosFilter.InProgress);
         }
 
-        private void MarkedFilter_Click(object sender, RoutedEventArgs e)
+        private void CompletedFilter_Click(object sender, RoutedEventArgs e)
         {
-            FilterTodos(TodosFilter.Marked);
+            FilterTodos(TodosFilter.Completed);
         }
     }
 }

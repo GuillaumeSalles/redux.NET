@@ -3,13 +3,13 @@ using System.Collections.Immutable;
 
 namespace Redux.TodoMvc.Universal.Reducers
 {
-    public class ClearMarkedTodosReducer : Reducer<ImmutableArray<Todo>, ClearMarkedSignal>
+    public class ClearCompletedTodosReducer : Reducer<ImmutableArray<Todo>, ClearCompletedTodosSignal>
     {
         protected override ImmutableArray<Todo> Execute(
-            ImmutableArray<Todo> previousState, ClearMarkedSignal signal)
+            ImmutableArray<Todo> previousState, ClearCompletedTodosSignal signal)
         {
             return previousState
-                .RemoveAll(todo => todo.IsMarked);
+                .RemoveAll(todo => todo.IsCompleted);
         }
     }
 }

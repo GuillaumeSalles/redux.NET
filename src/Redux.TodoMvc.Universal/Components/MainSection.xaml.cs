@@ -19,14 +19,14 @@ namespace Redux.TodoMvc.Universal.Components
 
         private IEnumerable<Todo> FilterTodos(IEnumerable<Todo> todos, TodosFilter filter)
         {
-            if(filter == TodosFilter.Marked)
+            if(filter == TodosFilter.Completed)
             {
-                return todos.Where(x => x.IsMarked);
+                return todos.Where(x => x.IsCompleted);
             }
 
             if(filter == TodosFilter.InProgress)
             {
-                return todos.Where(x => !x.IsMarked);
+                return todos.Where(x => !x.IsCompleted);
             }
 
             return todos;

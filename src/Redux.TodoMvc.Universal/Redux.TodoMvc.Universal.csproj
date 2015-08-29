@@ -118,11 +118,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reducers\AddTodoReducer.cs" />
     <Compile Include="Reducers\ApplicationReducer.cs" />
-    <Compile Include="Reducers\ClearMarkedTodosReducer.cs" />
+    <Compile Include="Reducers\ClearCompletedTodosReducer.cs" />
     <Compile Include="Reducers\DeleteTodoReducer.cs" />
     <Compile Include="Reducers\FilterTodosReducer.cs" />
-    <Compile Include="Reducers\MarkAllTodosReducer.cs" />
-    <Compile Include="Reducers\MarkTodoReducer.cs" />
+    <Compile Include="Reducers\CompleteAllTodosReducer.cs" />
+    <Compile Include="Reducers\CompleteTodoReducer.cs" />
     <Compile Include="Signals\Signals.cs" />
   </ItemGroup>
   <ItemGroup>

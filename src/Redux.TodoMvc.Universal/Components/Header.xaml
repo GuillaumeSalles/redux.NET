@@ -11,8 +11,8 @@
 
     <Grid>
         <CheckBox
-            x:Name="MarkAllCheckBox"
-            Click="MarkAllCheckBox_Click"
+            x:Name="CompleteAllCheckBox"
+            Click="CompleteAllCheckBox_Click"
             Visibility="Collapsed"/>
         <TextBox
             x:Name="TodoInputTextBox"

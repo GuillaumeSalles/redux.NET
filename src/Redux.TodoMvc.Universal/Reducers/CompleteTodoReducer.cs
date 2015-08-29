@@ -4,10 +4,10 @@ using System.Linq;
 
 namespace Redux.TodoMvc.Universal.Reducers
 {
-    public class MarkTodoReducer : Reducer<ImmutableArray<Todo>, MarkTodoSignal>
+    public class CompleteTodoReducer : Reducer<ImmutableArray<Todo>, CompleteTodoSignal>
     {
         protected override ImmutableArray<Todo> Execute(
-            ImmutableArray<Todo> previousState, MarkTodoSignal signal)
+            ImmutableArray<Todo> previousState, CompleteTodoSignal signal)
         {
             var todoToEdit = previousState.First(todo => todo.Id == signal.TodoId);
 
@@ -16,7 +16,7 @@ namespace Redux.TodoMvc.Universal.Reducers
                 {
                     Id = todoToEdit.Id,
                     Text = todoToEdit.Text,
-                    IsMarked = !todoToEdit.IsMarked
+                    IsCompleted = !todoToEdit.IsCompleted
                 });
         }
     }

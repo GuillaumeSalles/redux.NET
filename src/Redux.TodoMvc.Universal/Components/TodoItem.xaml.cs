@@ -21,7 +21,7 @@ namespace Redux.TodoMvc.Universal.Components
             var todo = (Todo)args.NewValue;
 
             todoItem.TodoItemTextBlock.Text = todo.Text;
-            todoItem.MarkedCheckBox.IsChecked = todo.IsMarked;
+            todoItem.CompleteCheckBox.IsChecked = todo.IsCompleted;
         }
 
         public TodoItem()
@@ -29,9 +29,9 @@ namespace Redux.TodoMvc.Universal.Components
             this.InitializeComponent();
         }
 
-        private void MarkedCheckBox_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void CompleteCheckBox_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            App.Store.Dispatch(new MarkTodoSignal
+            App.Store.Dispatch(new CompleteTodoSignal
             {
                 TodoId = Todo.Id
             });

@@ -7,7 +7,7 @@ namespace Redux.TodoMvc.Universal
     {
         public string Text { get; set; }
 
-        public bool IsMarked { get; set; }
+        public bool IsCompleted { get; set; }
 
         public Guid Id { get; set; }
     }
@@ -16,7 +16,7 @@ namespace Redux.TodoMvc.Universal
     {
         All,
         InProgress,
-        Marked
+        Completed
     }
 
     public class ApplicationState

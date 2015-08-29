@@ -15,8 +15,8 @@ namespace Redux.TodoMvc.Universal.Components
 
             App.Store.Subscribe(state =>
             {
-                MarkAllCheckBox.Visibility = state.Todos.Any() ? Visibility.Visible : Visibility.Collapsed; 
-                MarkAllCheckBox.IsChecked = state.Todos.All(x => x.IsMarked);
+                CompleteAllCheckBox.Visibility = state.Todos.Any() ? Visibility.Visible : Visibility.Collapsed; 
+                CompleteAllCheckBox.IsChecked = state.Todos.All(x => x.IsCompleted);
             });
         }
 
@@ -33,11 +33,11 @@ namespace Redux.TodoMvc.Universal.Components
             TodoInputTextBox.Text = string.Empty;
         }
 
-        private void MarkAllCheckBox_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void CompleteAllCheckBox_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            App.Store.Dispatch(new MarkAllTodos
+            App.Store.Dispatch(new CompleteAllTodosSignal
             {
-                IsMarked = MarkAllCheckBox.IsChecked.Value
+                IsCompleted = CompleteAllCheckBox.IsChecked.Value
             });
         }
     }

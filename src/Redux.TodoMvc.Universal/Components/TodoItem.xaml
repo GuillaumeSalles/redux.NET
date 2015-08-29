@@ -11,9 +11,9 @@
 
     <Grid>
         <CheckBox
-            x:Name="MarkedCheckBox"
+            x:Name="CompleteCheckBox"
             HorizontalAlignment="Left"
-            Click="MarkedCheckBox_Click"/>
+            Click="CompleteCheckBox_Click"/>
         
         <TextBlock 
             x:Name="TodoItemTextBlock"

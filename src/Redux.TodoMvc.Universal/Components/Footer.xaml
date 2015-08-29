@@ -28,9 +28,9 @@
                 Content="Active"
                 Click="InProgressFilter_Click"/>
             <RadioButton 
-                x:Name="MarkedFilter"
+                x:Name="CompletedFilter"
                 Content="Completed"
-                Click="MarkedFilter_Click"/>
+                Click="CompletedFilter_Click"/>
         </StackPanel>
         
         <Button

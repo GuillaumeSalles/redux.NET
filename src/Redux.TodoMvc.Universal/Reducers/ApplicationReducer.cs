@@ -9,10 +9,10 @@ namespace Redux.TodoMvc.Universal.Reducers
             return new IReducer<ImmutableArray<Todo>>[]
             {
                 new AddTodoReducer(),
-                new MarkTodoReducer(),
+                new CompleteTodoReducer(),
                 new DeleteTodoReducer(),
-                new ClearMarkedTodosReducer(),
-                new MarkAllTodosReducer()
+                new ClearCompletedTodosReducer(),
+                new CompleteAllTodosReducer()
             };
         }
 

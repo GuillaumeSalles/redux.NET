@@ -12,17 +12,17 @@ namespace Redux.TodoMvc.Universal.Signals
         public Guid TodoId { get; set; }
     }
 
-    public class MarkTodoSignal : ISignal
+    public class CompleteTodoSignal : ISignal
     {
         public Guid TodoId { get; set; }
     }
 
-    public class MarkAllTodos : ISignal
+    public class CompleteAllTodosSignal : ISignal
     {
-        public bool IsMarked { get; set; }
+        public bool IsCompleted { get; set; }
     }
 
-    public class ClearMarkedSignal : ISignal
+    public class ClearCompletedTodosSignal : ISignal
     {
 
     }
