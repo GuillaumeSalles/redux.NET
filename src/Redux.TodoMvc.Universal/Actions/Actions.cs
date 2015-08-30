@@ -1,34 +1,34 @@
 ﻿using Redux.TodoMvc.Universal.States;
 using System;
 
-namespace Redux.TodoMvc.Universal.Signals
+namespace Redux.TodoMvc.Universal.Actions
 {
-    public class AddTodoSignal : ISignal
+    public class AddTodoAction : IAction
     {
         public string Text { get; set; }
     }
 
-    public class DeleteTodoSignal : ISignal
+    public class DeleteTodoAction : IAction
     {
         public Guid TodoId { get; set; }
     }
 
-    public class CompleteTodoSignal : ISignal
+    public class CompleteTodoAction : IAction
     {
         public Guid TodoId { get; set; }
     }
 
-    public class CompleteAllTodosSignal : ISignal
+    public class CompleteAllTodosAction : IAction
     {
         public bool IsCompleted { get; set; }
     }
 
-    public class ClearCompletedTodosSignal : ISignal
+    public class ClearCompletedTodosAction : IAction
     {
 
     }
 
-    public class FilterTodosSignal : ISignal
+    public class FilterTodosAction : IAction
     {
         public TodosFilter Filter { get; set; }
     }

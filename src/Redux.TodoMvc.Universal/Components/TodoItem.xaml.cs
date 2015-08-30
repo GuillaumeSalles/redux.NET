@@ -1,6 +1,6 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Redux.TodoMvc.Universal.Signals;
+using Redux.TodoMvc.Universal.Actions;
 using Redux.TodoMvc.Universal.States;
 
 namespace Redux.TodoMvc.Universal.Components
@@ -32,7 +32,7 @@ namespace Redux.TodoMvc.Universal.Components
 
         private void CompleteCheckBox_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            App.Store.Dispatch(new CompleteTodoSignal
+            App.Store.Dispatch(new CompleteTodoAction
             {
                 TodoId = Todo.Id
             });
@@ -40,7 +40,7 @@ namespace Redux.TodoMvc.Universal.Components
 
         private void DeleteTodoItemButton_Click(object sender, RoutedEventArgs e)
         {
-            App.Store.Dispatch(new DeleteTodoSignal
+            App.Store.Dispatch(new DeleteTodoAction
             {
                 TodoId = Todo.Id
             });

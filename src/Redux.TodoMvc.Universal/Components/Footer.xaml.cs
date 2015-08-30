@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Collections.Immutable;
 using Windows.UI.Xaml;
-using Redux.TodoMvc.Universal.Signals;
+using Redux.TodoMvc.Universal.Actions;
 using Redux.TodoMvc.Universal.States;
 
 namespace Redux.TodoMvc.Universal.Components
@@ -54,12 +54,12 @@ namespace Redux.TodoMvc.Universal.Components
 
         private void ClearActiveTodoButton_Click(object sender, RoutedEventArgs e)
         {
-            App.Store.Dispatch(new ClearCompletedTodosSignal());
+            App.Store.Dispatch(new ClearCompletedTodosAction());
         }
 
         private void FilterTodos(TodosFilter filter)
         {
-            App.Store.Dispatch(new FilterTodosSignal
+            App.Store.Dispatch(new FilterTodosAction
             {
                 Filter = filter
             });

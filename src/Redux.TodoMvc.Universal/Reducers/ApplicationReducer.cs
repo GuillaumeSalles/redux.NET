@@ -1,4 +1,4 @@
-﻿using Redux.TodoMvc.Universal.Signals;
+﻿using Redux.TodoMvc.Universal.Actions;
 using Redux.TodoMvc.Universal.States;
 using System;
 using System.Collections.Immutable;
@@ -8,36 +8,36 @@ namespace Redux.TodoMvc.Universal.Reducers
 {
     public static class ApplicationReducer
     {
-        public static ImmutableArray<Todo> AddTodoReducer(ImmutableArray<Todo> previousState, AddTodoSignal signal)
+        public static ImmutableArray<Todo> AddTodoReducer(ImmutableArray<Todo> previousState, AddTodoAction action)
         {
             return previousState
                 .Insert(0, new Todo
                 {
                     Id = Guid.NewGuid(),
-                    Text = signal.Text
+                    Text = action.Text
                 });
         }
 
-        public static ImmutableArray<Todo> ClearCompletedTodosReducer(ImmutableArray<Todo> previousState, ClearCompletedTodosSignal signal)
+        public static ImmutableArray<Todo> ClearCompletedTodosReducer(ImmutableArray<Todo> previousState, ClearCompletedTodosAction action)
         {
             return previousState.RemoveAll(todo => todo.IsCompleted);
         }
 
-        public static ImmutableArray<Todo> CompleteAllTodosReducer(ImmutableArray<Todo> previousState, CompleteAllTodosSignal signal)
+        public static ImmutableArray<Todo> CompleteAllTodosReducer(ImmutableArray<Todo> previousState, CompleteAllTodosAction action)
         {
             return previousState
                 .Select(x => new Todo
                 {
                     Id = x.Id,
                     Text = x.Text,
-                    IsCompleted = signal.IsCompleted
+                    IsCompleted = action.IsCompleted
                 })
                 .ToImmutableArray();
         }
 
-        public static ImmutableArray<Todo> CompleteTodoReducer(ImmutableArray<Todo> previousState, CompleteTodoSignal signal)
+        public static ImmutableArray<Todo> CompleteTodoReducer(ImmutableArray<Todo> previousState, CompleteTodoAction action)
         {
-            var todoToEdit = previousState.First(todo => todo.Id == signal.TodoId);
+            var todoToEdit = previousState.First(todo => todo.Id == action.TodoId);
 
             return previousState
                 .Replace(todoToEdit, new Todo
@@ -48,49 +48,49 @@ namespace Redux.TodoMvc.Universal.Reducers
                 });
         }
 
-        public static ImmutableArray<Todo> DeleteTodoReducer(ImmutableArray<Todo> previousState, DeleteTodoSignal signal)
+        public static ImmutableArray<Todo> DeleteTodoReducer(ImmutableArray<Todo> previousState, DeleteTodoAction action)
         {
-            var todoToDelete = previousState.First(todo => todo.Id == signal.TodoId);
+            var todoToDelete = previousState.First(todo => todo.Id == action.TodoId);
 
             return previousState.Remove(todoToDelete);
         }
 
-        public static ImmutableArray<Todo> TodosReducer(ImmutableArray<Todo> previousState, ISignal signal)
+        public static ImmutableArray<Todo> TodosReducer(ImmutableArray<Todo> previousState, IAction action)
         {
-            if (signal is AddTodoSignal)
+            if (action is AddTodoAction)
             {
-                return AddTodoReducer(previousState, (AddTodoSignal)signal);
+                return AddTodoReducer(previousState, (AddTodoAction)action);
             }
 
-            if (signal is ClearCompletedTodosSignal)
+            if (action is ClearCompletedTodosAction)
             {
-                return ClearCompletedTodosReducer(previousState, (ClearCompletedTodosSignal)signal);
+                return ClearCompletedTodosReducer(previousState, (ClearCompletedTodosAction)action);
             }
 
-            if (signal is CompleteAllTodosSignal)
+            if (action is CompleteAllTodosAction)
             {
-                return CompleteAllTodosReducer(previousState, (CompleteAllTodosSignal)signal);
+                return CompleteAllTodosReducer(previousState, (CompleteAllTodosAction)action);
             }
 
-            if (signal is CompleteTodoSignal)
+            if (action is CompleteTodoAction)
             {
-                return CompleteTodoReducer(previousState, (CompleteTodoSignal)signal);
+                return CompleteTodoReducer(previousState, (CompleteTodoAction)action);
             }
 
-            if (signal is DeleteTodoSignal)
+            if (action is DeleteTodoAction)
             {
-                return DeleteTodoReducer(previousState, (DeleteTodoSignal)signal);
+                return DeleteTodoReducer(previousState, (DeleteTodoAction)action);
             }
 
             return previousState;
         }
 
-        public static ApplicationState Execute(ApplicationState previousState, ISignal signal)
+        public static ApplicationState Execute(ApplicationState previousState, IAction action)
         {
             return new ApplicationState
             {
-                Filter = signal is FilterTodosSignal ? ((FilterTodosSignal)signal).Filter : previousState.Filter,
-                Todos = TodosReducer(previousState.Todos, signal)
+                Filter = action is FilterTodosAction ? ((FilterTodosAction)action).Filter : previousState.Filter,
+                Todos = TodosReducer(previousState.Todos, action)
             };
         }
     }

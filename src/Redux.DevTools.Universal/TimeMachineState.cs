@@ -4,7 +4,7 @@ namespace Redux.DevTools.Universal
 {
     public class TimeMachineState
     {
-        public ImmutableList<ISignal> Signals { get; private set; }
+        public ImmutableList<IAction> Actions { get; private set; }
 
         public ImmutableList<object> States { get; private set; }
 
@@ -15,7 +15,7 @@ namespace Redux.DevTools.Universal
 
         public TimeMachineState()
         {
-            Signals = ImmutableList<ISignal>.Empty;
+            Actions = ImmutableList<IAction>.Empty;
             States = ImmutableList<object>.Empty;
         }
 
@@ -26,7 +26,7 @@ namespace Redux.DevTools.Universal
 
         public TimeMachineState(TimeMachineState other)
         {
-            Signals = other.Signals;
+            Actions = other.Actions;
             States = other.States;
             Position = other.Position;
             IsPaused = other.IsPaused;
@@ -47,9 +47,9 @@ namespace Redux.DevTools.Universal
             return new TimeMachineState(this) { States = states };
         }
 
-        public TimeMachineState WithSignals(ImmutableList<ISignal> signals)
+        public TimeMachineState WithActions(ImmutableList<IAction> actions)
         {
-            return new TimeMachineState(this) { Signals = signals };
+            return new TimeMachineState(this) { Actions = actions };
         }
     }
 }

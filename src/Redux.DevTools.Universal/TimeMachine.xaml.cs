@@ -56,33 +56,33 @@ namespace Redux.DevTools.Universal
             PauseButton.Visibility = state.IsPaused ? Visibility.Collapsed : Visibility.Visible;
             PlayButton.Visibility = state.IsPaused ? Visibility.Visible : Visibility.Collapsed;
 
-            SignalPositionsSlider.Value = state.Position;
-            SignalPositionsSlider.Maximum = state.Signals.Count;
+            ActionPositionsSlider.Value = state.Position;
+            ActionPositionsSlider.Maximum = state.Actions.Count;
 
             if (state.Position <= 0)
             {
-                CurrentSignalTypeTextBlock.Text = string.Empty;
-                CurrentSignalDescription.Text = string.Empty;
+                CurrentActionTypeTextBlock.Text = string.Empty;
+                CurrentActionDescription.Text = string.Empty;
             }
             else
             {
-                var currentSignal = state.Signals[state.Position - 1];
-                CurrentSignalTypeTextBlock.Text = currentSignal.GetType().Name;
-                CurrentSignalDescription.Text = JsonConvert.SerializeObject(currentSignal, Formatting.Indented);
+                var currentAction = state.Actions[state.Position - 1];
+                CurrentActionTypeTextBlock.Text = currentAction.GetType().Name;
+                CurrentActionDescription.Text = JsonConvert.SerializeObject(currentAction, Formatting.Indented);
             }
         }
 
-        private void SignalPositionsSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
+        private void ActionPositionsSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
             if (TimeMachineStore == null 
-                || SignalPositionsSlider.Value == _lastState.Position)
+                || ActionPositionsSlider.Value == _lastState.Position)
             {
                 return;
             }
 
-            TimeMachineStore.Dispatch(new SetTimeMachinePositionSignal
+            TimeMachineStore.Dispatch(new SetTimeMachinePositionAction
             {
-                Position = (int)SignalPositionsSlider.Value
+                Position = (int)ActionPositionsSlider.Value
             });
         }
 
@@ -91,7 +91,7 @@ namespace Redux.DevTools.Universal
             if (TimeMachineStore == null)
                 return;
 
-            TimeMachineStore.Dispatch(new ResumeTimeMachineSignal());
+            TimeMachineStore.Dispatch(new ResumeTimeMachineAction());
         }
 
         private void PauseButton_Click(object sender, RoutedEventArgs e)
@@ -99,7 +99,7 @@ namespace Redux.DevTools.Universal
             if (TimeMachineStore == null)
                 return;
 
-            TimeMachineStore.Dispatch(new PauseTimeMachineSignal());
+            TimeMachineStore.Dispatch(new PauseTimeMachineAction());
         }
     }
 }

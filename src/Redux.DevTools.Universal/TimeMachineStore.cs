@@ -6,8 +6,8 @@ namespace Redux.DevTools.Universal
 {
     public class TimeMachineStore<TState> : Store<TimeMachineState>, IStore<TState>
     {
-        public TimeMachineStore(TState initialState, Func<TState, ISignal, TState> reducer)
-            : base(new TimeMachineState(initialState), new TimeMachineReducer((state, signal) => reducer((TState)state, signal)).Execute)
+        public TimeMachineStore(TState initialState, Func<TState, IAction, TState> reducer)
+            : base(new TimeMachineState(initialState), new TimeMachineReducer((state, action) => reducer((TState)state, action)).Execute)
         {
         }
 

@@ -8,13 +8,13 @@ namespace Redux.DevTools.Universal
 {
     public static class ReducerExtensions
     {
-        public static Func<TState, ISignal, TState> Combine<TState>(this IEnumerable<IReducer<TState>> reducers)
+        public static Func<TState, IAction, TState> Combine<TState>(this IEnumerable<IReducer<TState>> reducers)
         {
-            return (state, signal) =>
+            return (state, action) =>
             {
                 foreach (var reducer in reducers)
                 {
-                    state = reducer.Execute(state, signal);
+                    state = reducer.Execute(state, action);
                 }
 
                 return state;
@@ -24,23 +24,23 @@ namespace Redux.DevTools.Universal
 
     public interface IReducer<TState>
     {
-        TState Execute(TState previousState, ISignal signal);
+        TState Execute(TState previousState, IAction action);
     }
 
-    public abstract class Reducer<TState, TSignal> : IReducer<TState>
-        where TSignal : ISignal
+    public abstract class Reducer<TState, TAction> : IReducer<TState>
+        where TAction : IAction
     {
-        public TState Execute(TState previousState, ISignal signal)
+        public TState Execute(TState previousState, IAction action)
         {
-            if (signal is TSignal)
+            if (action is TAction)
             {
-                return Execute(previousState, (TSignal)signal);
+                return Execute(previousState, (TAction)action);
             }
 
             return previousState;
         }
 
-        protected abstract TState Execute(TState previousState, TSignal signal);
+        protected abstract TState Execute(TState previousState, TAction action);
     }
 
     public class TimeMachineReducer : IReducer<TimeMachineState>
@@ -52,18 +52,18 @@ namespace Redux.DevTools.Universal
             new ResumeTimeMachineReducer()
         };
 
-        private Func<object, ISignal, object> _reducer;
+        private Func<object, IAction, object> _reducer;
 
-        public TimeMachineReducer(Func<object, ISignal, object> reducer)
+        public TimeMachineReducer(Func<object, IAction, object> reducer)
         {
             _reducer = reducer;
         }
 
-        public TimeMachineState Execute(TimeMachineState previousState, ISignal signal)
+        public TimeMachineState Execute(TimeMachineState previousState, IAction action)
         {
-            if(signal is ITimeMachineSignal)
+            if(action is ITimeMachineAction)
             {
-                return _timeMachineReducers.Combine()(previousState, signal);
+                return _timeMachineReducers.Combine()(previousState, action);
             }
 
             if (previousState.IsPaused)
@@ -71,62 +71,62 @@ namespace Redux.DevTools.Universal
                 return previousState;
             }
 
-            var innerState = _reducer(previousState.States.Last(), signal);
+            var innerState = _reducer(previousState.States.Last(), action);
 
             return previousState
                 .WithStates(previousState.States.Add(innerState))
-                .WithSignals(previousState.Signals.Add(signal))
+                .WithActions(previousState.Actions.Add(action))
                 .WithPosition(previousState.Position + 1);
         }
     }
 
-    public interface ITimeMachineSignal : ISignal
+    public interface ITimeMachineAction : IAction
     {
 
     }
 
-    public class PauseTimeMachineSignal : ITimeMachineSignal
+    public class PauseTimeMachineAction : ITimeMachineAction
     {
 
     }
 
-    public class ResumeTimeMachineSignal : ITimeMachineSignal
+    public class ResumeTimeMachineAction : ITimeMachineAction
     {
 
     }
 
-    public class SetTimeMachinePositionSignal : ITimeMachineSignal
+    public class SetTimeMachinePositionAction : ITimeMachineAction
     {
         public int Position { get; set; }
     }
 
-    public class SetTimeMachinePositionReducer : Reducer<TimeMachineState, SetTimeMachinePositionSignal>
+    public class SetTimeMachinePositionReducer : Reducer<TimeMachineState, SetTimeMachinePositionAction>
     {
         protected override TimeMachineState Execute(TimeMachineState previousState, 
-            SetTimeMachinePositionSignal signal)
+            SetTimeMachinePositionAction action)
         {
             return previousState
-                .WithPosition(signal.Position)
+                .WithPosition(action.Position)
                 .WithIsPaused(true);
         }
     }
 
-    public class ResumeTimeMachineReducer : Reducer<TimeMachineState, ResumeTimeMachineSignal>
+    public class ResumeTimeMachineReducer : Reducer<TimeMachineState, ResumeTimeMachineAction>
     {
         protected override TimeMachineState Execute(TimeMachineState previousState, 
-            ResumeTimeMachineSignal signal)
+            ResumeTimeMachineAction action)
         {
             return previousState
                 .WithIsPaused(false)
                 .WithStates(previousState.States.Take(previousState.Position + 1).ToImmutableList())
-                .WithSignals(previousState.Signals.Take(previousState.Position).ToImmutableList());
+                .WithActions(previousState.Actions.Take(previousState.Position).ToImmutableList());
         }
     }
 
-    public class PauseTimeMachineReducer : Reducer<TimeMachineState, PauseTimeMachineSignal>
+    public class PauseTimeMachineReducer : Reducer<TimeMachineState, PauseTimeMachineAction>
     {
         protected override TimeMachineState Execute(TimeMachineState previousState, 
-            PauseTimeMachineSignal signal)
+            PauseTimeMachineAction action)
         {
             return previousState
                 .WithIsPaused(true);

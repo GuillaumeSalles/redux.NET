@@ -1,4 +1,4 @@
-﻿using Redux.TodoMvc.Universal.Signals;
+﻿using Redux.TodoMvc.Universal.Actions;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using System;
@@ -25,7 +25,7 @@ namespace Redux.TodoMvc.Universal.Components
             if (e.Key != Windows.System.VirtualKey.Enter)
                 return;
 
-            App.Store.Dispatch(new AddTodoSignal
+            App.Store.Dispatch(new AddTodoAction
             {
                 Text = TodoInputTextBox.Text
             });
@@ -35,7 +35,7 @@ namespace Redux.TodoMvc.Universal.Components
 
         private void CompleteAllCheckBox_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            App.Store.Dispatch(new CompleteAllTodosSignal
+            App.Store.Dispatch(new CompleteAllTodosAction
             {
                 IsCompleted = CompleteAllCheckBox.IsChecked.Value
             });

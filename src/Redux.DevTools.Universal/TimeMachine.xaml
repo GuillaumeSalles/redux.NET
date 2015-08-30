@@ -32,7 +32,7 @@
             </Grid.ColumnDefinitions>
 
             <Slider
-                x:Name="SignalPositionsSlider"
+                x:Name="ActionPositionsSlider"
                 Minimum="0"
                 Maximum="0"
                 HorizontalAlignment="Stretch"
@@ -40,7 +40,7 @@
                 Foreground="#DADBDC"
                 Background="#DADBDC"
                 RequestedTheme="Dark"
-                ValueChanged="SignalPositionsSlider_ValueChanged"/>
+                ValueChanged="ActionPositionsSlider_ValueChanged"/>
 
             <Button
                 x:Name="PlayButton"
@@ -84,10 +84,10 @@
                 Grid.ColumnSpan="2">
 
                 <TextBlock 
-                    x:Name="CurrentSignalTypeTextBlock"
+                    x:Name="CurrentActionTypeTextBlock"
                     FontWeight="SemiBold"/>
 
-                <TextBlock x:Name="CurrentSignalDescription"/>
+                <TextBlock x:Name="CurrentActionDescription"/>
             </StackPanel>
         </Grid>
     </Grid>
