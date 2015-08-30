@@ -22,8 +22,8 @@ namespace Redux.TodoMvc.Universal
                 Filter = TodosFilter.All
             };
 
-            //Store = new Store<ApplicationState>(initialState,new ApplicationReducer().Execute);
-            Store = new TimeMachineStore<ApplicationState>(initialState, new ApplicationReducer().Execute);
+            //Store = new Store<ApplicationState>(initialState, ApplicationReducer.Execute);
+            Store = new TimeMachineStore<ApplicationState>(initialState, ApplicationReducer.Execute);
         }
         
         protected override void OnLaunched(LaunchActivatedEventArgs e)

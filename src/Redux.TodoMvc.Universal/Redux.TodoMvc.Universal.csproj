@@ -116,13 +116,7 @@
       <DependentUpon>MainPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reducers\AddTodoReducer.cs" />
     <Compile Include="Reducers\ApplicationReducer.cs" />
-    <Compile Include="Reducers\ClearCompletedTodosReducer.cs" />
-    <Compile Include="Reducers\DeleteTodoReducer.cs" />
-    <Compile Include="Reducers\FilterTodosReducer.cs" />
-    <Compile Include="Reducers\CompleteAllTodosReducer.cs" />
-    <Compile Include="Reducers\CompleteTodoReducer.cs" />
     <Compile Include="Signals\Signals.cs" />
     <Compile Include="States\Todo.cs" />
     <Compile Include="States\TodosFilter.cs" />
