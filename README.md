@@ -1,4 +1,4 @@
-# Redux.net
+# Redux.NET
 
 Redux.net is an attempt to bring [Redux](https://github.com/rackt/redux) concepts to .NET application development. (Only Windows 10 for now, but Android and IOS will come thanks to Xamarin)
 
