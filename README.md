@@ -16,7 +16,7 @@ After working on several MVVM applications (Silverlight, WPF, WinRT), I always f
 * A time machine debugger inspired by [Elm debugger](http://debug.elm-lang.org/) and [Redux DevTools](https://github.com/gaearon/redux-devtools)
 * A todo application for Windows 10 that use everything listed above !
 
-![](http://i.imgur.com/RmpugpV.gif)
+![](http://i.imgur.com/3rgYjsL.gif)
 
 ### To do
 
