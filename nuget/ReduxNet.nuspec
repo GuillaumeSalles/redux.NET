@@ -6,11 +6,9 @@
     <title>Redux.NET</title>
     <authors>Guillaume Salles</authors>
     <owners>Guillaume Salles</owners>
-    <licenseUrl></licenseUrl>
-    <projectUrl></projectUrl>
-    <iconUrl></iconUrl>
+    <projectUrl>https://github.com/GuillaumeSalles/redux.NET</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description></description>
+    <description>Redux.NET</description>
     <releaseNotes></releaseNotes>
     <copyright></copyright>
     <tags>Redux Redux.NET</tags>
