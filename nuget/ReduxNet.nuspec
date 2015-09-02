@@ -12,6 +12,9 @@
     <releaseNotes></releaseNotes>
     <copyright></copyright>
     <tags>Redux Redux.NET</tags>
+	<dependencies>
+	  <dependency id="Rx-Main" version="2.2.5" />
+	</dependencies>
   </metadata>
   <files>
 	<file src="..\src\Redux\bin\$configuration$\Redux.dll" target="lib" />
