@@ -17,6 +17,6 @@
 	</dependencies>
   </metadata>
   <files>
-	<file src="..\src\Redux\bin\$configuration$\Redux.dll" target="lib" />
+	<file src="..\src\Redux\bin\$configuration$\Redux.dll" target="lib\portable45-net45+win8" />
   </files>
 </package>
