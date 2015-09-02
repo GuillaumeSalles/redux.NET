@@ -165,10 +165,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Redux.DevTools.Universal\Redux.DevTools.Universal.csproj">
-      <Project>{9e9e1f17-990b-4208-8bb6-4b2f5e295ee9}</Project>
-      <Name>Redux.DevTools.Universal</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Redux\Redux.csproj">
       <Project>{a15d3f17-691f-48df-9078-27dcde7141eb}</Project>
       <Name>Redux</Name>
