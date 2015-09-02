@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Redux.NET</id>
+    <version>$version$</version>
+    <title>Redux.NET</title>
+    <authors>Guillaume Salles</authors>
+    <owners>Guillaume Salles</owners>
+    <licenseUrl></licenseUrl>
+    <projectUrl></projectUrl>
+    <iconUrl></iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description></description>
+    <releaseNotes></releaseNotes>
+    <copyright></copyright>
+    <tags>Redux Redux.NET</tags>
+  </metadata>
+  <files>
+	<file src="..\src\Redux\bin\$configuration$\Redux.dll" target="lib" />
+  </files>
+</package>
