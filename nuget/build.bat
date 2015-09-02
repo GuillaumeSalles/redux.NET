@@ -14,9 +14,11 @@ if "%nuget%" == "" (
 	set nuget=nuget
 )
 
+%nuget% restore src\Redux.sln
+
 %WINDIR%\Microsoft.NET\Framework\v4.0.30319\msbuild src\Redux.sln /p:Configuration="%config%" /m /v:M /fl /flp:LogFile=msbuild.log;Verbosity=diag /nr:false
 
 mkdir Build
 mkdir Build\lib
 
-%nuget% pack "ReduxNet.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
+%nuget% pack "nuget\ReduxNet.nuspec" -NoPackageAnalysis -verbosity detailed -o Build -Version %version% -p Configuration="%config%"
