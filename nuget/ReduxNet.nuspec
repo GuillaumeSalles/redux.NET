@@ -17,6 +17,6 @@
 	</dependencies>
   </metadata>
   <files>
-	<file src="..\src\Redux\bin\$configuration$\Redux.dll" target="lib\portable-net45+netcore45" />
+	<file src="..\src\Redux\bin\$configuration$\Redux.dll" target="lib\portable-net45+netcore45\" />
   </files>
 </package>
