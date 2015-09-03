@@ -20,5 +20,6 @@
   </metadata>
   <files>
 	<file src="..\src\Redux.DevTools.Universal\bin\$configuration$\Redux.DevTools.Universal.dll" target="lib\win81" />
+	<file src="..\src\Redux.DevTools.Universal\bin\$configuration$\Redux.DevTools.Universal.pri" target="lib\win81" />
   </files>
 </package>
