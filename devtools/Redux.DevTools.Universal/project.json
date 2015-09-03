@@ -1,5 +1,6 @@
 ﻿{
   "dependencies": {
+    "System.Runtime": "4.0.20",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Newtonsoft.Json": "7.0.1",
     "Redux.NET": "0.1.0-CI00017",
