@@ -125,12 +125,6 @@
     <Content Include="Properties\Redux.DevTools.Universal.rd.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Redux\Redux.csproj">
-      <Project>{a15d3f17-691f-48df-9078-27dcde7141eb}</Project>
-      <Name>Redux</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Page Include="Themes\Generic.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
