@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Redux.NET.DevTools</id>
+    <version>$version$</version>
+    <title>Redux.NET.DevTools</title>
+    <authors>Guillaume Salles</authors>
+    <owners>Guillaume Salles</owners>
+    <projectUrl>https://github.com/GuillaumeSalles/redux.NET</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Redux.NET DevTools</description>
+    <releaseNotes></releaseNotes>
+    <copyright></copyright>
+    <tags>Redux Redux.NET DevTools Redux.Net.DevTools</tags>
+	<dependencies>
+	  <dependency id="Rx-Main" version="2.2.5" />
+	  <dependency id="Newtonsoft.Json" version="7.0.1"/>
+	  <dependency id="System.Collections.Immutable" version="1.1.37"/>
+	</dependencies>
+  </metadata>
+  <files>
+	<file src="..\src\Redux.DevTools.Universal\bin\$configuration$\Redux.DevTools.Universal.dll" target="lib\win81\Redux.DevTools.Universal.dll" />
+	<file src="..\src\Redux.DevTools.Universal\bin\$configuration$\Redux.DevTools.Universal.pri" target="lib\win81\Redux.DevTools.Universal.pri" />
+	<file src="..\src\Redux.DevTools.Universal\bin\$configuration$\Redux.DevTools.Universal.xr.xml" target="lib\win81\Redux.DevTools.Universal\Redux.DevTools.Universal.xr.xml" />
+	<file src="..\src\Redux.DevTools.Universal\Properties\Redux.DevTools.Universal.rd.xml" target="lib\win81\Redux.DevTools.Universal\Properties\Redux.DevTools.Universal.rd.xml" />
+  </files>
+</package>

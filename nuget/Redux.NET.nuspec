@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Redux.NET</id>
+    <version>$version$</version>
+    <title>Redux.NET</title>
+    <authors>Guillaume Salles</authors>
+    <owners>Guillaume Salles</owners>
+    <projectUrl>https://github.com/GuillaumeSalles/redux.NET</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Redux.NET</description>
+    <releaseNotes></releaseNotes>
+    <copyright></copyright>
+    <tags>Redux Redux.NET</tags>
+	<dependencies>
+	  <dependency id="Rx-Main" version="2.2.5" />
+	</dependencies>
+  </metadata>
+  <files>
+	<file src="..\src\Redux\bin\$configuration$\Redux.dll" target="lib\portable-net45+netcore45" />
+  </files>
+</package>
