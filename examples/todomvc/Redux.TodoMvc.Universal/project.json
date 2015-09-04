@@ -5,8 +5,8 @@
     "Microsoft.ApplicationInsights.WindowsApps": "1.0.0",
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Newtonsoft.Json": "7.0.1",
-    "Redux.NET": "0.1.0-CI00030",
-    "Redux.NET.DevTools": "0.1.0-CI00030",
+    "Redux.NET": "0.1.0-CI00032",
+    "Redux.NET.DevTools": "0.1.0-CI00032",
     "Rx-Main": "2.2.5",
     "System.Collections.Immutable": "1.1.37"
   },
