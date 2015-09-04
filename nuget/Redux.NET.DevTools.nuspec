@@ -22,6 +22,6 @@
 	<file src="..\src\Redux.DevTools.Universal\bin\$configuration$\Redux.DevTools.Universal.dll" target="lib\win81\Redux.DevTools.Universal.dll" />
 	<file src="..\src\Redux.DevTools.Universal\bin\$configuration$\Redux.DevTools.Universal.pri" target="lib\win81\Redux.DevTools.Universal.pri" />
 	<file src="..\src\Redux.DevTools.Universal\bin\$configuration$\Redux.DevTools.Universal.xr.xml" target="lib\win81\Redux.DevTools.Universal\Redux.DevTools.Universal.xr.xml" />
-	<file src="..\src\Redux.DevTools.Universal\Properties\Redux.DevTools.Universal.rd.xml" target="lib\win81\Redux.DevTools.Universal\Redux.DevTools.Universal.rd.xml" />
+	<file src="..\src\Redux.DevTools.Universal\Properties\Redux.DevTools.Universal.rd.xml" target="lib\win81\Redux.DevTools.Universal\Properties\Redux.DevTools.Universal.rd.xml" />
   </files>
 </package>
