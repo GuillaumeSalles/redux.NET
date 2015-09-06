@@ -18,6 +18,7 @@ namespace Redux
         {
             _dispatcher
                 .Scan(initialState, reducer)
+                .StartWith(initialState)
                 .Subscribe(_stateSubject);
         }
 
