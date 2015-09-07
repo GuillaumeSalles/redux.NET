@@ -11,8 +11,8 @@ After working on several MVVM applications (Silverlight, WPF, WinRT), I always f
 [Dan Abramov](https://twitter.com/dan_abramov), a brilliant javascript developer, faced the same kind of [problems](http://rackt.github.io/redux/docs/introduction/Motivation.html) with complex web application. His solution? [Redux](https://github.com/rackt/redux)!
 
 > The whole state of your app is stored in an object tree inside a single *Store*.
-The only way to change the state tree is to emit an *Action*, an object describing what happened.
-To specify how the actions transform the state tree, you write pure *Reducers*.
+> The only way to change the state tree is to emit an *Action*, an object describing what happened.
+> To specify how the actions transform the state tree, you write pure *Reducers*.
 
 ### Installation
 
