@@ -10,9 +10,9 @@ After working on several MVVM applications (Silverlight, WPF, WinRT), I always f
 
 [Dan Abramov](https://twitter.com/dan_abramov), a brilliant javascript developer, faced the same kind of [problems](http://rackt.github.io/redux/docs/introduction/Motivation.html) with complex web application. His solution? [Redux](https://github.com/rackt/redux)!
 
-### Get started
+### Installation
 
-[Redux.NET Nuget](https://www.nuget.org/packages/Redux.NET/)
+You can grab the latest [Redux.NET Nuget package](https://www.nuget.org/packages/Redux.NET/) or from the NuGet package manager console  
 
     Install-Package Redux.NET
 
