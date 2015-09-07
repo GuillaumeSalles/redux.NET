@@ -16,7 +16,7 @@ After working on several MVVM applications (Silverlight, WPF, WinRT), I always f
 
 ### Installation
 
-You can grab the latest [Redux.NET Nuget package](https://www.nuget.org/packages/Redux.NET/) or from the NuGet package manager console  
+You can grab the latest [Redux.NET Nuget package](https://www.nuget.org/packages/Redux.NET/) or from the NuGet package manager console :
 
     Install-Package Redux.NET
 
@@ -24,7 +24,7 @@ You can grab the latest [Redux.NET Nuget package](https://www.nuget.org/packages
 
 The development tools contains a time machine debugger inspired by [Elm debugger](http://debug.elm-lang.org/) and [Redux DevTools](https://github.com/gaearon/redux-devtools)
 
-[Redux.NET DevTools Nuget](https://www.nuget.org/packages/Redux.NET.DevTools/)
+You can get the dev tools package [via nuget](https://www.nuget.org/packages/Redux.NET.DevTools/) or via the Nuget package manager console : 
 
     Install-Package Redux.NET.DevTools
 
