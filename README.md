@@ -22,7 +22,7 @@ You can grab the latest [Redux.NET Nuget package](https://www.nuget.org/packages
 
 ### Development Tools
 
-The development tools contains a time machine debugger inspired by [Elm debugger](http://debug.elm-lang.org/) and [Redux DevTools](https://github.com/gaearon/redux-devtools)
+The development tools contain a time machine debugger inspired by [Elm debugger](http://debug.elm-lang.org/) and [Redux DevTools](https://github.com/gaearon/redux-devtools).
 
 You can get the dev tools package [via nuget](https://www.nuget.org/packages/Redux.NET.DevTools/) or via the Nuget package manager console : 
 
