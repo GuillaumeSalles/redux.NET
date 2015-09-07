@@ -33,7 +33,7 @@ You can grab the latest [Redux.NET Nuget package](https://www.nuget.org/packages
 
 #### Actions
 
-Actions are payloads of information that send data from your application to your store. 
+*Actions* are payloads of information that send data from your application to your *store*. 
 They only need to implement the markup interface Redux.IAction.
 
 ```
@@ -49,7 +49,7 @@ They only need to implement the markup interface Redux.IAction.
 
 #### Reducers
 
-A reducer is a pure function with ((TState)state, (IAction)action) => (TState)state signature.
+A *reducer* is a [pure function](https://en.wikipedia.org/wiki/Pure_function) with ((TState)state, (IAction)action) => (TState)state signature.
 It describes how an action transforms the state into the next state.
 
 The shape of the state is up to you: it can be a primitive, an array or an object.
