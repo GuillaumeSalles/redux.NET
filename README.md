@@ -2,6 +2,8 @@
 
 Redux.NET is an attempt to bring [Redux](https://github.com/rackt/redux) concepts to .NET application development. (Only Windows 10 for now, but Android and IOS will come thanks to Xamarin)
 
+![](http://i.imgur.com/3rgYjsL.gif)
+
 ## Table of Contents
 
 - [Motivation](#motivation)
@@ -36,15 +38,15 @@ You can grab the latest [Redux.NET Nuget package](https://www.nuget.org/packages
 *Actions* are payloads of information that send data from your application to your *store*. 
 They only need to implement the markup interface Redux.IAction.
 
-```
-    public class IncrementAction : IAction { }
+```C#
+public class IncrementAction : IAction { }
     
-    public class DecrementAction : IAction { }
+public class DecrementAction : IAction { }
     
-    public class AddTodoAction : IAction
-    {
-        public string Text { get; set; }
-    }
+public class AddTodoAction : IAction
+{
+    public string Text { get; set; }
+}
 ```
 
 #### Reducers
@@ -55,10 +57,12 @@ It describes how an action transforms the state into the next state.
 The shape of the state is up to you: it can be a primitive, an array or an object.
 The only important part is that you should not mutate the state object, but return a new object if the state changes.
 
-```
+```C#
+namespace Redux.Counter.Universal
+{
     public static class CounterReducer
     {
-        public static int Execute(int state, IAction action)
+        public static int Execute(int previousState, IAction action)
         {
             if(action is IncrementAction)
             {
@@ -73,6 +77,7 @@ The only important part is that you should not mutate the state object, but retu
             return state;
         }
     }
+}
 ```
 
 #### Store
@@ -88,7 +93,7 @@ In the [examples](#examples), I keep it as a static property on the application 
 
 The Store constructor take an initial state, of type TState, and a reducer.
 
-```
+```C#
 using Redux;
 using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
@@ -115,7 +120,7 @@ namespace Redux.Counter.Universal
 
 The following code show how to subscribe to a store and to dispatch actions.
 
-```
+```C#
 using Redux;
 using System;
 using Windows.UI.Xaml.Controls;
@@ -140,7 +145,6 @@ namespace Redux.Counter.Universal
         [...]
     }
 }
-
 ```
 
 ## Using DevTools
@@ -151,15 +155,55 @@ You can get the dev tools package [via nuget](https://www.nuget.org/packages/Red
 
     Install-Package Redux.NET.DevTools
     
-Todo : Documentation
+To use the time machine, just replace the Store with a **TimeMachineStore** and the application Frame with a **DevFrame**: 
+
+```C#
+using Windows.ApplicationModel.Activation;
+using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Redux.DevTools.Universal;
+
+namespace Redux.Counter.Universal
+{
+    public sealed partial class App : Application
+    {
+        public static IStore<int> CounterStore { get; private set; }
+
+        public App()
+        {
+            InitializeComponent();
+            
+            CounterStore = new TimeMachineStore<int>(0, CounterReducer.Execute);
+        }
+
+        protected override void OnLaunched(LaunchActivatedEventArgs e)
+        {
+            Frame rootFrame = Window.Current.Content as Frame;
+
+            if (rootFrame == null)
+            {
+                rootFrame = new DevFrame
+                {
+                    TimeMachineStore = (IStore<TimeMachineState>)CounterStore
+                };
+                Window.Current.Content = rootFrame;
+            }
+
+            if (rootFrame.Content == null)
+            {
+                rootFrame.Navigate(typeof(MainPage), e.Arguments);
+            }
+
+            Window.Current.Activate();
+        }
+    }
+}
+```
 
 ## Examples 
 
 * Counter ([sources](https://github.com/GuillaumeSalles/redux.NET/tree/master/examples/counter))
 * Todo app ([sources](https://github.com/GuillaumeSalles/redux.NET/tree/master/examples/todomvc))
-
-![](http://i.imgur.com/3rgYjsL.gif)
-
 
 ## To do
 
