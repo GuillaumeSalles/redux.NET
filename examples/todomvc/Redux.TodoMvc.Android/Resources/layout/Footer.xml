@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+  <TextView
+         android:text="Text"
+        android:layout_width=    "wrap_content"
+          android:layout_height=    "fill_parent"
+         android:id="@+id/textView1" />
+  <RadioGroup
+      android:minWidth="25px"
+      android:minHeight="25px"
+      android:layout_width=    "wrap_content"
+          android:layout_height=    "fill_parent"
+      android:id="@+id/radioGroup1">
+    <RadioButton
+        android:layout_width=    "wrap_content"
+          android:layout_height=    "fill_parent"
+        android:checked="true"
+        android:text="RadioButton"
+        android:id="@+id/radioButton1" />
+    <RadioButton
+        android:layout_width=    "wrap_content"
+          android:layout_height=    "fill_parent"
+        android:text="RadioButton"
+        android:id="@+id/radioButton2" />
+    <RadioButton
+        android:layout_width=    "wrap_content"
+          android:layout_height=    "fill_parent"
+        android:text="RadioButton"
+        android:id="@+id/radioButton3" />
+  </RadioGroup>
+  
+  
+  
+</LinearLayout>
