@@ -60,6 +60,9 @@ namespace Redux.TodoMvc.Android
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f050005
+			public const int editTextId = 2131034117;
+			
 			// aapt resource value: 0x7f050009
 			public const int listView1 = 2131034121;
 			
@@ -71,9 +74,6 @@ namespace Redux.TodoMvc.Android
 			
 			// aapt resource value: 0x7f050007
 			public const int main_mainsection = 2131034119;
-			
-			// aapt resource value: 0x7f050005
-			public const int password = 2131034117;
 			
 			// aapt resource value: 0x7f050002
 			public const int radioButton1 = 2131034114;
