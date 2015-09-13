@@ -75,6 +75,9 @@ namespace Redux.TodoMvc.Android
 			// aapt resource value: 0x7f050007
 			public const int main_mainsection = 2131034119;
 			
+			// aapt resource value: 0x7f050000
+			public const int numberOfTodosRemaining = 2131034112;
+			
 			// aapt resource value: 0x7f050002
 			public const int radioButton1 = 2131034114;
 			
@@ -86,9 +89,6 @@ namespace Redux.TodoMvc.Android
 			
 			// aapt resource value: 0x7f050001
 			public const int radioGroup1 = 2131034113;
-			
-			// aapt resource value: 0x7f050000
-			public const int textView1 = 2131034112;
 			
 			static Id()
 			{

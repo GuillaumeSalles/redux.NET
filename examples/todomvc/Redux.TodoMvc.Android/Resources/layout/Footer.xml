@@ -9,7 +9,7 @@
          android:text="Text"
         android:layout_width=    "wrap_content"
           android:layout_height=    "fill_parent"
-         android:id="@+id/textView1" />
+         android:id="@+id/numberOfTodosRemaining" />
   <RadioGroup
       android:minWidth="25px"
       android:minHeight="25px"

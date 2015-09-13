@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using Android.App;
 using Android.OS;
@@ -21,10 +22,30 @@ namespace Redux.TodoMvc.Android
 
             ActivityStore.Subscribe(applicationState =>
             {
-                var list = applicationState.Todos.Select(a => a.Text).ToList();
+                var list = FilterTodos(applicationState);
 
                 _listView.Adapter = new ArrayAdapter<string>(_view.Context, global::Android.Resource.Layout.SimpleListItem1, list);
             });
+        }
+
+        private List<string> FilterTodos(ApplicationState applicationState)
+        {
+            return FilterTodos(applicationState.Todos, applicationState.Filter).Select(a => a.Text).ToList();
+        }
+
+        private IEnumerable<Todo> FilterTodos(IEnumerable<Todo> todos, TodosFilter filter)
+        {
+            if (filter == TodosFilter.Completed)
+            {
+                return todos.Where(x => x.IsCompleted);
+            }
+
+            if (filter == TodosFilter.InProgress)
+            {
+                return todos.Where(x => !x.IsCompleted);
+            }
+
+            return todos;
         }
 
         public IStore<ApplicationState> ActivityStore { get; set; }
