@@ -1,4 +1,5 @@
 using System.Linq;
+using System;
 using Android.App;
 using Android.OS;
 using Android.Text;
@@ -27,7 +28,22 @@ namespace Redux.TodoMvc.Android
 
             _editText = view.FindViewById<EditText>(Resource.Id.editTextId);
             _editText.TextChanged += EditText_TextChanged;
+            
+            var completeAllCheckBox = view.FindViewById<CheckBox>(Resource.Id.selectAllTodosCheckBox);
+            completeAllCheckBox.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs args)
+            {
+                ActivityStore.Dispatch(new CompleteAllTodosAction
+                {
+                    IsCompleted = args.IsChecked
+                });
+            };
 
+            ActivityStore.Subscribe(state =>
+            {
+                completeAllCheckBox.Visibility = state.Todos.Any() ? ViewStates.Visible : ViewStates.Invisible;
+                completeAllCheckBox.Checked = state.Todos.All(x => x.IsCompleted);
+            });
+            
             return view;
         }
 
@@ -37,7 +53,7 @@ namespace Redux.TodoMvc.Android
             if (text.Contains('\n'))
             {
                 var textRemoveEnterChar = (text.ToString()).Trim();
-                _editText.Text = string.Empty;;
+                _editText.Text = string.Empty; ;
 
                 ActivityStore.Dispatch(new AddTodoAction { Text = textRemoveEnterChar });
             }

@@ -8,32 +8,38 @@
   <TextView
          android:text="Text"
         android:layout_width=    "wrap_content"
-          android:layout_height=    "fill_parent"
+          android:layout_height=    "wrap_content"
          android:id="@+id/numberOfTodosRemaining" />
   <RadioGroup
       android:minWidth="25px"
       android:minHeight="25px"
-      android:layout_width=    "wrap_content"
-          android:layout_height=    "fill_parent"
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
       android:id="@+id/radioGroup1">
     <RadioButton
-        android:layout_width=    "wrap_content"
-          android:layout_height=    "fill_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:checked="true"
-        android:text="RadioButton"
-        android:id="@+id/radioButton1" />
+        android:text="All"
+        android:id="@+id/allRadioButton" />
     <RadioButton
-        android:layout_width=    "wrap_content"
-          android:layout_height=    "fill_parent"
-        android:text="RadioButton"
-        android:id="@+id/radioButton2" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Active"
+        android:id="@+id/activeRadioButton" />
     <RadioButton
-        android:layout_width=    "wrap_content"
-          android:layout_height=    "fill_parent"
-        android:text="RadioButton"
-        android:id="@+id/radioButton3" />
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Completed"
+        android:id="@+id/completedRadioButton" />
   </RadioGroup>
-  
+  <Button
+    android:text="Clear completed"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/clearCompletedButton"
+  />
   
   
 </LinearLayout>

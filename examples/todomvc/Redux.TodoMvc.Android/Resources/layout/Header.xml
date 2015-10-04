@@ -5,10 +5,11 @@
     android:layout_height="fill_parent"
     android:minWidth="25px"
     android:minHeight="25px">
-  <!--<CheckBox
-          android:layout_width="match_parent"
+  <CheckBox
+          android:layout_width="wrap_content"
           android:layout_height="wrap_content"
-          android:id="@+id/checkBox1" />-->
+          android:id="@+id/selectAllTodosCheckBox"
+          android:visibility="invisible"/>
 
   <EditText
        android:layout_width="match_parent"
