@@ -5,8 +5,8 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Redux.TodoMvc.Core.Actions;
-using Redux.TodoMvc.Core.States;
+using Redux.TodoMvc.Actions;
+using Redux.TodoMvc.States;
 
 namespace Redux.TodoMvc.Android
 {
@@ -61,32 +61,27 @@ namespace Redux.TodoMvc.Android
 
     public class ListItemAdapter : BaseAdapter<Todo>
     {
-        List<Todo> items;
+        private readonly List<Todo> _items;
         private readonly IStore<ApplicationState> _activityStore;
-        Activity context;
+        private readonly Activity _context;
         public ListItemAdapter(Activity context, List<Todo> items, IStore<ApplicationState> activityStore)
-            : base()
         {
-            this.context = context;
-            this.items = items;
+            _context = context;
+            _items = items;
             _activityStore = activityStore;
         }
         public override long GetItemId(int position)
         {
             return position;
         }
-        public override Todo this[int position]
-        {
-            get { return items[position]; }
-        }
-        public override int Count
-        {
-            get { return items.Count; }
-        }
+        public override Todo this[int position] => _items[position];
+
+        public override int Count => _items.Count;
+
         public override View GetView(int position, View convertView, ViewGroup parent)
         {
-            var item = items[position];
-            var view = context.LayoutInflater.Inflate(Resource.Layout.ListViewItem, null);
+            var item = _items[position];
+            var view = _context.LayoutInflater.Inflate(Resource.Layout.ListViewItem, null);
 
             var checkBox = view.FindViewById<CheckBox>(Resource.Id.checkbox);
 

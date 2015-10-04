@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Redux.TodoMvc.Core.States
+namespace Redux.TodoMvc.States
 {
     public class Todo
     {

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Immutable;
 using Android.App;
 using Android.OS;
-using Redux.TodoMvc.Core.Reducers;
-using Redux.TodoMvc.Core.States;
+using Redux.TodoMvc.Reducers;
+using Redux.TodoMvc.States;
 
 namespace Redux.TodoMvc.Android
 {

@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redux.TodoMvc.Universal", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redux.TodoMvc.Android", "Redux.TodoMvc.Android\Redux.TodoMvc.Android.csproj", "{74D8C13C-3B02-4EBC-AA69-B6835A833DB4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redux.TodoMvc.Core", "Redux.TodoMvc.Core\Redux.TodoMvc.Core.csproj", "{FEA5562D-E8D5-4AD9-BACA-2D29DB0A2775}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redux.TodoMvc", "Redux.TodoMvc\Redux.TodoMvc.csproj", "{FEA5562D-E8D5-4AD9-BACA-2D29DB0A2775}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

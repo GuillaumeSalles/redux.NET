@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Immutable;
-using Redux.TodoMvc.Core.Actions;
-using Redux.TodoMvc.Core.States;
 using System.Linq;
+using Redux.TodoMvc.Actions;
+using Redux.TodoMvc.States;
 
-namespace Redux.TodoMvc.Core.Reducers
+namespace Redux.TodoMvc.Reducers
 {
     public static class ApplicationReducer
     {

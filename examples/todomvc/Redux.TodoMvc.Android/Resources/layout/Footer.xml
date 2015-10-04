@@ -6,17 +6,16 @@
     android:minWidth="25px"
     android:minHeight="25px">
   <TextView
-         android:text="Text"
-        android:layout_width=    "wrap_content"
-          android:layout_height=    "wrap_content"
-         android:id="@+id/numberOfTodosRemaining" />
+    android:text=""
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/numberOfTodosRemaining" />
   <RadioGroup
-      android:minWidth="25px"
-      android:minHeight="25px"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:orientation="horizontal"
-      android:id="@+id/radioGroup1">
+      android:visibility="invisible"
+      android:id="@+id/radioGroup">
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -39,8 +38,7 @@
     android:visibility="invisible"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:id="@+id/clearCompletedButton"
-  />
+    android:id="@+id/clearCompletedButton"/>
   
   
 </LinearLayout>

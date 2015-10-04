@@ -1,4 +1,4 @@
-﻿namespace Redux.TodoMvc.Core.States
+﻿namespace Redux.TodoMvc.States
 {
     public enum TodosFilter
     {

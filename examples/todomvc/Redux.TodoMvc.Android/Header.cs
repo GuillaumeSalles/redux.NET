@@ -5,8 +5,8 @@ using Android.OS;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
-using Redux.TodoMvc.Core.Actions;
-using Redux.TodoMvc.Core.States;
+using Redux.TodoMvc.Actions;
+using Redux.TodoMvc.States;
 
 namespace Redux.TodoMvc.Android
 {
@@ -53,7 +53,7 @@ namespace Redux.TodoMvc.Android
             if (text.Contains('\n'))
             {
                 var textRemoveEnterChar = (text.ToString()).Trim();
-                _editText.Text = string.Empty; ;
+                _editText.Text = string.Empty;
 
                 ActivityStore.Dispatch(new AddTodoAction { Text = textRemoveEnterChar });
             }

@@ -97,7 +97,7 @@ namespace Redux.TodoMvc.Android
 			public const int numberOfTodosRemaining = 2131034112;
 			
 			// aapt resource value: 0x7f050001
-			public const int radioGroup1 = 2131034113;
+			public const int radioGroup = 2131034113;
 			
 			// aapt resource value: 0x7f050006
 			public const int selectAllTodosCheckBox = 2131034118;

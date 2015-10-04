@@ -104,9 +104,9 @@
     <AndroidResource Include="Resources\layout\Footer.xml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Redux.TodoMvc.Core\Redux.TodoMvc.Core.csproj">
+    <ProjectReference Include="..\Redux.TodoMvc\Redux.TodoMvc.csproj">
       <Project>{fea5562d-e8d5-4ad9-baca-2d29db0a2775}</Project>
-      <Name>Redux.TodoMvc.Core</Name>
+      <Name>Redux.TodoMvc</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

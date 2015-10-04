@@ -8,8 +8,8 @@
     <ProjectGuid>{FEA5562D-E8D5-4AD9-BACA-2D29DB0A2775}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Redux.TodoMvc.Core</RootNamespace>
-    <AssemblyName>Redux.TodoMvc.Core</AssemblyName>
+    <RootNamespace>Redux.TodoMvc</RootNamespace>
+    <AssemblyName>Redux.TodoMvc</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>

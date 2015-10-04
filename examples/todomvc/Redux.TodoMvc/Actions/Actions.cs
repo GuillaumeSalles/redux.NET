@@ -1,7 +1,7 @@
 ﻿using System;
-using Redux.TodoMvc.Core.States;
+using Redux.TodoMvc.States;
 
-namespace Redux.TodoMvc.Core.Actions
+namespace Redux.TodoMvc.Actions
 {
     public class AddTodoAction : IAction
     {

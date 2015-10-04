@@ -5,8 +5,8 @@ using Android.App;
 using Android.OS;
 using Android.Views;
 using Android.Widget;
-using Redux.TodoMvc.Core.Actions;
-using Redux.TodoMvc.Core.States;
+using Redux.TodoMvc.Actions;
+using Redux.TodoMvc.States;
 
 namespace Redux.TodoMvc.Android
 {
@@ -17,6 +17,7 @@ namespace Redux.TodoMvc.Android
         private RadioButton _activeRadioButton;
         private RadioButton _completedRadioButton;
         private Button _clearCompletedButton;
+        private RadioGroup _radioButtonGroup;
 
         public override void OnCreate(Bundle savedInstanceState)
         {
@@ -28,6 +29,7 @@ namespace Redux.TodoMvc.Android
             {
                 _textView.Text = BuildText(state.Todos);
                 _clearCompletedButton.Visibility = ClearActiveTodoButtonVisibility(state.Todos);
+                _radioButtonGroup.Visibility = state.Todos.Any() ? ViewStates.Visible : ViewStates.Invisible;
             });
         }
 
@@ -52,6 +54,8 @@ namespace Redux.TodoMvc.Android
             {
                 ActivityStore.Dispatch(new ClearCompletedTodosAction());
             };
+
+            _radioButtonGroup = view.FindViewById<RadioGroup>(Resource.Id.radioGroup);
 
             _allRadioButton = view.FindViewById<RadioButton>(Resource.Id.allRadioButton);
             _activeRadioButton = view.FindViewById<RadioButton>(Resource.Id.activeRadioButton);
