@@ -5,8 +5,8 @@ using Android.OS;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
-using Redux.TodoMvc.Android.Actions;
-using Redux.TodoMvc.Android.States;
+using Redux.TodoMvc.Core.Actions;
+using Redux.TodoMvc.Core.States;
 
 namespace Redux.TodoMvc.Android
 {

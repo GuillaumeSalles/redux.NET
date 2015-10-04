@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Immutable;
+﻿using System.Collections.Immutable;
 using Android.App;
-using Android.Content;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using Android.Util;
-using Redux.TodoMvc.Android.Reducers;
-using Redux.TodoMvc.Android.States;
+using Redux.TodoMvc.Core.Reducers;
+using Redux.TodoMvc.Core.States;
 
 namespace Redux.TodoMvc.Android
 {

@@ -36,6 +36,7 @@
   </RadioGroup>
   <Button
     android:text="Clear completed"
+    android:visibility="invisible"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:id="@+id/clearCompletedButton"
