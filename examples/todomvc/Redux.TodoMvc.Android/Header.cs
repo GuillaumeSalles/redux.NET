@@ -12,8 +12,6 @@ namespace Redux.TodoMvc.Android
 {
     public class Header : Fragment
     {
-        private EditText _editText;
-
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -26,11 +24,11 @@ namespace Redux.TodoMvc.Android
         {
             var view = inflater.Inflate(Resource.Layout.Header, container, false);
 
-            _editText = view.FindViewById<EditText>(Resource.Id.editTextId);
-            _editText.TextChanged += EditText_TextChanged;
-            
+            var editText = view.FindViewById<EditText>(Resource.Id.editTextId);
+            editText.TextChanged += EditText_TextChanged;
+
             var completeAllCheckBox = view.FindViewById<CheckBox>(Resource.Id.selectAllTodosCheckBox);
-            completeAllCheckBox.CheckedChange += delegate (object sender, CompoundButton.CheckedChangeEventArgs args)
+            completeAllCheckBox.CheckedChange += (sender, args) =>
             {
                 ActivityStore.Dispatch(new CompleteAllTodosAction
                 {
@@ -43,7 +41,7 @@ namespace Redux.TodoMvc.Android
                 completeAllCheckBox.Visibility = state.Todos.Any() ? ViewStates.Visible : ViewStates.Invisible;
                 completeAllCheckBox.Checked = state.Todos.All(x => x.IsCompleted);
             });
-            
+
             return view;
         }
 
@@ -53,7 +51,7 @@ namespace Redux.TodoMvc.Android
             if (text.Contains('\n'))
             {
                 var textRemoveEnterChar = (text.ToString()).Trim();
-                _editText.Text = string.Empty;
+                ((EditText)sender).Text = string.Empty;
 
                 ActivityStore.Dispatch(new AddTodoAction { Text = textRemoveEnterChar });
             }
