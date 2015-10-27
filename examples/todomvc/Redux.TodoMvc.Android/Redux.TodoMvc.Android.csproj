@@ -68,6 +68,7 @@
   <ItemGroup>
     <Compile Include="Footer.cs" />
     <Compile Include="Header.cs" />
+    <Compile Include="ListItemAdapter.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainSection.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />

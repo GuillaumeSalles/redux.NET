@@ -12,13 +12,13 @@ namespace Redux.TodoMvc.Android
 {
     public class Header : Fragment
     {
+        public IStore<ApplicationState> ActivityStore { get; set; }
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
             ActivityStore = ((MainActivity)this.Activity).Store;
         }
-
-        public IStore<ApplicationState> ActivityStore { get; set; }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {

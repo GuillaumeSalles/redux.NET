@@ -19,6 +19,8 @@ namespace Redux.TodoMvc.Android
         private Button _clearCompletedButton;
         private RadioGroup _radioButtonGroup;
 
+        public IStore<ApplicationState> ActivityStore { get; set; }
+
         public override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -32,17 +34,6 @@ namespace Redux.TodoMvc.Android
                 _radioButtonGroup.Visibility = state.Todos.Any() ? ViewStates.Visible : ViewStates.Invisible;
             });
         }
-
-        private string BuildText(ImmutableArray<Todo> todos)
-        {
-            if (!todos.Any()) return string.Empty;
-
-            if (todos.Count() == 1) return "1 item left";
-
-            return $"{todos.Count()} items left";
-        }
-
-        public IStore<ApplicationState> ActivityStore { get; set; }
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -78,6 +69,15 @@ namespace Redux.TodoMvc.Android
             };
 
             return view;
+        }
+
+        private string BuildText(ImmutableArray<Todo> todos)
+        {
+            if (!todos.Any()) return string.Empty;
+
+            if (todos.Count() == 1) return "1 item left";
+
+            return $"{todos.Count()} items left";
         }
 
         private void FilterTodos(TodosFilter filter)

@@ -5,19 +5,21 @@
     android:layout_height="fill_parent"
     android:minWidth="25px"
     android:minHeight="25px">
+  
   <TextView
     android:text=""
     android:textSize="18dip"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_centerVertical="true" 
+    android:layout_centerVertical="true"
     android:layout_marginLeft="10dp"
     android:id="@+id/numberOfTodosRemaining" />
+  
   <RadioGroup
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_centerHorizontal="true"
-      android:layout_centerVertical="true" 
+      android:layout_centerVertical="true"
       android:orientation="horizontal"
       android:visibility="invisible"
       android:id="@+id/radioGroup">
@@ -38,14 +40,14 @@
         android:text="Completed"
         android:id="@+id/completedRadioButton" />
   </RadioGroup>
+
   <Button
     android:text="Clear completed"
     android:visibility="invisible"
-    android:layout_centerVertical="true" 
+    android:layout_centerVertical="true"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_alignParentRight="true"
     android:id="@+id/clearCompletedButton"/>
-  
-  
+
 </RelativeLayout>
