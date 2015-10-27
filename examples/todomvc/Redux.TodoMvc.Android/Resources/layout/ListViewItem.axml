@@ -3,6 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="wrap_content">
     <LinearLayout
+        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -14,13 +15,15 @@
             android:id="@+id/todoTextItem"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FF7F3300"
             android:textSize="20dip"
             android:textStyle="italic" />
     </LinearLayout>
     <Button
         android:id="@+id/RemoveButton"
-        android:layout_width="10dp"
-        android:layout_height="10dp"
+        android:text="X"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="10dp"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
         android:layout_alignParentRight="true" />
 </RelativeLayout>
