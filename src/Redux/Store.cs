@@ -4,32 +4,57 @@ using System.Reactive.Subjects;
 
 namespace Redux
 {
+    public delegate IAction Dispatcher(IAction action);
+
+    public delegate TState Reducer<TState>(TState previousState, IAction action);
+
+    public delegate Func<Dispatcher, Dispatcher> Middleware<TState>(IStore<TState> store);
+
     public interface IStore<TState> : IObservable<TState>
     {
-        void Dispatch(IAction action);
+        IAction Dispatch(IAction action);
     }
-
+        
     public class Store<TState> : IStore<TState>
     {
-        private Subject<IAction> _dispatcher = new Subject<IAction>();
-        private ReplaySubject<TState> _stateSubject = new ReplaySubject<TState>(1);
+        private readonly Dispatcher _dispatcher;
+        private readonly Subject<IAction> _subjectDispatcher = new Subject<IAction>();
+        private readonly ReplaySubject<TState> _stateSubject = new ReplaySubject<TState>(1);
 
-        public Store(TState initialState, Func<TState, IAction, TState> reducer)
+        public Store(TState initialState, Reducer<TState> reducer, params Middleware<TState>[] middlewares)
         {
-            _dispatcher
-                .Scan(initialState, reducer)
+            _dispatcher = ApplyMiddlewares(middlewares);
+            
+            _subjectDispatcher
+                .Scan(initialState, (previousState,action) => reducer(previousState,action))
                 .StartWith(initialState)
                 .Subscribe(_stateSubject);
         }
 
-        public void Dispatch(IAction action)
+        public IAction Dispatch(IAction action)
         {
-            _dispatcher.OnNext(action);
+            return _dispatcher(action);
         }
-
+        
         public IDisposable Subscribe(IObserver<TState> observer)
         {
             return _stateSubject.Subscribe(observer);
+        }
+
+        private Dispatcher ApplyMiddlewares(params Middleware<TState>[] middlewares)
+        {
+            Dispatcher dispatcher = InnerDispatch;
+            foreach (var middleware in middlewares)
+            {
+                dispatcher = middleware(this)(dispatcher);
+            }
+            return dispatcher;
+        }
+
+        private IAction InnerDispatch(IAction action)
+        {
+            _subjectDispatcher.OnNext(action);
+            return action;
         }
     }
 }

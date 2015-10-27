@@ -40,5 +40,25 @@ namespace Redux.Tests
 
             CollectionAssert.AreEqual(new[] { 2 }, mockObserver.Values);
         }
+                
+        [Test]
+        public void Middleware_should_be_called_for_each_action_dispatched()
+        {
+            var numberOfCalls = 0;
+            Middleware<int> spyMiddleware = store => next => action =>
+            {
+                numberOfCalls++;
+                return next(action);
+            };
+
+            var sut = new Store<int>(1, Reducers.Replace, spyMiddleware);
+            var mockObserver = new MockObserver<int>();
+            
+            sut.Subscribe(mockObserver);
+            sut.Dispatch(new FakeAction<int>(2));
+
+            Assert.AreEqual(1, numberOfCalls);
+            CollectionAssert.AreEqual(new[] { 1, 2 }, mockObserver.Values);
+        }
     }
 }
