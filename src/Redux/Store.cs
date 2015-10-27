@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 
@@ -18,15 +17,15 @@ namespace Redux
         
     public class Store<TState> : IStore<TState>
     {
-        private Subject<IAction> _dispatcher = new Subject<IAction>();
-        private ReplaySubject<TState> _stateSubject = new ReplaySubject<TState>(1);
-        private Middleware<TState>[] _middlewares;
+        private readonly Dispatcher _dispatcher;
+        private readonly Subject<IAction> _subjectDispatcher = new Subject<IAction>();
+        private readonly ReplaySubject<TState> _stateSubject = new ReplaySubject<TState>(1);
 
         public Store(TState initialState, Reducer<TState> reducer, params Middleware<TState>[] middlewares)
         {
-            _middlewares = middlewares;
-
-            _dispatcher
+            _dispatcher = ApplyMiddlewares(middlewares);
+            
+            _subjectDispatcher
                 .Scan(initialState, (previousState,action) => reducer(previousState,action))
                 .StartWith(initialState)
                 .Subscribe(_stateSubject);
@@ -34,23 +33,28 @@ namespace Redux
 
         public IAction Dispatch(IAction action)
         {
+            return _dispatcher(action);
+        }
+        
+        public IDisposable Subscribe(IObserver<TState> observer)
+        {
+            return _stateSubject.Subscribe(observer);
+        }
+
+        private Dispatcher ApplyMiddlewares(params Middleware<TState>[] middlewares)
+        {
             Dispatcher dispatcher = InnerDispatch;
-            foreach(var middleware in _middlewares)
+            foreach (var middleware in middlewares)
             {
                 dispatcher = middleware(this)(dispatcher);
             }
-            return dispatcher(action);
+            return dispatcher;
         }
 
         private IAction InnerDispatch(IAction action)
         {
-            _dispatcher.OnNext(action);
+            _subjectDispatcher.OnNext(action);
             return action;
-        }
-
-        public IDisposable Subscribe(IObserver<TState> observer)
-        {
-            return _stateSubject.Subscribe(observer);
         }
     }
 }

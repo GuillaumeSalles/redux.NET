@@ -1,7 +1,5 @@
 ﻿using NUnit.Core;
 using NUnit.Framework;
-using System;
-using System.Diagnostics;
 
 namespace Redux.Tests
 {
@@ -42,19 +40,25 @@ namespace Redux.Tests
 
             CollectionAssert.AreEqual(new[] { 2 }, mockObserver.Values);
         }
-
-        public Middleware<int> DebugMiddleware = store => next => action => {
-            Debug.WriteLine("Before dispatch");
-            var newAction = next(action);
-            Debug.WriteLine("After dispatch");
-            return newAction;
-        };
-
+                
         [Test]
-        public void Middleware_should_be_applied()
+        public void Middleware_should_be_called_for_each_action_dispatched()
         {
-            var sut = new Store<int>(1, Reducers.Replace, DebugMiddleware);
+            var numberOfCalls = 0;
+            Middleware<int> spyMiddleware = store => next => action =>
+            {
+                numberOfCalls++;
+                return next(action);
+            };
+
+            var sut = new Store<int>(1, Reducers.Replace, spyMiddleware);
+            var mockObserver = new MockObserver<int>();
+            
+            sut.Subscribe(mockObserver);
             sut.Dispatch(new FakeAction<int>(2));
+
+            Assert.AreEqual(1, numberOfCalls);
+            CollectionAssert.AreEqual(new[] { 1, 2 }, mockObserver.Values);
         }
     }
 }
