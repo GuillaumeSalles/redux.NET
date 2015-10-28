@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
-using Redux.TodoMvc.Universal.States;
+using Redux.TodoMvc.States;
 
-namespace Redux.TodoMvc.Universal.Components
+namespace Redux.TodoMvc.Universal
 {
     public sealed partial class MainSection : UserControl
     {

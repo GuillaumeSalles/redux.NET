@@ -1,11 +1,11 @@
-﻿using Redux.TodoMvc.Universal.Actions;
+﻿using Redux.TodoMvc.Actions;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using System;
 using System.Linq;
 using Windows.UI.Xaml;
 
-namespace Redux.TodoMvc.Universal.Components
+namespace Redux.TodoMvc.Universal
 {
     public sealed partial class Header : UserControl
     {
