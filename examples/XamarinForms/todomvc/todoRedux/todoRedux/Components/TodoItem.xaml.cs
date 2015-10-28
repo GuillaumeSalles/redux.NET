@@ -1,51 +1,51 @@
 ﻿using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
+using System.ComponentModel;
 
 namespace todoRedux
 {
-    public partial class TodoItem : ContentView
-    {
-//        Todo Item Changed
+	public partial class TodoItem : ViewCell, INotifyPropertyChanged
+	{
+		//        Todo Item Changed
 
-//        public static readonly DependencyProperty TodoProperty =
-//            DependencyProperty.Register("Todo", typeof(Todo), typeof(TodoItem), new PropertyMetadata(-1, OnTodoChanged));
-//
-//        public Todo Todo
-//        {
-//            get { return (Todo)GetValue(TodoProperty); }
-//            set { SetValue(TodoProperty, value); }
-//        }
+		public static readonly BindableProperty TodoProperty = BindableProperty.Create <TodoItem, Todo> (p => p.Todo, null, BindingMode.Default, null, OnTodoChanged);
 
-//        private static void OnTodoChanged(object sender, EventArgs args)
-//        {
-//            var todoItem = (TodoItem)sender;
-//            var todo = (Todo)args.NewValue;
-//
-//            todoItem.TodoItemTextBlock.Text = todo.Text;
-//            todoItem.CompleteCheckBox.IsChecked = todo.IsCompleted;
-//        }
+		public Todo Todo { 
+			get {
+				return (Todo)GetValue (TodoProperty);
+			}
+			set {
+				SetValue (TodoProperty, value);
+				OnPropertyChanged ();
+			}
+		}
 
-        public TodoItem()
-        {
-            this.InitializeComponent();
-        }
+		private static void OnTodoChanged (BindableObject obj, Todo oldValue, Todo newValue)
+		{
+			var todoItem = (TodoItem)obj;
+			todoItem.TodoItemTextBlock.Text = newValue.Text;
+			todoItem.CompleteCheckBox.IsToggled = newValue.IsCompleted;
+		}
 
-        private void CompleteCheckBox_Click(object sender, EventArgs e)
-        {
-            App.Store.Dispatch(new CompleteTodoAction
-                {
-                    TodoId = Todo.Id
-                });
-        }
+		public TodoItem ()
+		{
+			this.InitializeComponent ();
+		}
 
-        private void DeleteTodoItemButton_Click(object sender, EventArgs e)
-        {
-            App.Store.Dispatch(new DeleteTodoAction
-                {
-                    TodoId = Todo.Id
-                });
-        }
-    }
+		private void CompleteCheckBox_Click (object sender, EventArgs e)
+		{
+			App.Store.Dispatch (new CompleteTodoAction {
+				TodoId = Todo.Id
+			});
+		}
+
+		private void DeleteTodoItemButton_Click (object sender, EventArgs e)
+		{
+			App.Store.Dispatch (new DeleteTodoAction {
+				TodoId = Todo.Id
+			});
+		}
+	}
 }
 

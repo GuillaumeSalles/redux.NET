@@ -4,7 +4,7 @@
 	x:Class="todoRedux.MainPage"
 	xmlns:local="clr-namespace:todoRedux;assembly=todoRedux" >
 	<ContentPage.Content>
-		<Grid>
+		<Grid Padding="10,10">
 	        <Grid.RowDefinitions>
 	            <RowDefinition Height="Auto"/>
 	            <RowDefinition Height="*"/>
@@ -15,7 +15,7 @@
 	        <local:Footer 
 	            x:Name="Footer" 
 	            Grid.Row="2"
-	            IsVisible="Collapsed" />
+	            IsVisible="false" />
 	    </Grid>
 	</ContentPage.Content>
 </ContentPage>

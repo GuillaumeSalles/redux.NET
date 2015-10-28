@@ -65,16 +65,19 @@ namespace todoRedux
 
         private void AllFilter_Click(object sender, EventArgs e)
         {
+			//AllFilter.IsToggled = AllFilter.IsToggled;
             FilterTodos(TodosFilter.All);
         }
 
         private void InProgressFilter_Click(object sender, EventArgs e)
         {
+			//InProgressFilter.IsToggled = !InProgressFilter.IsToggled;
             FilterTodos(TodosFilter.InProgress);
         }
 
         private void CompletedFilter_Click(object sender, EventArgs e)
         {
+			//CompletedFilter.IsToggled = !CompletedFilter.IsToggled;
             FilterTodos(TodosFilter.Completed);
         }
 
