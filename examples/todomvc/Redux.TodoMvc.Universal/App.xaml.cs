@@ -3,8 +3,8 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Redux.DevTools.Universal;
-using Redux.TodoMvc.Universal.Reducers;
-using Redux.TodoMvc.Universal.States;
+using Redux.TodoMvc.States;
+using Redux.TodoMvc.Reducers;
 
 namespace Redux.TodoMvc.Universal
 {

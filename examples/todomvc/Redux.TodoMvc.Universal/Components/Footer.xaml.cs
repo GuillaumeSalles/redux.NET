@@ -3,8 +3,8 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Collections.Immutable;
 using Windows.UI.Xaml;
-using Redux.TodoMvc.Universal.Actions;
-using Redux.TodoMvc.Universal.States;
+using Redux.TodoMvc.Actions;
+using Redux.TodoMvc.States;
 
 namespace Redux.TodoMvc.Universal.Components
 {

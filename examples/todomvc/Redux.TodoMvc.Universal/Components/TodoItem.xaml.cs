@@ -1,7 +1,7 @@
 ﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Redux.TodoMvc.Universal.Actions;
-using Redux.TodoMvc.Universal.States;
+using Redux.TodoMvc.Actions;
+using Redux.TodoMvc.States;
 
 namespace Redux.TodoMvc.Universal.Components
 {

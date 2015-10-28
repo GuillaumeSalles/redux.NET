@@ -1,4 +1,4 @@
-﻿using Redux.TodoMvc.Universal.Actions;
+﻿using Redux.TodoMvc.Actions;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
 using System;
