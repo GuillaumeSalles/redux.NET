@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -51,6 +51,14 @@
     </Compile>
     <Compile Include="MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="TimemachineStore\TimeMachineActions.cs" />
+    <Compile Include="TimemachineStore\TimeMachineReducer.cs" />
+    <Compile Include="TimemachineStore\TimeMachineState.cs" />
+    <Compile Include="TimemachineStore\TimeMachineStore.cs" />
+    <Compile Include="TimemachineStore\DevFrame.cs" />
+    <Compile Include="TimemachineStore\TimeMachine.xaml.cs" >
+    <DependentUpon>TimeMachine.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
@@ -111,6 +119,10 @@
     <EmbeddedResource Include="MainPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>MainPage.xaml</LogicalName>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TimemachineStore\TimeMachine.xaml" >
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <LogicalName>TimeMachine.xaml</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
 </Project>

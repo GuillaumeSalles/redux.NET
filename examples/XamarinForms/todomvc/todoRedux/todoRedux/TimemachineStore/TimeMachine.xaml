@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" 
+xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+x:Class="todoRedux.TimeMachine">
+	<ContentView.Content>
+	    <Grid>
+	        <Frame
+	            x:Name="Shield"
+	            Fill="Transparent"
+	            IsVisible = "false"
+	            HorizontalOptions="Fill"
+	            VerticalOptions = "Fill" />
+	        
+	        <Grid 
+	            Width="300"
+	            HorizontalAlignment="Right"
+	            Background="#2A2F3A">
+	            <Grid.RowDefinitions>
+	                <RowDefinition Height="Auto"/>
+	                <RowDefinition Height="*"/>
+	            </Grid.RowDefinitions>
+	            <Grid.ColumnDefinitions>
+	                <ColumnDefinition Width="*"/>
+	                <ColumnDefinition Width="Auto"/>
+	            </Grid.ColumnDefinitions>
+
+	            <Slider
+	                x:Name="ActionPositionsSlider"
+	                Minimum="0"
+	                Maximum="0"
+	                HorizontalOptions = "FillAndExpand"
+	                Margin="20,20,0,20"
+	                Foreground="#DADBDC"
+	                Background="#DADBDC"
+	                ValueChanged="ActionPositionsSlider_ValueChanged"/>
+
+	            <Button
+	                x:Name="PlayButton"
+	                Grid.Row="0"
+	                Grid.Column="1"
+	                HorizontalOptions="End"
+	                Margin="20"
+	                Content="&#xE768;"
+	                IsVisible="false"
+	                Clicked="PlayButton_Click"/>
+
+	            <Button
+	                x:Name="PauseButton"
+	                Grid.Row="0"
+	                Grid.Column="1"
+	                HorizontalOptions="End"
+	                Margin="20"
+	                Content="&#xE769;"
+	                Clicked="PauseButton_Click"/>
+
+	            <Frame 
+	                Grid.ColumnSpan="2"
+	                Grid.Row="1"
+	                VerticalOptions="Start"
+	                HorizontalOptions="FillAndExpand"
+	                Fill="#4F5A65"
+	                Height="1"
+	                Margin="20,0"/>
+
+	            <StackLayout 
+	                Margin="20,20"
+	                Grid.Row="1"
+	                Grid.ColumnSpan="2">
+
+	                <Label 
+	                    x:Name="CurrentActionTypeTextBlock"
+	                    />
+
+	                <Label x:Name="CurrentActionDescription"/>
+	            </StackLayout>
+	        </Grid>
+	    </Grid>
+    </ContentView.Content>
+</ContentView>
