@@ -5,7 +5,6 @@
     xmlns:local="using:Redux.TodoMvc.Universal"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:components="using:Redux.TodoMvc.Universal.Components"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
@@ -16,9 +15,9 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
-        <components:Header />
-        <components:MainSection Grid.Row="1"/>
-        <components:Footer 
+        <local:Header />
+        <local:MainSection Grid.Row="1"/>
+        <local:Footer 
             x:Name="Footer" 
             Grid.Row="2"
             Visibility="Collapsed"/>

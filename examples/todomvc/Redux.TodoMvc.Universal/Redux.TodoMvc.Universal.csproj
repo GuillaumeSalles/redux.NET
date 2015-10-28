@@ -99,16 +99,16 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\Footer.xaml.cs">
+    <Compile Include="Footer.xaml.cs">
       <DependentUpon>Footer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\Header.xaml.cs">
+    <Compile Include="Header.xaml.cs">
       <DependentUpon>Header.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\MainSection.xaml.cs">
+    <Compile Include="MainSection.xaml.cs">
       <DependentUpon>MainSection.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Components\TodoItem.xaml.cs">
+    <Compile Include="TodoItem.xaml.cs">
       <DependentUpon>TodoItem.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainPage.xaml.cs">
@@ -137,19 +137,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="Components\Footer.xaml">
+    <Page Include="Footer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\Header.xaml">
+    <Page Include="Header.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\MainSection.xaml">
+    <Page Include="MainSection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Components\TodoItem.xaml">
+    <Page Include="TodoItem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

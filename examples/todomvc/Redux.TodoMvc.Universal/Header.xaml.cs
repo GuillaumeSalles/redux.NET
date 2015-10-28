@@ -5,7 +5,7 @@ using System;
 using System.Linq;
 using Windows.UI.Xaml;
 
-namespace Redux.TodoMvc.Universal.Components
+namespace Redux.TodoMvc.Universal
 {
     public sealed partial class Header : UserControl
     {

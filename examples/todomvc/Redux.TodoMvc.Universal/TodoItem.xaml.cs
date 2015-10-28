@@ -3,7 +3,7 @@ using Windows.UI.Xaml.Controls;
 using Redux.TodoMvc.Actions;
 using Redux.TodoMvc.States;
 
-namespace Redux.TodoMvc.Universal.Components
+namespace Redux.TodoMvc.Universal
 {
     public sealed partial class TodoItem : UserControl
     {
