@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 
 using Xamarin.Forms;
+using System.Linq;
 
 namespace todoRedux
 {
@@ -11,7 +12,7 @@ namespace todoRedux
         {
             InitializeComponent ();
 
-            App.Store.Subscribe(state =>
+            App.Store.Subscribe((ApplicationState state) =>
                 {
                     Footer.IsVisible = state.Todos.Any() ? true : false;
                 });

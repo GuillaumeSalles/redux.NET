@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace todoRedux
 {
@@ -10,10 +11,10 @@ namespace todoRedux
         {
             this.InitializeComponent();
 
-            App.Store.Subscribe(state =>
+            App.Store.Subscribe((ApplicationState state) =>
                 {
                     CompleteAllCheckBox.IsVisible = state.Todos.Any() ? true : false;
-                    CompleteAllCheckBox.Toggled = state.Todos.All(x => x.IsCompleted);
+                    CompleteAllCheckBox.IsToggled = state.Todos.All(x => x.IsCompleted);
                 });
         }
 
@@ -31,7 +32,7 @@ namespace todoRedux
         {
             App.Store.Dispatch(new CompleteAllTodosAction
                 {
-                    IsCompleted = CompleteAllCheckBox.Toggled
+                    IsCompleted = CompleteAllCheckBox.IsToggled
                 });
         }
     }

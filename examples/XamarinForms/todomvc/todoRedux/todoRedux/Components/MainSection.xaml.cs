@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Xamarin.Forms;
+using System.Linq;
 
 namespace todoRedux
 {
@@ -10,7 +11,7 @@ namespace todoRedux
         {
             this.InitializeComponent();
 
-            App.Store.Subscribe(state =>
+            App.Store.Subscribe((ApplicationState state) =>
                 {
                     TodosItemsControl.ItemsSource = FilterTodos(state.Todos,state.Filter);
                 });

@@ -21,17 +21,7 @@ namespace todoRedux
             Store = new Store<ApplicationState>(initialState, ApplicationReducer.Execute);
             //Store = new TimeMachineStore<ApplicationState>(initialState, ApplicationReducer.Execute);
 
-            MainPage = new ContentPage {
-                Content = new StackLayout {
-                    VerticalOptions = LayoutOptions.Center,
-                    Children = {
-                        new Label {
-                            XAlign = TextAlignment.Center,
-                            Text = "Welcome to Xamarin Forms!"
-                        }
-                    }
-                }
-            };
+            MainPage = new MainPage ();
         }
 
         protected override void OnStart ()

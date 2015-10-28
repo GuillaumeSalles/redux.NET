@@ -12,7 +12,7 @@ namespace todoRedux
         {
             this.InitializeComponent();
 
-            App.Store.Subscribe(state =>
+            App.Store.Subscribe((ApplicationState state) =>
                 {
                     ActiveTodoCounterTextBlock.Text = GetActiveTodosCounterMessage(state.Todos);
 
