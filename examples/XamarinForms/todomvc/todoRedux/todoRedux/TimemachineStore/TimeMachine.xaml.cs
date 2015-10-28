@@ -70,7 +70,7 @@ namespace todoRedux
             }
         }
 
-        private void ActionPositionsSlider_ValueChanged(double oldvalue, double newvalue)
+		private void ActionPositionsSlider_ValueChanged(object sender, EventArgs e)
         {
             if (TimeMachineStore == null 
                 || ActionPositionsSlider.Value == _lastState.Position)

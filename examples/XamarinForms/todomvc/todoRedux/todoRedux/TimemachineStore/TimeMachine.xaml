@@ -6,15 +6,15 @@ x:Class="todoRedux.TimeMachine">
 	    <Grid>
 	        <Frame
 	            x:Name="Shield"
-	            Fill="Transparent"
+	            BackgroundColor="Transparent"
 	            IsVisible = "false"
 	            HorizontalOptions="Fill"
 	            VerticalOptions = "Fill" />
 	        
 	        <Grid 
-	            Width="300"
-	            HorizontalAlignment="Right"
-	            Background="#2A2F3A">
+	            WidthRequest="300"
+	            HorizontalOptions="End"
+	            BackgroundColor="#2A2F3A">
 	            <Grid.RowDefinitions>
 	                <RowDefinition Height="Auto"/>
 	                <RowDefinition Height="*"/>
@@ -27,11 +27,9 @@ x:Class="todoRedux.TimeMachine">
 	            <Slider
 	                x:Name="ActionPositionsSlider"
 	                Minimum="0"
-	                Maximum="0"
+	                Maximum="1"
 	                HorizontalOptions = "FillAndExpand"
-	                Margin="20,20,0,20"
-	                Foreground="#DADBDC"
-	                Background="#DADBDC"
+	                BackgroundColor="#DADBDC"
 	                ValueChanged="ActionPositionsSlider_ValueChanged"/>
 
 	            <Button
@@ -39,8 +37,7 @@ x:Class="todoRedux.TimeMachine">
 	                Grid.Row="0"
 	                Grid.Column="1"
 	                HorizontalOptions="End"
-	                Margin="20"
-	                Content="&#xE768;"
+	                Text="&#xE768;"
 	                IsVisible="false"
 	                Clicked="PlayButton_Click"/>
 
@@ -49,8 +46,7 @@ x:Class="todoRedux.TimeMachine">
 	                Grid.Row="0"
 	                Grid.Column="1"
 	                HorizontalOptions="End"
-	                Margin="20"
-	                Content="&#xE769;"
+	                Text="&#xE769;"
 	                Clicked="PauseButton_Click"/>
 
 	            <Frame 
@@ -58,12 +54,10 @@ x:Class="todoRedux.TimeMachine">
 	                Grid.Row="1"
 	                VerticalOptions="Start"
 	                HorizontalOptions="FillAndExpand"
-	                Fill="#4F5A65"
-	                Height="1"
-	                Margin="20,0"/>
+	                BackgroundColor="#4F5A65"
+	                HeightRequest="1"/>
 
 	            <StackLayout 
-	                Margin="20,20"
 	                Grid.Row="1"
 	                Grid.ColumnSpan="2">
 
