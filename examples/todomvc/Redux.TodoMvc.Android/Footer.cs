@@ -19,22 +19,6 @@ namespace Redux.TodoMvc.Android
         private Button _clearCompletedButton;
         private RadioGroup _radioButtonGroup;
 
-        public IStore<ApplicationState> ActivityStore { get; set; }
-
-        public override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
-
-            ActivityStore = ((MainActivity)this.Activity).Store;
-
-            ActivityStore.Subscribe(state =>
-            {
-                _textView.Text = BuildText(state.Todos);
-                _clearCompletedButton.Visibility = ClearActiveTodoButtonVisibility(state.Todos);
-                _radioButtonGroup.Visibility = state.Todos.Any() ? ViewStates.Visible : ViewStates.Invisible;
-            });
-        }
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var view = inflater.Inflate(Resource.Layout.Footer, container, false);
@@ -43,7 +27,7 @@ namespace Redux.TodoMvc.Android
             _clearCompletedButton = view.FindViewById<Button>(Resource.Id.clearCompletedButton);
             _clearCompletedButton.Click += delegate
             {
-                ActivityStore.Dispatch(new ClearCompletedTodosAction());
+                MainActivity.Store.Dispatch(new ClearCompletedTodosAction());
             };
 
             _radioButtonGroup = view.FindViewById<RadioGroup>(Resource.Id.radioGroup);
@@ -68,6 +52,13 @@ namespace Redux.TodoMvc.Android
                 if (args.IsChecked) CompletedFilter_Click();
             };
 
+            MainActivity.Store.Subscribe(state =>
+            {
+                _textView.Text = BuildText(state.Todos);
+                _clearCompletedButton.Visibility = ClearActiveTodoButtonVisibility(state.Todos);
+                _radioButtonGroup.Visibility = state.Todos.Any() ? ViewStates.Visible : ViewStates.Invisible;
+            });
+
             return view;
         }
 
@@ -82,7 +73,7 @@ namespace Redux.TodoMvc.Android
 
         private void FilterTodos(TodosFilter filter)
         {
-            ActivityStore.Dispatch(new FilterTodosAction
+            MainActivity.Store.Dispatch(new FilterTodosAction
             {
                 Filter = filter
             });

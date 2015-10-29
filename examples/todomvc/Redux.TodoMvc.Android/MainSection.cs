@@ -14,26 +14,19 @@ namespace Redux.TodoMvc.Android
         private ListView _listView;
         private View _view;
 
-        public IStore<ApplicationState> ActivityStore { get; set; }
-
-        public override void OnCreate(Bundle savedInstanceState)
-        {
-            base.OnCreate(savedInstanceState);
-
-            ActivityStore = ((MainActivity)this.Activity).Store;
-
-            ActivityStore.Subscribe(applicationState =>
-            {
-                var list = FilterTodos(applicationState);
-
-                _listView.Adapter = new ListItemAdapter(this.Activity, list, ActivityStore);
-            });
-        }
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             _view = inflater.Inflate(Resource.Layout.MainSection, container, false);
             _listView = _view.FindViewById<ListView>(Resource.Id.listView1);
+
+
+            MainActivity.Store.Subscribe(applicationState =>
+            {
+                var list = FilterTodos(applicationState);
+
+                _listView.Adapter = new ListItemAdapter(this.Activity, list);
+            });
+
             return _view;
         }
 
