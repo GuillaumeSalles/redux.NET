@@ -1,7 +1,2 @@
 language: csharp
 solution: src/Redux.sln
-install:
-  - nuget
-  - nuget update -self
-  - nuget
-  - nuget restore src/Redux.sln
