@@ -10,13 +10,12 @@ namespace Redux.TodoMvc.Android
     public class ListItemAdapter : BaseAdapter<Todo>
     {
         private readonly List<Todo> _items;
-        private readonly IStore<ApplicationState> _activityStore;
         private readonly Activity _context;
-        public ListItemAdapter(Activity context, List<Todo> items, IStore<ApplicationState> activityStore)
+
+        public ListItemAdapter(Activity context, List<Todo> items)
         {
             _context = context;
             _items = items;
-            _activityStore = activityStore;
         }
         public override long GetItemId(int position)
         {
@@ -36,18 +35,17 @@ namespace Redux.TodoMvc.Android
             checkBox.Checked = item.IsCompleted;
             checkBox.CheckedChange += delegate
             {
-                _activityStore.Dispatch(new CompleteTodoAction()
+                MainActivity.Store.Dispatch(new CompleteTodoAction()
                 {
                     TodoId = item.Id
                 });
             };
-
-
+            
             view.FindViewById<TextView>(Resource.Id.todoTextItem).Text = item.Text;
 
             view.FindViewById<Button>(Resource.Id.RemoveButton).Click += delegate
             {
-                _activityStore.Dispatch(new DeleteTodoAction
+                MainActivity.Store.Dispatch(new DeleteTodoAction
                 {
                     TodoId = item.Id
                 });

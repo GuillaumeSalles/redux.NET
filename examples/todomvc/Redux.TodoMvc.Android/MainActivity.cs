@@ -9,7 +9,7 @@ namespace Redux.TodoMvc.Android
     [Activity(Label = "Redux.TodoMvc.Android", MainLauncher = true, Icon = "@drawable/icon")]
     public class MainActivity : Activity
     {
-        public IStore<ApplicationState> Store { get; private set; }
+        public static IStore<ApplicationState> Store { get; private set; }
 
         public MainActivity()
         {
