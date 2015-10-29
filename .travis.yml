@@ -1,2 +1,2 @@
 language: csharp
-solution: solution-name.sln
+solution: src/Redux.sln
