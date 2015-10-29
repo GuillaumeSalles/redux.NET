@@ -17,17 +17,36 @@ namespace todoRedux
 				Filter = TodosFilter.All
 			};
 
-			//Store = new Store<ApplicationState>(initialState, ApplicationReducer.Execute);
-			Store = new TimeMachineStore<ApplicationState> (initialState, ApplicationReducer.Execute);
+//			//MainPage = new MainPage ();
+//			NavigationPage navPage = new NavigationPage (
+//				                         new DevFrame () {
+//					TimeMachineStore = (IStore<TimeMachineState>)Store,
+//					//Content = new TimeMachine(),
+//				});
+//
+            var masterDetail = new MasterDetailPage ();
 
-			//MainPage = new MainPage ();
-			NavigationPage navPage = new NavigationPage (
-				                         new DevFrame () {
-					TimeMachineStore = (IStore<TimeMachineState>)Store,
-					//Content = new TimeMachine(),
-				});
-			MainPage = navPage;
-			navPage.Navigation.PushAsync (new MainPage ());
+            bool enableTimeMachine = true;
+            if (enableTimeMachine) {
+                Store = new TimeMachineStore<ApplicationState> (initialState, ApplicationReducer.Execute);
+
+                masterDetail.Master = 
+                    new NavigationPage (
+                        new DevFrame ((IStore<TimeMachineState>)Store) { 
+                            Title = "Time Machine"
+                        }
+                    ) { Title = "Menu" };
+                
+            } else {
+                Store = new Store<ApplicationState>(initialState, ApplicationReducer.Execute);
+            }
+
+            masterDetail.Detail = 
+                new NavigationPage (
+                    new MainPage () { Title = "Todo List" }
+                );
+
+            MainPage = masterDetail;
 		}
 
 		protected override void OnStart ()

@@ -57,8 +57,8 @@
     <Compile Include="TimemachineStore\TimeMachineState.cs" />
     <Compile Include="TimemachineStore\TimeMachineStore.cs" />
     <Compile Include="TimemachineStore\DevFrame.cs" />
-    <Compile Include="TimemachineStore\TimeMachine.xaml.cs" >
-    <DependentUpon>TimeMachine.xaml</DependentUpon>
+    <Compile Include="TimemachineStore\TimeMachine.xaml.cs">
+      <DependentUpon>TimeMachine.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
@@ -120,7 +120,7 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>MainPage.xaml</LogicalName>
     </EmbeddedResource>
-    <EmbeddedResource Include="TimemachineStore\TimeMachine.xaml" >
+    <EmbeddedResource Include="TimemachineStore\TimeMachine.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <LogicalName>TimeMachine.xaml</LogicalName>
     </EmbeddedResource>

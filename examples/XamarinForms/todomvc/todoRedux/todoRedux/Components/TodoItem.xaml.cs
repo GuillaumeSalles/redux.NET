@@ -21,11 +21,21 @@ namespace todoRedux
 			}
 		}
 
+        public bool IsChanging = false;
+
 		private static void OnTodoChanged (BindableObject obj, Todo oldValue, Todo newValue)
 		{
 			var todoItem = (TodoItem)obj;
-			todoItem.TodoItemTextBlock.Text = newValue.Text;
-			todoItem.CompleteCheckBox.IsToggled = newValue.IsCompleted;
+
+            todoItem.IsChanging = true;
+
+            if (todoItem.TodoItemTextBlock.Text != newValue.Text)
+			    todoItem.TodoItemTextBlock.Text = newValue.Text;
+
+            if (todoItem.CompleteCheckBox.IsToggled != newValue.IsCompleted)
+                todoItem.CompleteCheckBox.IsToggled = newValue.IsCompleted;
+
+            todoItem.IsChanging = false;
 		}
 
 		public TodoItem ()
@@ -35,9 +45,12 @@ namespace todoRedux
 
 		private void CompleteCheckBox_Click (object sender, EventArgs e)
 		{
-			App.Store.Dispatch (new CompleteTodoAction {
-				TodoId = Todo.Id
-			});
+            if (!IsChanging) 
+            {
+                App.Store.Dispatch (new CompleteTodoAction {
+                    TodoId = Todo.Id
+                });
+            }
 		}
 
 		private void DeleteTodoItemButton_Click (object sender, EventArgs e)

@@ -14,52 +14,68 @@ x:Class="todoRedux.TimeMachine">
 	        <Grid 
 	            WidthRequest="300"
 	            HorizontalOptions="End"
-	            BackgroundColor="#2A2F3A">
+	            >
 	            <Grid.RowDefinitions>
+	            	<RowDefinition Height="Auto"/>
 	                <RowDefinition Height="Auto"/>
 	                <RowDefinition Height="*"/>
 	            </Grid.RowDefinitions>
 	            <Grid.ColumnDefinitions>
 	                <ColumnDefinition Width="*"/>
-	                <ColumnDefinition Width="Auto"/>
 	            </Grid.ColumnDefinitions>
 
-	            <Slider
-	                x:Name="ActionPositionsSlider"
+	            <StackLayout Orientation="Horizontal" Grid.Row="0">
+		            <Button
+		                x:Name="PlayButton"
+		                HorizontalOptions="Center"
+		                Text="Play"
+		                IsEnabled="false"
+		                Clicked="PlayButton_Click"/>
+
+		             <Button
+		                x:Name="PauseButton"
+		                HorizontalOptions="Center"
+		                Text="Pause"
+		                Clicked="PauseButton_Click"/>
+
+	            </StackLayout>
+
+	            <StackLayout Orientation="Horizontal" Grid.Row="1" >
+
+	            	<Stepper
+		            	x:Name="ActionPositionsStepper"
+		            	HorizontalOptions="FillAndExpand"
+		            	Minimum="0"
+		            	ValueChanged="ActionPositionsStepper_ValueChanged"
+		            	>
+		            </Stepper>
+
+		            <Label x:Name="counterLabel" ></Label>	   
+		                     
+	            </StackLayout>
+
+				<!--<Slider
 	                Minimum="0"
 	                Maximum="1"
-	                HorizontalOptions = "FillAndExpand"
-	                BackgroundColor="#DADBDC"
-	                ValueChanged="ActionPositionsSlider_ValueChanged"/>
+	                BackgroundColor="#DADBDC" 
+	                />-->
 
-	            <Button
-	                x:Name="PlayButton"
-	                Grid.Row="0"
-	                Grid.Column="1"
-	                HorizontalOptions="End"
-	                Text="&#xE768;"
-	                IsVisible="false"
-	                Clicked="PlayButton_Click"/>
+	            <!-- ValueChanged="" -->
 
-	            <Button
-	                x:Name="PauseButton"
-	                Grid.Row="0"
-	                Grid.Column="1"
-	                HorizontalOptions="End"
-	                Text="&#xE769;"
-	                Clicked="PauseButton_Click"/>
 
-	            <Frame 
+
+	            <!--<Frame 
 	                Grid.ColumnSpan="2"
-	                Grid.Row="1"
+	                Grid.Row="0"
 	                VerticalOptions="Start"
 	                HorizontalOptions="FillAndExpand"
 	                BackgroundColor="#4F5A65"
-	                HeightRequest="1"/>
+	                HeightRequest="1"/>-->
 
 	            <StackLayout 
-	                Grid.Row="1"
-	                Grid.ColumnSpan="2">
+	                Grid.Row="2"
+	                VerticalOptions="FillAndExpand"
+	                >
 
 	                <Label 
 	                    x:Name="CurrentActionTypeTextBlock"

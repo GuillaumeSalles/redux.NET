@@ -22,7 +22,6 @@ namespace todoRedux
         {
 			var timeMachine = (TimeMachine)obj;
 
-  
 			if(oldValue != null)
             {
                 timeMachine._storeSubscription.Dispose();
@@ -46,16 +45,24 @@ namespace todoRedux
 
         private void OnStateChange(TimeMachineState state)
         {
+            _canLetValueChange = false;
+
             _lastState = state;
 
             Shield.IsVisible = state.IsPaused ? true : false;
 
-			PauseButton.IsVisible = state.IsPaused ? false : true;
-			PlayButton.IsVisible = state.IsPaused ? true : false;
+            PauseButton.IsEnabled = state.IsPaused ? false : true;
 
-            ActionPositionsSlider.Value = state.Position;
-            ActionPositionsSlider.Maximum = state.Actions.Count;
+            PlayButton.IsEnabled = state.IsPaused ? true : false;
 
+            counterLabel.Text = string.Format ("Position: {0}, Actions: {1}", state.Position, state.Actions.Count);
+
+            if (ActionPositionsStepper.Value != state.Position)
+                ActionPositionsStepper.Value = state.Position;
+
+            if (ActionPositionsStepper.Maximum != state.Actions.Count && state.Actions.Count > 0)
+                ActionPositionsStepper.Maximum = state.Actions.Count;
+            
             if (state.Position <= 0)
             {
                 CurrentActionTypeTextBlock.Text = string.Empty;
@@ -68,20 +75,26 @@ namespace todoRedux
 				CurrentActionDescription.Text = currentAction.ToString ();
 //                CurrentActionDescription.Text = JsonConvert.SerializeObject(currentAction, Formatting.Indented);
             }
+            _canLetValueChange = true;
         }
 
-		private void ActionPositionsSlider_ValueChanged(object sender, EventArgs e)
-        {
-            if (TimeMachineStore == null 
-                || ActionPositionsSlider.Value == _lastState.Position)
-            {
-                return;
-            }
+        bool _canLetValueChange = false;
 
-            TimeMachineStore.Dispatch(new SetTimeMachinePositionAction
+        private void ActionPositionsStepper_ValueChanged(object sender, EventArgs e)
+        {
+            if (_canLetValueChange) 
             {
-                Position = (int)ActionPositionsSlider.Value
-            });
+                _canLetValueChange = false;
+
+                if (TimeMachineStore == null
+                    || ActionPositionsStepper.Value == _lastState.Position) {
+                    return;
+                }
+
+                TimeMachineStore.Dispatch (new SetTimeMachinePositionAction {
+                    Position = (int)ActionPositionsStepper.Value
+                });
+            }
         }
 
 		private void PlayButton_Click(object sender, EventArgs e)
