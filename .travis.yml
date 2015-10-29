@@ -1,2 +1,4 @@
 language: csharp
 solution: src/Redux.sln
+install:
+  - nuget/nuget.exe restore src/Redux.sln
