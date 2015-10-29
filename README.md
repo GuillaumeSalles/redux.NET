@@ -2,7 +2,8 @@
 
 Redux.NET is an attempt to bring [Redux](https://github.com/rackt/redux) concepts to .NET application development. (Only Windows 10 and Android for now, but IOS will come very soon!)
 
-[![Build Status](https://travis-ci.org/GuillaumeSalles/redux.NET.svg?branch=master)](https://travis-ci.org/GuillaumeSalles/redux.NET)
+[![Build Status](https://img.shields.io/travis/GuillaumeSalles/redux.NET.svg?style=flat-square)](https://travis-ci.org/GuillaumeSalles/redux.NET)
+[![Nuget](https://img.shields.io/nuget/v/Redux.NET.svg?style=flat-square)](https://www.nuget.org/packages/Redux.NET)
 
 ## Table of Contents
 
