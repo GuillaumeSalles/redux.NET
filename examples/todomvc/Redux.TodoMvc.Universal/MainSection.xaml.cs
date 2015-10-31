@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+using System.Reactive.Linq;
 using Windows.UI.Xaml.Controls;
-using Redux.TodoMvc.States;
 
 namespace Redux.TodoMvc.Universal
 {
@@ -12,25 +10,9 @@ namespace Redux.TodoMvc.Universal
         {
             this.InitializeComponent();
 
-            App.Store.Subscribe(state =>
-            {
-                TodosItemsControl.ItemsSource = FilterTodos(state.Todos,state.Filter);
-            });
-        }
-
-        private IEnumerable<Todo> FilterTodos(IEnumerable<Todo> todos, TodosFilter filter)
-        {
-            if(filter == TodosFilter.Completed)
-            {
-                return todos.Where(x => x.IsCompleted);
-            }
-
-            if(filter == TodosFilter.InProgress)
-            {
-                return todos.Where(x => !x.IsCompleted);
-            }
-
-            return todos;
+            App.Store
+                .Select(Selectors.GetFilteredTodos)
+                .Subscribe(todos => TodosItemsControl.ItemsSource = todos);
         }
     }
 }

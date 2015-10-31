@@ -4,9 +4,9 @@ using System.Linq;
 using Redux.TodoMvc.Actions;
 using Redux.TodoMvc.States;
 
-namespace Redux.TodoMvc.Reducers
+namespace Redux.TodoMvc
 {
-    public static class ApplicationReducer
+    public static class Reducers
     {
         public static ImmutableArray<Todo> AddTodoReducer(ImmutableArray<Todo> previousState, AddTodoAction action)
         {
@@ -85,7 +85,7 @@ namespace Redux.TodoMvc.Reducers
             return previousState;
         }
 
-        public static ApplicationState Execute(ApplicationState previousState, IAction action)
+        public static ApplicationState ReduceApplication(ApplicationState previousState, IAction action)
         {
             return new ApplicationState
             {

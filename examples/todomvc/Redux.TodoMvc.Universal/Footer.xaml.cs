@@ -5,6 +5,7 @@ using System.Collections.Immutable;
 using Windows.UI.Xaml;
 using Redux.TodoMvc.Actions;
 using Redux.TodoMvc.States;
+using Redux.TodoMvc.ViewModels;
 
 namespace Redux.TodoMvc.Universal
 {
@@ -14,21 +15,18 @@ namespace Redux.TodoMvc.Universal
         {
             this.InitializeComponent();
 
-            App.Store.Subscribe(state =>
-            {
-                ActiveTodoCounterTextBlock.Text = GetActiveTodosCounterMessage(state.Todos);
+            App.Store
+                .Select(Selectors.MakeFooterViewModel)
+                .Subscribe(viewModel =>
+                {
+                    ActiveTodoCounterTextBlock.Text = viewModel.ActiveTodosCounterMessage;
 
-                ClearActiveTodoButton.Visibility = ClearActiveTodoButtonVisibility(state.Todos);
+                    ClearActiveTodoButton.Visibility = viewModel.ClearTodosIsVisible ? 
+                        Visibility.Visible : 
+                        Visibility.Collapsed;
 
-                CheckFilter(state.Filter);
-            });
-        }
-
-        private string GetActiveTodosCounterMessage(ImmutableArray<Todo> todos)
-        {
-            var activeTodoCount = todos.Count(todo => !todo.IsCompleted);
-            var itemWord = activeTodoCount <= 1 ? "item" : "items";
-            return activeTodoCount + " " + itemWord + " left";
+                    CheckFilter(viewModel.SelectedFilter);
+                });
         }
 
         private void CheckFilter(TodosFilter filter)
@@ -47,22 +45,9 @@ namespace Redux.TodoMvc.Universal
             }
         }
 
-        private Visibility ClearActiveTodoButtonVisibility(ImmutableArray<Todo> todos)
-        {
-            return todos.Any(todo => todo.IsCompleted) ? Visibility.Visible : Visibility.Collapsed;
-        }
-
         private void ClearActiveTodoButton_Click(object sender, RoutedEventArgs e)
         {
             App.Store.Dispatch(new ClearCompletedTodosAction());
-        }
-
-        private void FilterTodos(TodosFilter filter)
-        {
-            App.Store.Dispatch(new FilterTodosAction
-            {
-                Filter = filter
-            });
         }
 
         private void AllFilter_Click(object sender, RoutedEventArgs e)
@@ -78,6 +63,14 @@ namespace Redux.TodoMvc.Universal
         private void CompletedFilter_Click(object sender, RoutedEventArgs e)
         {
             FilterTodos(TodosFilter.Completed);
+        }
+        
+        private void FilterTodos(TodosFilter filter)
+        {
+            App.Store.Dispatch(new FilterTodosAction
+            {
+                Filter = filter
+            });
         }
     }
 }

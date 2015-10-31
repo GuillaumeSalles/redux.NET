@@ -1,11 +1,12 @@
-using System.Linq;
-using System;
 using Android.App;
 using Android.OS;
 using Android.Text;
 using Android.Views;
 using Android.Widget;
 using Redux.TodoMvc.Actions;
+using System;
+using System.Linq;
+using System.Reactive.Linq;
 
 namespace Redux.TodoMvc.Android
 {
@@ -27,11 +28,13 @@ namespace Redux.TodoMvc.Android
                 });
             };
 
-            MainActivity.Store.Subscribe(state =>
-            {
-                completeAllCheckBox.Visibility = state.Todos.Any() ? ViewStates.Visible : ViewStates.Invisible;
-                completeAllCheckBox.Checked = state.Todos.All(x => x.IsCompleted);
-            });
+            MainActivity.Store
+                .Select(Selectors.MakeHeaderViewModel)
+                .Subscribe(viewModel =>
+                {
+                    completeAllCheckBox.Visibility = viewModel.CompleteAllIsVisible ? ViewStates.Visible : ViewStates.Invisible;
+                    completeAllCheckBox.Checked = viewModel.CompleteAllIsChecked;
+                });
 
             return view;
         }
