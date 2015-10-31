@@ -1,9 +1,10 @@
 ﻿using Redux.TodoMvc.Actions;
-using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 using System;
 using System.Linq;
+using System.Reactive.Linq;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
+using Windows.UI.Xaml.Input;
 
 namespace Redux.TodoMvc.Universal
 {
@@ -13,11 +14,13 @@ namespace Redux.TodoMvc.Universal
         {
             this.InitializeComponent();
 
-            App.Store.Subscribe(state =>
-            {
-                CompleteAllCheckBox.Visibility = state.Todos.Any() ? Visibility.Visible : Visibility.Collapsed; 
-                CompleteAllCheckBox.IsChecked = state.Todos.All(x => x.IsCompleted);
-            });
+            App.Store
+                .Select(Selectors.MakeHeaderViewModel)
+                .Subscribe(viewModel =>
+                {
+                    CompleteAllCheckBox.Visibility = viewModel.CompleteAllIsVisible ? Visibility.Visible : Visibility.Collapsed; 
+                    CompleteAllCheckBox.IsChecked = viewModel.CompleteAllIsChecked;
+                });
         }
 
         private void TodoInputTextBox_KeyUp(object sender, KeyRoutedEventArgs e)

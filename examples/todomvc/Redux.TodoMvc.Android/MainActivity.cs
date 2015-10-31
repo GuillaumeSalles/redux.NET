@@ -1,8 +1,7 @@
-﻿using System.Collections.Immutable;
-using Android.App;
+﻿using Android.App;
 using Android.OS;
-using Redux.TodoMvc.Reducers;
 using Redux.TodoMvc.States;
+using System.Collections.Immutable;
 
 namespace Redux.TodoMvc.Android
 {
@@ -19,7 +18,7 @@ namespace Redux.TodoMvc.Android
                 Filter = TodosFilter.All
             };
 
-            Store = new Store<ApplicationState>(initialState, ApplicationReducer.Execute);
+            Store = new Store<ApplicationState>(initialState, Reducers.ReduceApplication);
         }
 
         protected override void OnCreate(Bundle bundle)
