@@ -1,8 +1,9 @@
 # Redux.NET
 
-Redux.NET is an attempt to bring [Redux](https://github.com/rackt/redux) concepts to .NET application development. (Only Windows 10 for now, but Android and IOS will come thanks to Xamarin)
+Redux.NET is an attempt to bring [Redux](https://github.com/rackt/redux) concepts to .NET application development. (Only Windows 10 and Android for now, but IOS will come very soon!)
 
-![](http://i.imgur.com/3rgYjsL.gif)
+[![Build Status](https://img.shields.io/travis/GuillaumeSalles/redux.NET.svg?style=flat-square)](https://travis-ci.org/GuillaumeSalles/redux.NET)
+[![Nuget](https://img.shields.io/nuget/v/Redux.NET.svg?style=flat-square)](https://www.nuget.org/packages/Redux.NET)
 
 ## Table of Contents
 
@@ -149,6 +150,8 @@ namespace Redux.Counter.Universal
 
 ## Using DevTools
 
+![](http://i.imgur.com/3rgYjsL.gif)
+
 The development tools contain a time machine debugger inspired by [Elm debugger](http://debug.elm-lang.org/) and [Redux DevTools](https://github.com/gaearon/redux-devtools).
 
 You can get the dev tools package [via nuget](https://www.nuget.org/packages/Redux.NET.DevTools/) or via the Nuget package manager console : 
@@ -204,9 +207,3 @@ namespace Redux.Counter.Universal
 
 * Counter ([sources](https://github.com/GuillaumeSalles/redux.NET/tree/master/examples/counter))
 * Todo app ([sources](https://github.com/GuillaumeSalles/redux.NET/tree/master/examples/todomvc))
-
-## To do
-
-* Documentation
-* Examples for Android and IOS
-* Real world scenario (Asynchronous, complex UI...)

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+    <fragment
+        class="redux.todomvc.android.Header"
+        android:id="@+id/main_header"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:layout_marginBottom="0.0dp" />
+    <fragment
+        class="redux.todomvc.android.MainSection"
+        android:id="@+id/main_mainsection"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_marginBottom="0.0dp" />
+    <fragment
+        class="redux.todomvc.android.Footer"
+        android:id="@+id/main_footer"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="0.0dp"
+        android:layout_weight="0" />
+</LinearLayout>

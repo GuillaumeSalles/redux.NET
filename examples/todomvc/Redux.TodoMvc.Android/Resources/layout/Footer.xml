@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:minWidth="25px"
+    android:minHeight="25px">
+  
+  <TextView
+    android:text=""
+    android:textSize="18dip"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:layout_marginLeft="10dp"
+    android:id="@+id/numberOfTodosRemaining" />
+  
+  <RadioGroup
+      android:layout_width="wrap_content"
+      android:layout_height="wrap_content"
+      android:layout_centerHorizontal="true"
+      android:layout_centerVertical="true"
+      android:orientation="horizontal"
+      android:visibility="invisible"
+      android:id="@+id/radioGroup">
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="true"
+        android:text="All"
+        android:id="@+id/allRadioButton" />
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Active"
+        android:id="@+id/activeRadioButton" />
+    <RadioButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Completed"
+        android:id="@+id/completedRadioButton" />
+  </RadioGroup>
+
+  <Button
+    android:text="Clear completed"
+    android:visibility="invisible"
+    android:layout_centerVertical="true"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentRight="true"
+    android:id="@+id/clearCompletedButton"/>
+
+</RelativeLayout>

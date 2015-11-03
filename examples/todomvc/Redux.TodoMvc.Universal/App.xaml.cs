@@ -3,8 +3,7 @@ using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Redux.DevTools.Universal;
-using Redux.TodoMvc.Universal.Reducers;
-using Redux.TodoMvc.Universal.States;
+using Redux.TodoMvc.States;
 
 namespace Redux.TodoMvc.Universal
 {
@@ -22,8 +21,8 @@ namespace Redux.TodoMvc.Universal
                 Filter = TodosFilter.All
             };
 
-            //Store = new Store<ApplicationState>(initialState, ApplicationReducer.Execute);
-            Store = new TimeMachineStore<ApplicationState>(initialState, ApplicationReducer.Execute);
+            //Store = new Store<ApplicationState>(initialState, Reducers.ReduceApplication);
+            Store = new TimeMachineStore<ApplicationState>(initialState, Reducers.ReduceApplication);
         }
         
         protected override void OnLaunched(LaunchActivatedEventArgs e)
