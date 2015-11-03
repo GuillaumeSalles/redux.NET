@@ -1,0 +1,72 @@
+﻿<Page
+    x:Class="Redux.Async.Universal.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Redux.Async.Universal"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <TextBox 
+            x:Name="SearchRepositoriesTextBox"
+            KeyUp="SearchRepositoriesTextBox_KeyUp"
+            Grid.Row="0"
+            PlaceholderText="Search Repositories..."/>
+
+        <ItemsControl 
+            x:Name="RepositoriesItemsControl"
+            Grid.Row="1">
+            <ItemsControl.Template>
+                <ControlTemplate TargetType="ItemsControl">
+                    <ScrollViewer x:Name="ScrollViewer"
+                                  Padding="{TemplateBinding Padding}"
+                                  TabNavigation="{TemplateBinding TabNavigation}"
+                                  HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+                                  HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                                  VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+                                  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+                                  IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
+                                  IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
+                                  ZoomMode="{TemplateBinding ScrollViewer.ZoomMode}"
+                                  IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+                                  BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
+                                  AutomationProperties.AccessibilityView="Raw">
+                        <ItemsPresenter />
+                    </ScrollViewer>
+                </ControlTemplate>
+            </ItemsControl.Template>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <TextBlock 
+                            Text="{Binding FullName}"
+                            Margin="20"/>
+
+                        <TextBlock 
+                            HorizontalAlignment="Right"
+                            Margin="20">
+                            <Run Text="&#xE1CF;"
+                                FontFamily="Segoe MDL2 Assets"/> 
+                            <Run Text="{Binding StargazersCount}"/>
+                            <Run Text="  "/>
+                            <Run Text="Forks"/>
+                            <Run Text="{Binding Forks}"/>
+                        </TextBlock>
+                        
+                        <Rectangle 
+                            Height="1"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Bottom"
+                            Fill="#DDDDDD"/>
+                    </Grid>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Grid>
+</Page>
