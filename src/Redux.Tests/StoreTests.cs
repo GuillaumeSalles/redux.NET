@@ -1,5 +1,6 @@
 ﻿using NUnit.Core;
 using NUnit.Framework;
+using System.Diagnostics;
 
 namespace Redux.Tests
 {
@@ -45,10 +46,12 @@ namespace Redux.Tests
         public void Middleware_should_be_called_for_each_action_dispatched()
         {
             var numberOfCalls = 0;
-            Middleware<int> spyMiddleware = store => next => action =>
+            Middleware<int> logger = store => next => action =>
             {
-                numberOfCalls++;
-                return next(action);
+                Debug.WriteLine("Before dispatch");
+                var result = next(action);
+                Debug.WriteLine("After dispatch");
+                return result;
             };
 
             var sut = new Store<int>(1, Reducers.Replace, spyMiddleware);

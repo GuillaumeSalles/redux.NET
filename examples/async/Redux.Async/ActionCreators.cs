@@ -1,5 +1,4 @@
 ﻿using Newtonsoft.Json;
-using Redux.Async.Models;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;

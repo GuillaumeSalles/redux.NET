@@ -37,10 +37,9 @@
     <Compile Include="ActionCreators.cs" />
     <Compile Include="Actions.cs" />
     <Compile Include="ApplicationState.cs" />
-    <Compile Include="Models\Repository.cs" />
-    <Compile Include="Models\SearchRepositoriesResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reducers.cs" />
+    <Compile Include="States.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
