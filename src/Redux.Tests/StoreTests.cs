@@ -46,12 +46,10 @@ namespace Redux.Tests
         public void Middleware_should_be_called_for_each_action_dispatched()
         {
             var numberOfCalls = 0;
-            Middleware<int> logger = store => next => action =>
+            Middleware<int> spyMiddleware = store => next => action =>
             {
-                Debug.WriteLine("Before dispatch");
-                var result = next(action);
-                Debug.WriteLine("After dispatch");
-                return result;
+                numberOfCalls++;
+                return next(action);
             };
 
             var sut = new Store<int>(1, Reducers.Replace, spyMiddleware);
