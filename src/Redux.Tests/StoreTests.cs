@@ -1,5 +1,6 @@
 ﻿using NUnit.Core;
 using NUnit.Framework;
+using System.Diagnostics;
 
 namespace Redux.Tests
 {

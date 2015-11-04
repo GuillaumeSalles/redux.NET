@@ -1,6 +1,7 @@
 ﻿using System;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Input;
+using Windows.System;
 
 namespace Redux.Async.Universal
 {
@@ -16,6 +17,9 @@ namespace Redux.Async.Universal
 
         private async void SearchRepositoriesTextBox_KeyUp(object sender, KeyRoutedEventArgs e)
         {
+            if (e.Key != VirtualKey.Enter)
+                return;
+
             if (string.IsNullOrWhiteSpace(SearchRepositoriesTextBox.Text))
                 return;
 
