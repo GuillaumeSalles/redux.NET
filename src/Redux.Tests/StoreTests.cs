@@ -1,5 +1,8 @@
 ﻿using NUnit.Core;
 using NUnit.Framework;
+using System;
+using System.Diagnostics;
+using System.Reactive.Linq;
 
 namespace Redux.Tests
 {
@@ -59,6 +62,23 @@ namespace Redux.Tests
 
             Assert.AreEqual(1, numberOfCalls);
             CollectionAssert.AreEqual(new[] { 1, 2 }, mockObserver.Values);
+        }
+
+        [Test]
+        public void Should_push_state_to_end_of_queue_on_nested_dispatch()
+        {
+            var sut = new Store<int>(1, Reducers.Replace);
+            var mockObserver = new MockObserver<int>();
+            sut.Subscribe(val =>
+            {
+                if (val < 5)
+                {
+                    sut.Dispatch(new FakeAction<int>(val + 1));
+                }
+                mockObserver.OnNext(val);
+            });
+
+            CollectionAssert.AreEqual(new[] { 1, 2, 3, 4, 5 }, mockObserver.Values);
         }
     }
 }

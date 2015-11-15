@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
 
@@ -38,7 +39,9 @@ namespace Redux
         
         public IDisposable Subscribe(IObserver<TState> observer)
         {
-            return _stateSubject.Subscribe(observer);
+            return _stateSubject
+                .ObserveOn(Scheduler.CurrentThread)
+                .Subscribe(observer);
         }
 
         private Dispatcher ApplyMiddlewares(params Middleware<TState>[] middlewares)
