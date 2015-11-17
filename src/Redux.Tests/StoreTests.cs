@@ -80,5 +80,23 @@ namespace Redux.Tests
 
             CollectionAssert.AreEqual(new[] { 1, 2, 3, 4, 5 }, mockObserver.Values);
         }
+
+        [Test]
+        public void GetState_should_return_initial_state()
+        {
+            var sut = new Store<int>(1, Reducers.Replace);
+
+            Assert.AreEqual(1, sut.GetState());
+        }
+
+        [Test]
+        public void GetState_should_return_the_latest_state()
+        {
+            var sut = new Store<int>(1, Reducers.Replace);
+
+            sut.Dispatch(new FakeAction<int>(2));
+
+            Assert.AreEqual(2, sut.GetState());
+        }
     }
 }

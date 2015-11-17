@@ -2,6 +2,7 @@
 using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
+using System.Reactive.Threading.Tasks;
 
 namespace Redux
 {
@@ -35,6 +36,11 @@ namespace Redux
         public IAction Dispatch(IAction action)
         {
             return _dispatcher(action);
+        }
+
+        public TState GetState()
+        {
+            return this.FirstAsync().ToTask().Result;
         }
         
         public IDisposable Subscribe(IObserver<TState> observer)
