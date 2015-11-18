@@ -135,8 +135,11 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Windows.Foundation.UniversalApiContract2">
+    <Reference Include="Windows.Foundation.UniversalApiContract">
       <HintPath>..\..\dependencies\Windows.Foundation.UniversalApiContract.winmd</HintPath>
+    </Reference>
+    <Reference Include="Windows.Foundation.FoundationContract">
+      <HintPath>..\..\dependencies\Windows.Foundation.FoundationContract.winmd</HintPath>
     </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
