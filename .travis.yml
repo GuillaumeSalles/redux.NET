@@ -1,2 +1,4 @@
 language: csharp
+mono:
+- beta
 solution: src/Redux.sln
