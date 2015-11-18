@@ -2,5 +2,6 @@
 
 dnu restore
 
-dnu build src/Redux --configuration Release
+xbuild /p:Configuration=Release src/Redux.DevTools.sln
+
 dnu build src/Redux.DevTools.Universal --configuration Release
