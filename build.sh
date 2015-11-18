@@ -1,5 +1,5 @@
 #!/bin/bash
 
-dnu restore src/Redux.DevTools.Universal
+dnu restore
 
 dnu build src/Redux.DevTools.Universal --configuration Release
