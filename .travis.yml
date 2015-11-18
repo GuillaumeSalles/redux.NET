@@ -1,4 +1,6 @@
 language: csharp
 mono:
 - beta
+install: curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
+  | sh && source ~/.dnx/dnvm/dnvm.sh && dnvm upgrade
 solution: src/Redux.DevTools.sln
