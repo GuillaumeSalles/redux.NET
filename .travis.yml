@@ -1,4 +1,4 @@
 language: csharp
 mono:
 - beta
-solution: src/Redux.sln
+solution: src/Redux.DevTools.sln
