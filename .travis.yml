@@ -1,2 +1,9 @@
 language: csharp
-solution: src/Redux.sln
+mono:
+- beta
+install: 
+- curl -sSL https://raw.githubusercontent.com/aspnet/Home/dev/dnvminstall.sh
+  | sh && source ~/.dnx/dnvm/dnvm.sh && dnvm upgrade
+- nuget restore src/Redux.DevTools.sln
+script:
+- ". ./build.sh"

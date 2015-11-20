@@ -135,10 +135,12 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Redux\Redux.csproj">
-      <Project>{a15d3f17-691f-48df-9078-27dcde7141eb}</Project>
-      <Name>Redux</Name>
-    </ProjectReference>
+    <Reference Include="Windows.Foundation.UniversalApiContract">
+      <HintPath>..\..\dependencies\Windows.Foundation.UniversalApiContract.winmd</HintPath>
+    </Reference>
+    <Reference Include="Windows.Foundation.FoundationContract">
+      <HintPath>..\..\dependencies\Windows.Foundation.FoundationContract.winmd</HintPath>
+    </Reference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
