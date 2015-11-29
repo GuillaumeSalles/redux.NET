@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ViewCell xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Redux.TodoMvc.Forms.TodoItem">
+	<StackLayout Orientation="Horizontal">
+		<Switch
+            x:Name="CompleteCheckBox"
+            HorizontalOptions="Start"
+            Toggled="CompleteCheckBox_Click" />
+
+        <Entry
+            x:Name="TodoItemTextBlock"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="Center"  />
+        
+        <Button	        	
+            x:Name="DeleteTodoItemButton"
+            HorizontalOptions="End"
+            Text="&#xE894;"
+            Clicked="DeleteTodoItemButton_Click" />
+
+	</StackLayout>
+</ViewCell>

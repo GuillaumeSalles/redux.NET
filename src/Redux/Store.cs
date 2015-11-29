@@ -28,9 +28,9 @@ namespace Redux
             _dispatcher = ApplyMiddlewares(middlewares);
             
             _subjectDispatcher
-                .Scan(initialState, (previousState,action) => reducer(previousState,action))
-                .StartWith(initialState)
-                .Subscribe(_stateSubject);
+                .Scan (initialState, (state,action) => reducer(state,action))
+                .StartWith (initialState)
+                .Subscribe (_stateSubject);
         }
 
         public IAction Dispatch(IAction action)
