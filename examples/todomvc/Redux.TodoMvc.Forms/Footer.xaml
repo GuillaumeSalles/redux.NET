@@ -1,0 +1,41 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Redux.TodoMvc.Forms.Footer">
+	<ContentView.Content>
+		<StackLayout Orientation="Horizontal">
+	        <Editor
+	            x:Name="ActiveTodoCounterTextBlock"
+				VerticalOptions="Center"
+				HorizontalOptions="Start" />
+
+	        <StackLayout 
+	            Orientation="Horizontal"
+	            HorizontalOptions="Center" >
+
+	            <Label Text="All" ></Label>
+	            <Switch
+	                x:Name="AllFilter"
+	                IsToggled="true"
+	                Toggled="AllFilter_Click" />
+
+	            <Label Text="Active" ></Label>
+	            <Switch 
+	                x:Name="InProgressFilter"
+	                Toggled="InProgressFilter_Click" />
+
+	            <Label Text="Completed" ></Label>
+	            <Switch 
+	                x:Name="CompletedFilter"
+	                Toggled="CompletedFilter_Click" />
+
+	        </StackLayout>
+
+	        <Label Text="Clear Completed"></Label>
+	        <Button
+	            x:Name="ClearActiveTodoButton"
+	            HorizontalOptions="End"
+	            VerticalOptions="Center"
+	            Clicked="ClearActiveTodoButton_Click"
+	            />
+	    </StackLayout>
+	</ContentView.Content>
+</ContentView>

@@ -22,23 +22,15 @@ namespace Redux
         private readonly Dispatcher _dispatcher;
         private readonly Subject<IAction> _subjectDispatcher = new Subject<IAction>();
         private readonly ReplaySubject<TState> _stateSubject = new ReplaySubject<TState>(1);
-        private readonly Reducer<TState> _reducer;
 
         public Store(TState initialState, Reducer<TState> reducer, params Middleware<TState>[] middlewares)
         {
             _dispatcher = ApplyMiddlewares(middlewares);
-
-            _reducer = reducer;
-
+            
             _subjectDispatcher
-                .Scan (initialState, SubjectDispatcherAccumulator)
+                .Scan (initialState, (state,action) => reducer(state,action))
                 .StartWith (initialState)
                 .Subscribe (_stateSubject);
-        }
-
-        TState SubjectDispatcherAccumulator(TState previousState, IAction action)
-        {
-            return _reducer (previousState, action);
         }
 
         public IAction Dispatch(IAction action)

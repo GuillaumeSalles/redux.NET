@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+	xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+	x:Class="Redux.TodoMvc.Forms.MainPage"
+	xmlns:local="clr-namespace:Redux.TodoMvc.Forms;assembly=Redux.TodoMvc.Forms" >
+	<ContentPage.Content>
+		<Grid Padding="10,10">
+	        <Grid.RowDefinitions>
+	            <RowDefinition Height="Auto"/>
+	            <RowDefinition Height="*"/>
+	            <RowDefinition Height="Auto"/>
+	        </Grid.RowDefinitions>
+	        <local:Header />
+	        <local:MainSection Grid.Row="1"/>
+	        <local:Footer 
+	            x:Name="Footer" 
+	            Grid.Row="2"
+	            IsVisible="false" />
+	    </Grid>
+	</ContentPage.Content>
+</ContentPage>

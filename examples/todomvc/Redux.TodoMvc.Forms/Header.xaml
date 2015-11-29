@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Redux.TodoMvc.Forms.Header">
+	<ContentView.Content>
+		<StackLayout Orientation="Horizontal">
+	        <Switch
+	            x:Name="CompleteAllCheckBox"
+	            Toggled="CompleteAllCheckBox_Click"
+	            IsVisible="false" />
+	        <Entry
+	            x:Name="TodoInputTextBox"
+	            Completed="TodoInputTextBox_Completed"
+	            Placeholder="What needs to be done?" />
+	    </StackLayout>
+	</ContentView.Content>
+</ContentView>

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Redux.TodoMvc.Forms.MainSection" xmlns:local="clr-namespace:Redux.TodoMvc.Forms;assembly=Redux.TodoMvc.Forms">
+	<ContentView.Content>
+		<ListView x:Name="TodosItemsControl">
+			<ListView.ItemTemplate>
+				<DataTemplate>
+					<local:TodoItem Todo="{Binding}" />
+				</DataTemplate>
+			</ListView.ItemTemplate>
+		</ListView>
+	</ContentView.Content>
+</ContentView>
