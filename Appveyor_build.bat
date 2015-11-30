@@ -1,13 +1,4 @@
 @echo Off
-set config=%1
-if "%config%" == "" (
-   set config=Release
-)
- 
-set version=0.1.0
-if not "%PackageVersion%" == "" (
-   set version=%PackageVersion%
-)
 
 nuget restore src/Redux.sln -verbosity detailed
 msbuild src/Redux.sln /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /p:Configuration=Release
