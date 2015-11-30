@@ -30,5 +30,5 @@
 	<file src="..\src\Redux.DevTools.Universal\bin\$configuration$\Redux.DevTools.Universal.xr.xml" target="lib\win81\Redux.DevTools.Universal\Redux.DevTools.Universal.xr.xml" />
 	<file src="..\src\Redux.DevTools.Universal\Properties\Redux.DevTools.Universal.rd.xml" target="lib\win81\Redux.DevTools.Universal\Properties\Redux.DevTools.Universal.rd.xml" />
   
-  s</files>
+  </files>
 </package>
