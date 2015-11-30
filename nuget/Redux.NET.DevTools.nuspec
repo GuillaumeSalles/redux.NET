@@ -21,11 +21,9 @@
   </metadata>
   <files>
   
-	<!-- WPF --> 
 	<file src="..\src\Redux.DevTools\bin\$configuration$\Redux.DevTools.dll" target="lib\net45\Redux.DevTools.dll" />
 	<file src="..\src\Redux.DevTools.WPF\bin\$configuration$\Redux.DevTools.WPF.dll" target="lib\net45\Redux.DevTools.WPF.dll" />
   
-	<!-- Win10 Universal --> 
 	<file src="..\src\Redux.DevTools\bin\$configuration$\Redux.DevTools.dll" target="lib\win81\Redux.DevTools.dll" />
 	<file src="..\src\Redux.DevTools.Universal\bin\$configuration$\Redux.DevTools.Universal.dll" target="lib\win81\Redux.DevTools.Universal.dll" />
 	<file src="..\src\Redux.DevTools.Universal\bin\$configuration$\Redux.DevTools.Universal.pri" target="lib\win81\Redux.DevTools.Universal.pri" />
