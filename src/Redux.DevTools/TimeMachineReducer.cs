@@ -3,7 +3,7 @@ using System.Collections.Immutable;
 using System.Linq;
 using System.Reactive.Linq;
 
-namespace Redux.DevTools.Universal
+namespace Redux.DevTools
 {
     public class TimeMachineReducer
     {

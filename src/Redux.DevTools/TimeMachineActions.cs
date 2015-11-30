@@ -1,4 +1,4 @@
-﻿namespace Redux.DevTools.Universal
+﻿namespace Redux.DevTools
 {
     public class PauseTimeMachineAction : IAction
     {

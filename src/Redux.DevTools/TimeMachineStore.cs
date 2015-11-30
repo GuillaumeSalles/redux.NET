@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Reactive.Linq;
 
-namespace Redux.DevTools.Universal
+namespace Redux.DevTools
 {
     public class TimeMachineStore<TState> : Store<TimeMachineState>, IStore<TState>
     {

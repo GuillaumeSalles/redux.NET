@@ -1,6 +1,6 @@
 ﻿using System.Collections.Immutable;
 
-namespace Redux.DevTools.Universal
+namespace Redux.DevTools
 {
     public class TimeMachineState
     {
