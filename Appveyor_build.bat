@@ -7,5 +7,7 @@ nunit-console src/Redux.Tests/bin/Release/Redux.Tests.dll
 nuget restore examples/todomvc/Redux.TodoMvc.sln -verbosity detailed
 msbuild examples/todomvc/Redux.TodoMvc.sln /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll" /p:Configuration=Release
 
+set "version=%APPVEYOR_BUILD_VERSION%-PRERELEASE"
+
 nuget pack "nuget\Redux.NET.nuspec" -NoPackageAnalysis -verbosity detailed -Version %version% -p Configuration="Release"
 nuget pack "nuget\Redux.NET.DevTools.nuspec" -NoPackageAnalysis -verbosity detailed -Version %version% -p Configuration="Release"
