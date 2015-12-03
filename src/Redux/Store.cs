@@ -15,6 +15,8 @@ namespace Redux
     public interface IStore<TState> : IObservable<TState>
     {
         IAction Dispatch(IAction action);
+
+        TState GetState();
     }
         
     public class Store<TState> : IStore<TState>

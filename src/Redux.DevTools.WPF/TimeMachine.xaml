@@ -44,9 +44,9 @@
                 Grid.Column="1"
                 HorizontalAlignment="Right"
                 Margin="20"
-                Content="&#xE768;"
+                Content="|>"
                 Foreground="#DADBDC"
-                FontFamily="Segoe MDL2 Assets"
+                Background="DarkGray"
                 BorderBrush="#DADBDC"
                 Visibility="Collapsed"
                 Click="PlayButton_Click"/>
@@ -57,9 +57,9 @@
                 Grid.Column="1"
                 HorizontalAlignment="Right"
                 Margin="20"
-                Content="&#xE769;"
+                Content="||"
                 Foreground="#DADBDC"
-                FontFamily="Segoe MDL2 Assets"
+                Background="DarkGray"
                 BorderBrush="#DADBDC"
                 Click="PauseButton_Click"/>
 
@@ -79,9 +79,11 @@
 
                 <TextBlock 
                     x:Name="CurrentActionTypeTextBlock"
+                    Foreground="White"
                     FontWeight="SemiBold"/>
 
-                <TextBlock x:Name="CurrentActionDescription"/>
+                <TextBlock x:Name="CurrentActionDescription"
+                           Foreground="White"/>
             </StackPanel>
         </Grid>
     </Grid>
