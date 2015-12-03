@@ -3,7 +3,7 @@
     "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
     "Newtonsoft.Json": "7.0.1",
     "Rx-Main": "2.2.5",
-    "System.Collections.Immutable": "1.1.37"
+    "System.Collections.Immutable": "1.1.36"
   },
   "frameworks": {
     "uap10.0": {}

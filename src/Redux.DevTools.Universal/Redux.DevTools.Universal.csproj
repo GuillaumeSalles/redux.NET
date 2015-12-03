@@ -114,14 +114,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DevFrame.cs" />
-    <Compile Include="TimeMachineActions.cs" />
-    <Compile Include="TimeMachineReducer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TimeMachine.xaml.cs">
       <DependentUpon>TimeMachine.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TimeMachineState.cs" />
-    <Compile Include="TimeMachineStore.cs" />
     <Content Include="Properties\Redux.DevTools.Universal.rd.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -135,6 +131,10 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Redux.DevTools\Redux.DevTools.csproj">
+      <Project>{6c83c892-15ea-4b7c-b7e4-87bd104bf444}</Project>
+      <Name>Redux.DevTools</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Redux\Redux.csproj">
       <Project>{a15d3f17-691f-48df-9078-27dcde7141eb}</Project>
       <Name>Redux</Name>
