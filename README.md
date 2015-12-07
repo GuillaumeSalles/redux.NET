@@ -205,8 +205,12 @@ namespace Redux.Counter.Universal
 
 ## Examples 
 
-* Counter ([sources](https://github.com/GuillaumeSalles/redux.NET/tree/master/examples/counter))
-* Todo app ([sources](https://github.com/GuillaumeSalles/redux.NET/tree/master/examples/todomvc))
+* Counter ([sources](examples/counter))
+  * Windows universal app : Redux.Counter.sln
+* Todo app ([sources](examples/todomvc))
+  * Windows universal app : Redux.TodoMvc.Universal.sln
+  * Xamarin Andriod : Redux.TodoMvc.Android.sln  
+  * Xamarin Forms (IOS + Android) : Redux.TodoMvc.Forms.sln
 
 ## License
 
