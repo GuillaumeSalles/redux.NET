@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.23107.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redux.TodoMvc", "Redux.TodoMvc\Redux.TodoMvc.csproj", "{FEA5562D-E8D5-4AD9-BACA-2D29DB0A2775}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redux.TodoMvc.Android", "Redux.TodoMvc.Android\Redux.TodoMvc.Android.csproj", "{74D8C13C-3B02-4EBC-AA69-B6835A833DB4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{FEA5562D-E8D5-4AD9-BACA-2D29DB0A2775}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FEA5562D-E8D5-4AD9-BACA-2D29DB0A2775}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FEA5562D-E8D5-4AD9-BACA-2D29DB0A2775}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FEA5562D-E8D5-4AD9-BACA-2D29DB0A2775}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74D8C13C-3B02-4EBC-AA69-B6835A833DB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{74D8C13C-3B02-4EBC-AA69-B6835A833DB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{74D8C13C-3B02-4EBC-AA69-B6835A833DB4}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{74D8C13C-3B02-4EBC-AA69-B6835A833DB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{74D8C13C-3B02-4EBC-AA69-B6835A833DB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{74D8C13C-3B02-4EBC-AA69-B6835A833DB4}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
