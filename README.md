@@ -10,6 +10,7 @@ Redux.NET is an attempt to bring [Redux](https://github.com/rackt/redux) concept
 - [Motivation](#motivation)
 - [Installation](#installation)
 - [Quick start](#quick-start)
+- [Performance Optimization](#performance-optimization)
 - [Using DevTools](#using-devtools)
 - [Examples](#examples)
 - [License](#license)
@@ -146,6 +147,55 @@ namespace Redux.Counter.Universal
         [...]
     }
 }
+```
+
+## Performance Optimization
+
+Let's take a closer look to a slightly modified version of the todos app example : 
+
+```C#
+
+    public sealed partial class MainSection : UserControl
+    {
+        public MainSection()
+        {
+            this.InitializeComponent();
+
+            App.Store
+                .Subscribe(state => TodosItemsControl.ItemsSource = GetFilteredTodos(state));
+        }
+        
+        public static IEnumerable<Todo> GetFilteredTodos(ApplicationState state)
+        {
+            if (state.Filter == TodosFilter.Completed)
+            {
+                return state.Todos.Where(x => x.IsCompleted);
+            }
+
+            if (state.Filter == TodosFilter.InProgress)
+            {
+                return state.Todos.Where(x => !x.IsCompleted);
+            }
+
+            return state.Todos;
+        }
+    }
+
+```
+
+In this example, ```GetFilteredTodos``` is calculated every times the application state changed. If the state tree is large, or the calculation expensive, repeating the calculation on every update may cause performance problems. [ReactiveExtensions](https://github.com/Reactive-Extensions/Rx.NET) can help us to avoid unnecessary recalculations.
+
+#### DistinctUntilChanged to the rescue
+
+We would like to execute ```GetFilteredTodos``` only when the value ```state.Filter``` or ```state.Todos``` changes, but not when changes occur in other (unrelated) parts of the state tree. Rx provide an extension method on IObservable<T> [DistinctUntilChanged](https://msdn.microsoft.com/en-us/library/system.reactive.linq.observable.distinctuntilchanged(v=vs.103).aspx)  that surfaces values only if they are different from the previous value based on a key selector (or IEqualityComparer<T>).
+We just need to call DistinctUntilChanged with the appropriate keySelector just before subscribing to the store. Anonymous Types are a handy tool to create selectors since two instances of the same anonymous type are equal only if all their properties are equal. (See Remarks section : [Anonymous Types](https://msdn.microsoft.com/en-us/library/bb397696.aspx))
+
+To compute ```GetFilteredTodos``` only when necessary, we need to modify the previous code like this :
+
+```C#
+    App.Store
+        .DistinctUntilChanged(state => new { state.Todos, state.Filter }) 
+        .Subscribe(state => TodosItemsControl.ItemsSource = GetFilteredTodos(state));
 ```
 
 ## Using DevTools
