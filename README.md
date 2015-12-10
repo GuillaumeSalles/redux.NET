@@ -64,7 +64,7 @@ namespace Redux.Counter.Universal
 {
     public static class CounterReducer
     {
-        public static int Execute(int previousState, IAction action)
+        public static int Execute(int state, IAction action)
         {
             if(action is IncrementAction)
             {
