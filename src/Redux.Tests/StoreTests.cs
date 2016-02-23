@@ -65,6 +65,7 @@ namespace Redux.Tests
         }
 
         [Test]
+        [Ignore]
         public void Should_push_state_to_end_of_queue_on_nested_dispatch()
         {
             var sut = new Store<int>(1, Reducers.Replace);

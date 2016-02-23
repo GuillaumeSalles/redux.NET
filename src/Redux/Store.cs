@@ -48,7 +48,6 @@ namespace Redux
         public IDisposable Subscribe(IObserver<TState> observer)
         {
             return _stateSubject
-                .ObserveOn(Scheduler.CurrentThread)
                 .Subscribe(observer);
         }
 
