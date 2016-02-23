@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Reactive.Concurrency;
 using System.Reactive.Linq;
 using System.Reactive.Subjects;
-using System.Reactive.Threading.Tasks;
 
 namespace Redux
 {
@@ -24,15 +22,17 @@ namespace Redux
         private readonly Dispatcher _dispatcher;
         private readonly Subject<IAction> _subjectDispatcher = new Subject<IAction>();
         private readonly ReplaySubject<TState> _stateSubject = new ReplaySubject<TState>(1);
+        private TState _lastState;
 
         public Store(TState initialState, Reducer<TState> reducer, params Middleware<TState>[] middlewares)
         {
             _dispatcher = ApplyMiddlewares(middlewares);
-            
+
             _subjectDispatcher
-                .Scan (initialState, (state,action) => reducer(state,action))
-                .StartWith (initialState)
-                .Subscribe (_stateSubject);
+                .Scan(initialState, (state, action) => reducer(state, action))
+                .StartWith(initialState)
+                .Do(state => _lastState = state)
+                .Subscribe(_stateSubject);
         }
 
         public IAction Dispatch(IAction action)
@@ -42,7 +42,7 @@ namespace Redux
 
         public TState GetState()
         {
-            return this.FirstAsync().ToTask().Result;
+            return _lastState;
         }
         
         public IDisposable Subscribe(IObserver<TState> observer)
