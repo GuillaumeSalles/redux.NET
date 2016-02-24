@@ -2,8 +2,13 @@
 
 namespace Redux.Async
 {
-    public class SearchRepositoriesAction : IAction
+    public class ReceiveRepositoriesAction : IAction
     {
         public Repository[] Repositories { get; set; }
+    }
+
+    public class SearchRepositoriesAction : IAction
+    {
+
     }
 }

@@ -15,9 +15,16 @@
         
         <TextBox 
             x:Name="SearchRepositoriesTextBox"
-            KeyUp="SearchRepositoriesTextBox_KeyUp"
             Grid.Row="0"
-            PlaceholderText="Search Repositories..."/>
+            PlaceholderText="Search Repositories..."
+            Margin="0,0,50,0"/>
+
+        <Button
+            HorizontalAlignment="Right"
+            Width="50"
+            Click="SearchButton_Click">
+            <SymbolIcon Symbol="Find"/>
+        </Button>
 
         <ItemsControl 
             x:Name="RepositoriesItemsControl"
@@ -68,5 +75,17 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        
+        <Border 
+            x:Name="IsSearchingBorder"
+            Grid.Row="1"
+            Background="White">
+            <ProgressRing 
+                Height="50" 
+                Width="50" 
+                IsActive="True"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+        </Border>
     </Grid>
 </Page>
