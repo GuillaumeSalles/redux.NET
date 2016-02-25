@@ -24,7 +24,7 @@ namespace Redux
         private readonly ReplaySubject<TState> _stateSubject = new ReplaySubject<TState>(1);
         private TState _lastState;
 
-        public Store(TState initialState, Reducer<TState> reducer, params Middleware<TState>[] middlewares)
+        public Store(Reducer<TState> reducer, TState initialState = default(TState), params Middleware<TState>[] middlewares)
         {
             _dispatcher = ApplyMiddlewares(middlewares);
 
