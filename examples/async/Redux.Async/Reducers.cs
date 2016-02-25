@@ -1,6 +1,4 @@
-﻿using Redux.Async.Models;
-
-namespace Redux.Async
+﻿namespace Redux.Async
 {
     public static class Reducers
     {
@@ -8,18 +6,34 @@ namespace Redux.Async
         {
             return new ApplicationState
             {
-                Repositories = ReduceRepositories(state.Repositories, action)
+                Repositories = ReduceRepositories(state.Repositories, action),
+                IsSearching = ReduceIsSearching(state.IsSearching, action)
             };
         }
 
         public static Repository[] ReduceRepositories(Repository[] state, IAction action)
         {
-            if (action is SearchRepositoriesAction)
+            if (action is ReceiveRepositoriesAction)
             {
-                return ((SearchRepositoriesAction)action).Repositories;
+                return ((ReceiveRepositoriesAction)action).Repositories;
             }
 
             return state;
+        }
+
+        public static bool ReduceIsSearching(bool isSearching, IAction action)
+        {
+            if(action is ReceiveRepositoriesAction)
+            {
+                return false;
+            }
+
+            if(action is SearchRepositoriesAction)
+            {
+                return true;
+            }
+
+            return isSearching;
         }
     }
 }

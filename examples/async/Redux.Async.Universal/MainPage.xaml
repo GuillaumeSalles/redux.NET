@@ -7,6 +7,32 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <Style x:Key="ItemsControlWithScrollViewerStyle" TargetType="ItemsControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ItemsControl">
+                        <ScrollViewer x:Name="ScrollViewer"
+                            Padding="{TemplateBinding Padding}"
+                            TabNavigation="{TemplateBinding TabNavigation}"
+                            HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+                            HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                            VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+                            VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+                            IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
+                            IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
+                            ZoomMode="{TemplateBinding ScrollViewer.ZoomMode}"
+                            IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+                            BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
+                            AutomationProperties.AccessibilityView="Raw">
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -15,50 +41,67 @@
         
         <TextBox 
             x:Name="SearchRepositoriesTextBox"
-            KeyUp="SearchRepositoriesTextBox_KeyUp"
             Grid.Row="0"
-            PlaceholderText="Search Repositories..."/>
+            IsSpellCheckEnabled="False"
+            PlaceholderText="Search Repositories..."
+            Margin="0,0,50,0"/>
+
+        <Button
+            HorizontalAlignment="Right"
+            Width="50"
+            Click="SearchButton_Click">
+            <SymbolIcon Symbol="Find"/>
+        </Button>
 
         <ItemsControl 
             x:Name="RepositoriesItemsControl"
-            Grid.Row="1">
-            <ItemsControl.Template>
-                <ControlTemplate TargetType="ItemsControl">
-                    <ScrollViewer x:Name="ScrollViewer"
-                                  Padding="{TemplateBinding Padding}"
-                                  TabNavigation="{TemplateBinding TabNavigation}"
-                                  HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
-                                  HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-                                  VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
-                                  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
-                                  IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
-                                  IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
-                                  ZoomMode="{TemplateBinding ScrollViewer.ZoomMode}"
-                                  IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
-                                  BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
-                                  AutomationProperties.AccessibilityView="Raw">
-                        <ItemsPresenter />
-                    </ScrollViewer>
-                </ControlTemplate>
-            </ItemsControl.Template>
+            Grid.Row="1"
+            Style="{StaticResource ItemsControlWithScrollViewerStyle}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Grid>
-                        <TextBlock 
-                            Text="{Binding FullName}"
-                            Margin="20"/>
+                    <Grid Height="120">
+                        <HyperlinkButton
+                            Content="{Binding FullName}"
+                            NavigateUri="{Binding HtmlUrl}"
+                            FontSize="16"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Top"
+                            Margin="20,10"/>
 
                         <TextBlock 
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
+                            Text="{Binding Description}"
+                            Margin="20,20,150,20"
+                            Foreground="#666666"
+                            TextTrimming="WordEllipsis"
+                            TextWrapping="Wrap"
+                            FontSize="13"/>
+
+                        <StackPanel
+                            Orientation="Horizontal"
                             HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
                             Margin="20">
-                            <Run Text="&#xE1CF;"
-                                FontFamily="Segoe MDL2 Assets"/> 
-                            <Run Text="{Binding StargazersCount}"/>
-                            <Run Text="  "/>
-                            <Run Text="Forks"/>
-                            <Run Text="{Binding Forks}"/>
-                        </TextBlock>
-                        
+                            <TextBlock 
+                                Margin="0,0,15,0">
+                                <Run Text="&#xE1CF;"
+                                    FontFamily="Segoe MDL2 Assets"/> 
+                                <Run Text="{Binding StargazersCount}"/>
+                            </TextBlock>
+                            <Image 
+                                Height="16"
+                                Width="16"
+                                Source="Assets/Fork.png"/>
+                            <TextBlock
+                                Text="{Binding Forks}"/>
+                        </StackPanel>
+
+                        <TextBlock
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Bottom"
+                            Margin="20"
+                            Text="{Binding Language}"/>
                         <Rectangle 
                             Height="1"
                             HorizontalAlignment="Stretch"
@@ -68,5 +111,17 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        
+        <Border 
+            x:Name="IsSearchingBorder"
+            Grid.Row="1"
+            Background="White">
+            <ProgressRing 
+                Height="50" 
+                Width="50" 
+                IsActive="True"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"/>
+        </Border>
     </Grid>
 </Page>

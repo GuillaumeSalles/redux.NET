@@ -1,6 +1,6 @@
 ﻿using System;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Input;
 
 namespace Redux.Async.Universal
 {
@@ -11,15 +11,16 @@ namespace Redux.Async.Universal
             this.InitializeComponent();
 
             App.Store
-                .Subscribe(state => RepositoriesItemsControl.ItemsSource = state.Repositories);
+                .Subscribe(state =>
+                {
+                    RepositoriesItemsControl.ItemsSource = state.Repositories;
+                    IsSearchingBorder.Visibility = state.IsSearching ? Visibility.Visible : Visibility.Collapsed;
+                });
         }
-
-        private async void SearchRepositoriesTextBox_KeyUp(object sender, KeyRoutedEventArgs e)
+        
+        private async void SearchButton_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(SearchRepositoriesTextBox.Text))
-                return;
-
-            App.Store.Dispatch(await ActionCreators.SearchRepositories(SearchRepositoriesTextBox.Text));
+            await App.Store.Dispatch(ActionCreators.SearchRepositories(SearchRepositoriesTextBox.Text));
         }
     }
 }
