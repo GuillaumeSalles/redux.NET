@@ -1,6 +1,4 @@
-﻿using Redux.Async.Models;
-
-namespace Redux.Async
+﻿namespace Redux.Async
 {
     public class ReceiveRepositoriesAction : IAction
     {

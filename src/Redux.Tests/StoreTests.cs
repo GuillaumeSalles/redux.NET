@@ -1,7 +1,11 @@
 ﻿using NUnit.Core;
 using NUnit.Framework;
+<<<<<<< HEAD
 using System;
 using System.Reactive.Linq;
+=======
+using System.Diagnostics;
+>>>>>>> 462fa4ff38f2e35adcc8fff72d8d335737314440
 
 namespace Redux.Tests
 {
