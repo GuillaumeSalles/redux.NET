@@ -7,7 +7,7 @@ namespace Redux.Async.Universal
     sealed partial class App : Application
     {
         public static IStore<ApplicationState> Store { get; } = new Store<ApplicationState>(
-            new ApplicationState(), Reducers.ReduceApplicationState);
+            Reducers.ReduceApplicationState, new ApplicationState());
 
         public App()
         {
