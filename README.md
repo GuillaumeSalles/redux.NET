@@ -261,6 +261,8 @@ namespace Redux.Counter.Universal
   * Windows universal app : Redux.TodoMvc.Universal.sln
   * Xamarin Andriod : Redux.TodoMvc.Android.sln  
   * Xamarin Forms (IOS + Android) : Redux.TodoMvc.Forms.sln
+* Async http ([sources](examples/async))
+  * Windows universal app : Redux.Async.sln
 
 ## License
 
