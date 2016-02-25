@@ -7,6 +7,32 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
 
+    <Page.Resources>
+        <Style x:Key="ItemsControlWithScrollViewerStyle" TargetType="ItemsControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ItemsControl">
+                        <ScrollViewer x:Name="ScrollViewer"
+                            Padding="{TemplateBinding Padding}"
+                            TabNavigation="{TemplateBinding TabNavigation}"
+                            HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
+                            HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
+                            VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
+                            VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
+                            IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
+                            IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
+                            ZoomMode="{TemplateBinding ScrollViewer.ZoomMode}"
+                            IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
+                            BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
+                            AutomationProperties.AccessibilityView="Raw">
+                            <ItemsPresenter />
+                        </ScrollViewer>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -28,26 +54,8 @@
 
         <ItemsControl 
             x:Name="RepositoriesItemsControl"
-            Grid.Row="1">
-            <ItemsControl.Template>
-                <ControlTemplate TargetType="ItemsControl">
-                    <ScrollViewer x:Name="ScrollViewer"
-                                  Padding="{TemplateBinding Padding}"
-                                  TabNavigation="{TemplateBinding TabNavigation}"
-                                  HorizontalScrollMode="{TemplateBinding ScrollViewer.HorizontalScrollMode}"
-                                  HorizontalScrollBarVisibility="{TemplateBinding ScrollViewer.HorizontalScrollBarVisibility}"
-                                  VerticalScrollMode="{TemplateBinding ScrollViewer.VerticalScrollMode}"
-                                  VerticalScrollBarVisibility="{TemplateBinding ScrollViewer.VerticalScrollBarVisibility}"
-                                  IsHorizontalRailEnabled="{TemplateBinding ScrollViewer.IsHorizontalRailEnabled}"
-                                  IsVerticalRailEnabled="{TemplateBinding ScrollViewer.IsVerticalRailEnabled}"
-                                  ZoomMode="{TemplateBinding ScrollViewer.ZoomMode}"
-                                  IsDeferredScrollingEnabled="{TemplateBinding ScrollViewer.IsDeferredScrollingEnabled}"
-                                  BringIntoViewOnFocusChange="{TemplateBinding ScrollViewer.BringIntoViewOnFocusChange}"
-                                  AutomationProperties.AccessibilityView="Raw">
-                        <ItemsPresenter />
-                    </ScrollViewer>
-                </ControlTemplate>
-            </ItemsControl.Template>
+            Grid.Row="1"
+            Style="{StaticResource ItemsControlWithScrollViewerStyle}">
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Grid>
