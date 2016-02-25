@@ -111,7 +111,7 @@ namespace Redux.Counter.Universal
         {
             InitializeComponent();
             
-            CounterStore = new Store<int>(initialState:0, reducer:CounterReducer.Execute);
+            CounterStore = new Store<int>(reducer:CounterReducer.Execute, initialState:0);
         }
     
         [...]
@@ -226,7 +226,7 @@ namespace Redux.Counter.Universal
         {
             InitializeComponent();
             
-            CounterStore = new TimeMachineStore<int>(0, CounterReducer.Execute);
+            CounterStore = new TimeMachineStore<int>(CounterReducer.Execute, 0);
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
