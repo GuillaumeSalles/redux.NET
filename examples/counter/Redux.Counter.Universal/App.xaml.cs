@@ -12,7 +12,7 @@ namespace Redux.Counter.Universal
         {
             InitializeComponent();
             
-            CounterStore = new Store<int>(0, CounterReducer.Execute);
+            CounterStore = new Store<int>(CounterReducer.Execute, 0);
         }
 
         protected override void OnLaunched(LaunchActivatedEventArgs e)
