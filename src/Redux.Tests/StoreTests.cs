@@ -11,7 +11,7 @@ namespace Redux.Tests
         [Test]
         public void Should_push_initial_state()
         {
-            var sut = new Store<int>(Reducers.PassThrough, 1);
+            var sut = StoreFactory.Create(Reducers.PassThrough, 1);
             var mockObserver = new MockObserver<int>();
 
             sut.Subscribe(mockObserver);
@@ -22,7 +22,7 @@ namespace Redux.Tests
         [Test]
         public void Should_push_state_on_dispatch()
         {
-            var sut = new Store<int>(Reducers.Replace, 1);
+            var sut = StoreFactory.Create(Reducers.Replace, 1);
             var mockObserver = new MockObserver<int>();
 
             sut.Subscribe(mockObserver);
@@ -34,7 +34,7 @@ namespace Redux.Tests
         [Test]
         public void Should_only_push_the_last_state_before_subscription()
         {
-            var sut = new Store<int>(Reducers.Replace, 1);
+            var sut = StoreFactory.Create(Reducers.Replace, 1);
             var mockObserver = new MockObserver<int>();
 
             sut.Dispatch(new FakeAction<int>(2));
@@ -53,7 +53,7 @@ namespace Redux.Tests
                 return next(action);
             };
 
-            var sut = new Store<int>(Reducers.Replace, 1, spyMiddleware);
+            var sut = StoreFactory.Create(Reducers.Replace, 1, StoreEnhancers.ApplyMiddleware(spyMiddleware));
             var mockObserver = new MockObserver<int>();
             
             sut.Subscribe(mockObserver);
@@ -67,7 +67,7 @@ namespace Redux.Tests
         [Ignore("This behavior will be handle with a store enhancer in the next release")]
         public void Should_push_state_to_end_of_queue_on_nested_dispatch()
         {
-            var sut = new Store<int>(Reducers.Replace, 1);
+            var sut = StoreFactory.Create(Reducers.Replace, 1);
             var mockObserver = new MockObserver<int>();
             sut.Subscribe(val =>
             {
@@ -84,7 +84,7 @@ namespace Redux.Tests
         [Test]
         public void GetState_should_return_initial_state()
         {
-            var sut = new Store<int>(Reducers.Replace, 1);
+            var sut = StoreFactory.Create(Reducers.Replace, 1);
 
             Assert.AreEqual(1, sut.GetState());
         }
@@ -92,7 +92,7 @@ namespace Redux.Tests
         [Test]
         public void GetState_should_return_the_latest_state()
         {
-            var sut = new Store<int>(Reducers.Replace, 1);
+            var sut = StoreFactory.Create(Reducers.Replace, 1);
 
             sut.Dispatch(new FakeAction<int>(2));
 
