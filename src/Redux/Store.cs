@@ -19,6 +19,7 @@ namespace Redux
         
     public class Store<TState> : IStore<TState>
     {
+        private readonly object _syncRoot = new object();
         private readonly Dispatcher _dispatcher;
         private readonly Subject<IAction> _subjectDispatcher = new Subject<IAction>();
         private readonly ReplaySubject<TState> _stateSubject = new ReplaySubject<TState>(1);
@@ -29,7 +30,13 @@ namespace Redux
             _dispatcher = ApplyMiddlewares(middlewares);
 
             _subjectDispatcher
-                .Scan(initialState, (state, action) => reducer(state, action))
+                .Scan(initialState, (state, action) => 
+                {
+                    lock (_syncRoot)
+                    {
+                        return reducer(state, action);
+                    }
+                })
                 .StartWith(initialState)
                 .Do(state => _lastState = state)
                 .Subscribe(_stateSubject);
