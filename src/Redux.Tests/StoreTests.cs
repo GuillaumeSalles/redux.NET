@@ -2,6 +2,8 @@
 using NUnit.Framework;
 using System;
 using System.Reactive.Linq;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Redux.Tests
 {
@@ -97,6 +99,17 @@ namespace Redux.Tests
             sut.Dispatch(new FakeAction<int>(2));
 
             Assert.AreEqual(2, sut.GetState());
+        }
+
+        [Test]
+        public async Task Store_should_be_thread_safe()
+        {
+            var sut = new Store<int>((state,action) => state + 1, 0);
+
+            await Task.WhenAll(Enumerable.Range(0, 1000)
+                .Select(_ => Task.Factory.StartNew(() => sut.Dispatch(new FakeAction<int>(0)))));
+
+            Assert.AreEqual(1000, sut.GetState());
         }
     }
 }

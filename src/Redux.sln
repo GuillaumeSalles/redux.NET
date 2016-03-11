@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redux.DevTools", "Redux.Dev
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redux.DevTools.WPF", "Redux.DevTools.WPF\Redux.DevTools.WPF.csproj", "{37955967-CC13-4E89-8A84-8270E34C56CE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Redux.DevTools.Sandbox.Universal", "Redux.DevTools.Sandbox.Universal\Redux.DevTools.Sandbox.Universal.csproj", "{6AACE172-81EA-4B0E-B484-D6D694F643B9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,30 @@ Global
 		{37955967-CC13-4E89-8A84-8270E34C56CE}.Release|x64.Build.0 = Release|Any CPU
 		{37955967-CC13-4E89-8A84-8270E34C56CE}.Release|x86.ActiveCfg = Release|Any CPU
 		{37955967-CC13-4E89-8A84-8270E34C56CE}.Release|x86.Build.0 = Release|Any CPU
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Debug|Any CPU.Build.0 = Debug|x86
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Debug|Any CPU.Deploy.0 = Debug|x86
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Debug|ARM.ActiveCfg = Debug|ARM
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Debug|ARM.Build.0 = Debug|ARM
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Debug|ARM.Deploy.0 = Debug|ARM
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Debug|x64.ActiveCfg = Debug|x64
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Debug|x64.Build.0 = Debug|x64
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Debug|x64.Deploy.0 = Debug|x64
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Debug|x86.ActiveCfg = Debug|x86
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Debug|x86.Build.0 = Debug|x86
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Debug|x86.Deploy.0 = Debug|x86
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Release|Any CPU.ActiveCfg = Release|x86
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Release|Any CPU.Build.0 = Release|x86
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Release|Any CPU.Deploy.0 = Release|x86
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Release|ARM.ActiveCfg = Release|ARM
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Release|ARM.Build.0 = Release|ARM
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Release|ARM.Deploy.0 = Release|ARM
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Release|x64.ActiveCfg = Release|x64
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Release|x64.Build.0 = Release|x64
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Release|x64.Deploy.0 = Release|x64
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Release|x86.ActiveCfg = Release|x86
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Release|x86.Build.0 = Release|x86
+		{6AACE172-81EA-4B0E-B484-D6D694F643B9}.Release|x86.Deploy.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
