@@ -2,9 +2,9 @@
 
 namespace Redux
 {
-    public static class FunctionalHelpers
+    internal static class FunctionalHelpers
     {
-        public static Func<T,T> Compose<T>(params Func<T,T>[] funcs)
+        internal static Func<T,T> Compose<T>(params Func<T,T>[] funcs)
         {
             return arg =>
             {
