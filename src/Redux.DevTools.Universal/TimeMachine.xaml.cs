@@ -9,28 +9,28 @@ namespace Redux.DevTools.Universal
     public sealed partial class TimeMachine : UserControl
     {
         private IDisposable _storeSubscription;
-        private TimeMachineState _lastState;
+        private DevToolsState _lastState;
 
-        public IStore<TimeMachineState> TimeMachineStore
+        public IStore<DevToolsState> DevToolsStore
         {
-            get { return (IStore<TimeMachineState>)GetValue(TimeMachineStoreProperty); }
-            set { SetValue(TimeMachineStoreProperty, value); }
+            get { return (IStore<DevToolsState>)GetValue(DevToolsStoreProperty); }
+            set { SetValue(DevToolsStoreProperty, value); }
         }
 
-        public static readonly DependencyProperty TimeMachineStoreProperty =
-            DependencyProperty.Register("TimeMachineStore", typeof(IStore<TimeMachineState>), typeof(TimeMachine), new PropertyMetadata(null, OnTimeMachineStoreChanged));
+        public static readonly DependencyProperty DevToolsStoreProperty =
+            DependencyProperty.Register("DevToolsStore", typeof(IStore<DevToolsState>), typeof(TimeMachine), new PropertyMetadata(null, OnTimeMachineStoreChanged));
         
         private static void OnTimeMachineStoreChanged(object sender, DependencyPropertyChangedEventArgs args)
         {
             var timeMachine = (TimeMachine)sender;
 
-            var oldTimeMachineStore = args.OldValue as IStore<TimeMachineState>;
+            var oldTimeMachineStore = args.OldValue as IStore<DevToolsState>;
             if(oldTimeMachineStore != null)
             {
                 timeMachine._storeSubscription.Dispose();
             }
 
-            var newTimeMachineStore = args.NewValue as IStore<TimeMachineState>;
+            var newTimeMachineStore = args.NewValue as IStore<DevToolsState>;
             if(newTimeMachineStore != null)
             {
                 timeMachine.SubscribeToTimeMachineStore();
@@ -44,10 +44,10 @@ namespace Redux.DevTools.Universal
 
         private void SubscribeToTimeMachineStore()
         {
-            _storeSubscription = TimeMachineStore.Subscribe(OnStateChange);
+            _storeSubscription = DevToolsStore.Subscribe(OnStateChange);
         }
 
-        private void OnStateChange(TimeMachineState state)
+        private void OnStateChange(DevToolsState state)
         {
             _lastState = state;
 
@@ -74,13 +74,13 @@ namespace Redux.DevTools.Universal
 
         private void ActionPositionsSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            if (TimeMachineStore == null 
+            if (DevToolsStore == null 
                 || ActionPositionsSlider.Value == _lastState.Position)
             {
                 return;
             }
 
-            TimeMachineStore.Dispatch(new SetTimeMachinePositionAction
+            DevToolsStore.Dispatch(new SetTimeMachinePositionAction
             {
                 Position = (int)ActionPositionsSlider.Value
             });
@@ -88,18 +88,18 @@ namespace Redux.DevTools.Universal
 
         private void PlayButton_Click(object sender, RoutedEventArgs e)
         {
-            if (TimeMachineStore == null)
+            if (DevToolsStore == null)
                 return;
 
-            TimeMachineStore.Dispatch(new ResumeTimeMachineAction());
+            DevToolsStore.Dispatch(new ResumeTimeMachineAction());
         }
 
         private void PauseButton_Click(object sender, RoutedEventArgs e)
         {
-            if (TimeMachineStore == null)
+            if (DevToolsStore == null)
                 return;
 
-            TimeMachineStore.Dispatch(new PauseTimeMachineAction());
+            DevToolsStore.Dispatch(new PauseTimeMachineAction());
         }
     }
 }

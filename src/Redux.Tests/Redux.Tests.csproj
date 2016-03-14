@@ -77,7 +77,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="FakeAction.cs" />
-    <Compile Include="FunctionalHelpersTests.cs" />
     <Compile Include="Reducers.cs" />
     <Compile Include="StoreTests.cs" />
     <Compile Include="MockObserver.cs" />

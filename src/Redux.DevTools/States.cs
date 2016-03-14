@@ -2,7 +2,7 @@
 
 namespace Redux.DevTools
 {
-    public class TimeMachineState
+    public class DevToolsState
     {
         public ImmutableList<IAction> Actions { get; private set; }
 
@@ -13,18 +13,18 @@ namespace Redux.DevTools
         public bool IsPaused { get; private set; }
 
 
-        public TimeMachineState()
+        public DevToolsState()
         {
             Actions = ImmutableList<IAction>.Empty;
             States = ImmutableList<object>.Empty;
         }
 
-        public TimeMachineState(object initialState) : this()
+        public DevToolsState(object initialState) : this()
         {
             States = States.Add(initialState);
         }
 
-        public TimeMachineState(TimeMachineState other)
+        public DevToolsState(DevToolsState other)
         {
             Actions = other.Actions;
             States = other.States;
@@ -32,24 +32,24 @@ namespace Redux.DevTools
             IsPaused = other.IsPaused;
         }
 
-        public TimeMachineState WithPosition(int position)
+        public DevToolsState WithPosition(int position)
         {
-            return new TimeMachineState(this) { Position = position };
+            return new DevToolsState(this) { Position = position };
         }
 
-        public TimeMachineState WithIsPaused(bool isPaused)
+        public DevToolsState WithIsPaused(bool isPaused)
         {
-            return new TimeMachineState(this) { IsPaused = isPaused };
+            return new DevToolsState(this) { IsPaused = isPaused };
         }
 
-        public TimeMachineState WithStates(ImmutableList<object> states)
+        public DevToolsState WithStates(ImmutableList<object> states)
         {
-            return new TimeMachineState(this) { States = states };
+            return new DevToolsState(this) { States = states };
         }
 
-        public TimeMachineState WithActions(ImmutableList<IAction> actions)
+        public DevToolsState WithActions(ImmutableList<IAction> actions)
         {
-            return new TimeMachineState(this) { Actions = actions };
+            return new DevToolsState(this) { Actions = actions };
         }
     }
 }

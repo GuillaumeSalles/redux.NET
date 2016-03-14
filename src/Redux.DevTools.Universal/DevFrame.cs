@@ -5,14 +5,14 @@ namespace Redux.DevTools.Universal
 {
     public sealed class DevFrame : Frame
     {
-        public IStore<TimeMachineState> TimeMachineStore
+        public IStore<DevToolsState> DevToolsStore
         {
-            get { return (IStore<TimeMachineState>)GetValue(TimeMachineStoreProperty); }
-            set { SetValue(TimeMachineStoreProperty, value); }
+            get { return (IStore<DevToolsState>)GetValue(DevToolsStoreProperty); }
+            set { SetValue(DevToolsStoreProperty, value); }
         }
         
-        public static readonly DependencyProperty TimeMachineStoreProperty =
-            DependencyProperty.Register("TimeMachineStore", typeof(IStore<TimeMachineState>), typeof(DevFrame), new PropertyMetadata(default(IStore<TimeMachineState>)));
+        public static readonly DependencyProperty DevToolsStoreProperty =
+            DependencyProperty.Register("DevToolsStore", typeof(IStore<DevToolsState>), typeof(DevFrame), new PropertyMetadata(default(IStore<DevToolsState>)));
         
         public DevFrame()
         {

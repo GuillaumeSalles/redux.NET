@@ -1,4 +1,5 @@
-﻿using Windows.ApplicationModel.Activation;
+﻿using System.Diagnostics;
+using Windows.ApplicationModel.Activation;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using static Redux.StoreEnhancers;
@@ -14,16 +15,16 @@ namespace Redux.DevTools.Sandbox.Universal
         public App()
         {
             InitializeComponent();
-
-
+            
             Middleware<int> middleware = store => next => action =>
             {
-                return next(action);
+                var dispatchedAction = next(action);
+                Debug.WriteLine("Action of type {0} as been dispatched", dispatchedAction.GetType());
+                return dispatchedAction;
             };
 
             Store = StoreFactory.Create(
                 (state, action) => state + 1,
-                0,
                 Compose(
                     ApplyMiddleware(middleware),
                     _instruments.Enhancer<int>()));
@@ -37,7 +38,7 @@ namespace Redux.DevTools.Sandbox.Universal
             {
                 rootFrame = new DevTools.Universal.DevFrame
                 {
-                    TimeMachineStore = _instruments.LiftedStore
+                    DevToolsStore = _instruments.LiftedStore
                 };
 
                 Window.Current.Content = rootFrame;

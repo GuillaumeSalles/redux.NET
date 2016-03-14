@@ -16,7 +16,7 @@
                                 Content="{TemplateBinding Content}" 
                                 ContentTemplate="{TemplateBinding ContentTemplate}"/>
                             <local:TimeMachine
-                                TimeMachineStore="{TemplateBinding TimeMachineStore}"/>
+                                DevToolsStore="{TemplateBinding DevToolsStore}"/>
                         </Grid>
                     </Border>
                 </ControlTemplate>

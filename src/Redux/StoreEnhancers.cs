@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 
 namespace Redux
 {
@@ -16,20 +17,42 @@ namespace Redux
                 return arg;
             };
         }
-        
+
         public static StoreEnhancer<TState> ApplyMiddleware<TState>(params Middleware<TState>[] middlewares)
         {
             return storeCreator => (reducer,initialState) => 
             {
                 var store = storeCreator(reducer, initialState);
 
-                var dispatcher = FunctionalHelpers.Compose(middlewares.Select(middleware => middleware(store)).ToArray())(store.Dispatch);
-                
-                return StoreFactory.CreateDummy(
-                    store.GetState,
-                    dispatcher,
-                    store.Subscribe);
+                return new ApplyMiddlewareStore<TState>(store, middlewares);
             };
+        }
+        
+        private class ApplyMiddlewareStore<TState> : IStore<TState>
+        {
+            private readonly IStore<TState> _innerStore;
+            private readonly Dispatcher _dispatcher;
+
+            public ApplyMiddlewareStore(IStore<TState> innerStore, params Middleware<TState>[] middlewares)
+            {
+                _innerStore = innerStore;
+                _dispatcher = FunctionalHelpers.Compose(middlewares.Select(middleware => middleware(innerStore)).ToArray())(innerStore.Dispatch);
+            }
+
+            public IAction Dispatch(IAction action)
+            {
+                return _dispatcher(action);
+            }
+
+            public TState GetState()
+            {
+                return _innerStore.GetState();
+            }
+
+            public IDisposable Subscribe(IObserver<TState> observer)
+            {
+                return _innerStore.Subscribe(observer);
+            }
         }
     }
 }
