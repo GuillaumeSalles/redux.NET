@@ -8,12 +8,12 @@
     <owners>Guillaume Salles</owners>
     <projectUrl>https://github.com/GuillaumeSalles/redux.NET</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>Redux.NET</description>
+    <description>Redux.NET is a predictable state container for .NET apps. Inspired by https://github.com/reactjs/redux.</description>
     <releaseNotes></releaseNotes>
     <copyright></copyright>
     <tags>Redux Redux.NET</tags>
 	<dependencies>
-	  <dependency id="Rx-Main" version="2.2.5" />
+	  <dependency id="System.Reactive" version="3.0.0" />
 	</dependencies>
   </metadata>
   <files>

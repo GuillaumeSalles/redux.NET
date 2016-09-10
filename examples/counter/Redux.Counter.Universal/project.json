@@ -1,8 +1,7 @@
 ﻿{
   "dependencies": {
-    "Microsoft.NETCore.UniversalWindowsPlatform": "5.0.0",
-    "Redux.NET": "0.4.0",
-    "Rx-Main": "2.2.5"
+    "Microsoft.NETCore.UniversalWindowsPlatform": "5.2.2",
+    "Redux.NET": "1.0.1"
   },
   "frameworks": {
     "uap10.0": {}
