@@ -1,6 +1,6 @@
 # Redux.NET
 
-Redux.NET is an attempt to bring [Redux](https://github.com/rackt/redux) concepts to .NET application development. Redux.NET is a PCL project, so it can be used with Xamarin (IOS, Android, Forms), Windows Universal applications, Windows 8.1 applications, WPF, etc...
+Redux.NET is an attempt to bring [Redux](https://github.com/reactjs/redux) concepts to .NET application development. Redux.NET is a PCL project, so it can be used with Xamarin (IOS, Android, Forms), Windows Universal applications, Windows 8.1 applications, WPF, etc...
 
 [![Build status](https://img.shields.io/appveyor/ci/GuillaumeSalles/redux-net/master.svg?style=flat-square)](https://ci.appveyor.com/project/GuillaumeSalles/redux-net/branch/master)
 [![Nuget](https://img.shields.io/nuget/v/Redux.NET.svg?style=flat-square)](https://www.nuget.org/packages/Redux.NET)
@@ -21,7 +21,7 @@ After working on several MVVM applications (Silverlight, WPF, WinRT), I always f
 * Two-way bindings lead to cascading updates, making it very difficult to predict what would change as the result of a single user interaction.
 * Asynchronous operations make even more laborious to keep the flow of the application in mind.
 
-[Dan Abramov](https://twitter.com/dan_abramov), a brilliant javascript developer, faced the same kind of [problems](http://rackt.github.io/redux/docs/introduction/Motivation.html) with complex web application. His solution? [Redux](https://github.com/rackt/redux)!
+[Dan Abramov](https://twitter.com/dan_abramov), a brilliant javascript developer, faced the same kind of [problems](http://redux.js.org/docs/introduction/Motivation.html) with complex web application. His solution? [Redux](https://github.com/reactjs/redux)!
 
 > The whole state of your app is stored in an object tree inside a single *Store*.
 > The only way to change the state tree is to emit an *Action*, an object describing what happened.
