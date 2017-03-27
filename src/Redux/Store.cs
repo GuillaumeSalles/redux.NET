@@ -3,15 +3,15 @@ using System.Reactive.Subjects;
 
 namespace Redux
 {
-    public delegate IAction Dispatcher(IAction action);
+    public delegate object Dispatcher(object action);
 
-    public delegate TState Reducer<TState>(TState previousState, IAction action);
+    public delegate TState Reducer<TState>(TState previousState, object action);
 
     public delegate Func<Dispatcher, Dispatcher> Middleware<TState>(IStore<TState> store);
 
     public interface IStore<TState> : IObservable<TState>
     {
-        IAction Dispatch(IAction action);
+        object Dispatch(object action);
 
         TState GetState();
     }
@@ -33,7 +33,7 @@ namespace Redux
             _stateSubject.OnNext(_lastState);
         }
 
-        public IAction Dispatch(IAction action)
+        public object Dispatch(object action)
         {
             return _dispatcher(action);
         }
@@ -59,7 +59,7 @@ namespace Redux
             return dispatcher;
         }
 
-        private IAction InnerDispatch(IAction action)
+        private object InnerDispatch(object action)
         {
             lock (_syncRoot)
             {

@@ -1,16 +1,16 @@
 ﻿namespace Redux.DevTools
 {
-    public class PauseTimeMachineAction : IAction
+    public class PauseTimeMachineAction
     {
 
     }
 
-    public class ResumeTimeMachineAction : IAction
+    public class ResumeTimeMachineAction
     {
 
     }
 
-    public class SetTimeMachinePositionAction : IAction
+    public class SetTimeMachinePositionAction
     {
         public int Position { get; set; }
     }

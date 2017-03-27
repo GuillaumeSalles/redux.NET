@@ -1,6 +1,6 @@
 ﻿namespace Redux.Tests
 {
-    public class FakeAction<T> : IAction
+    public class FakeAction<T>
     {
         public T Value { get; set; }
 
