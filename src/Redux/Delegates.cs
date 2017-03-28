@@ -11,7 +11,7 @@ namespace Redux
     /// <returns>
     ///     Varies
     /// </returns>
-    public delegate dynamic Dispatcher(object action);
+    public delegate object Dispatcher(object action);
 
     /// <summary>
     ///     Represents a method that is used as middleware.
