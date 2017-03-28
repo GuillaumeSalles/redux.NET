@@ -2,15 +2,6 @@
 
 namespace Redux
 {
-    public interface IStore<TState>
-    {
-        object Dispatch(object action);
-
-        TState GetState();
-
-        event Action<TState> StateChanged;
-    }
-
     public class Store<TState> : IStore<TState>
     {
         private readonly object _syncRoot = new object();

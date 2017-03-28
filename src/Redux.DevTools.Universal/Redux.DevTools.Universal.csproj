@@ -135,10 +135,6 @@
       <Project>{6c83c892-15ea-4b7c-b7e4-87bd104bf444}</Project>
       <Name>Redux.DevTools</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Redux\Redux.csproj">
-      <Project>{a15d3f17-691f-48df-9078-27dcde7141eb}</Project>
-      <Name>Redux</Name>
-    </ProjectReference>
   </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
