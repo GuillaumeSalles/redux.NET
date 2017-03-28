@@ -4,7 +4,7 @@ namespace Redux.DevTools
 {
     public class TimeMachineState
     {
-        public ImmutableList<IAction> Actions { get; private set; }
+        public ImmutableList<object> Actions { get; private set; }
 
         public ImmutableList<object> States { get; private set; }
 
@@ -15,7 +15,7 @@ namespace Redux.DevTools
 
         public TimeMachineState()
         {
-            Actions = ImmutableList<IAction>.Empty;
+            Actions = ImmutableList<object>.Empty;
             States = ImmutableList<object>.Empty;
         }
 
@@ -47,7 +47,7 @@ namespace Redux.DevTools
             return new TimeMachineState(this) { States = states };
         }
 
-        public TimeMachineState WithActions(ImmutableList<IAction> actions)
+        public TimeMachineState WithActions(ImmutableList<object> actions)
         {
             return new TimeMachineState(this) { Actions = actions };
         }
