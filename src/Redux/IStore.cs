@@ -9,7 +9,7 @@ namespace Redux
     /// <typeparam name="TState">
     ///     The state tree type.
     /// </typeparam>
-    public interface IStore<TState> : IObservable<TState>
+    public interface IStore<TState>
     {
         /// <summary>
         ///     Dispatches an action to the store.
@@ -30,5 +30,7 @@ namespace Redux
         ///     The current state tree.
         /// </returns>
         TState GetState();
+        
+        event Action<TState> StateChanged;
     }
 }
