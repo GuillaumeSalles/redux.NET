@@ -3,19 +3,6 @@ using System.Reactive.Subjects;
 
 namespace Redux
 {
-    public delegate object Dispatcher(object action);
-
-    public delegate TState Reducer<TState>(TState previousState, object action);
-
-    public delegate Func<Dispatcher, Dispatcher> Middleware<TState>(IStore<TState> store);
-
-    public interface IStore<TState> : IObservable<TState>
-    {
-        object Dispatch(object action);
-
-        TState GetState();
-    }
-        
     public class Store<TState> : IStore<TState>
     {
         private readonly object _syncRoot = new object();
