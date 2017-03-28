@@ -1,27 +1,22 @@
 ﻿using System;
-using System.Reactive.Subjects;
 
 namespace Redux
 {
-    public delegate object Dispatcher(object action);
-
-    public delegate TState Reducer<TState>(TState previousState, object action);
-
-    public delegate Func<Dispatcher, Dispatcher> Middleware<TState>(IStore<TState> store);
-
-    public interface IStore<TState> : IObservable<TState>
+    public interface IStore<TState>
     {
         object Dispatch(object action);
 
         TState GetState();
+
+        event Action<TState> StateChanged;
     }
-        
+
     public class Store<TState> : IStore<TState>
     {
         private readonly object _syncRoot = new object();
         private readonly Dispatcher _dispatcher;
+        private Action<TState> _stateChanged;
         private readonly Reducer<TState> _reducer;
-        private readonly ReplaySubject<TState> _stateSubject = new ReplaySubject<TState>(1);
         private TState _lastState;
 
         public Store(Reducer<TState> reducer, TState initialState = default(TState), params Middleware<TState>[] middlewares)
@@ -30,7 +25,19 @@ namespace Redux
             _dispatcher = ApplyMiddlewares(middlewares);
 
             _lastState = initialState;
-            _stateSubject.OnNext(_lastState);
+        }
+
+        public event Action<TState> StateChanged
+        {
+            add
+            {
+                _stateChanged += value;
+                value(_lastState);
+            }
+            remove
+            {
+                _stateChanged -= value;
+            }
         }
 
         public object Dispatch(object action)
@@ -41,12 +48,6 @@ namespace Redux
         public TState GetState()
         {
             return _lastState;
-        }
-        
-        public IDisposable Subscribe(IObserver<TState> observer)
-        {
-            return _stateSubject
-                .Subscribe(observer);
         }
 
         private Dispatcher ApplyMiddlewares(params Middleware<TState>[] middlewares)
@@ -65,7 +66,7 @@ namespace Redux
             {
                 _lastState = _reducer(_lastState, action);
             }
-            _stateSubject.OnNext(_lastState);
+            _stateChanged?.Invoke(_lastState);
             return action;
         }
     }

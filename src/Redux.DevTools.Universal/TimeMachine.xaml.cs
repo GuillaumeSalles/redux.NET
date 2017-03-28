@@ -27,24 +27,19 @@ namespace Redux.DevTools.Universal
             var oldTimeMachineStore = args.OldValue as IStore<TimeMachineState>;
             if(oldTimeMachineStore != null)
             {
-                timeMachine._storeSubscription.Dispose();
+                oldTimeMachineStore.StateChanged -= timeMachine.OnStateChange;
             }
 
             var newTimeMachineStore = args.NewValue as IStore<TimeMachineState>;
             if(newTimeMachineStore != null)
             {
-                timeMachine.SubscribeToTimeMachineStore();
+                newTimeMachineStore.StateChanged -= timeMachine.OnStateChange;
             }
         }
         
         public TimeMachine()
         {
             this.InitializeComponent();
-        }
-
-        private void SubscribeToTimeMachineStore()
-        {
-            _storeSubscription = TimeMachineStore.Subscribe(OnStateChange);
         }
 
         private void OnStateChange(TimeMachineState state)

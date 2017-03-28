@@ -1,6 +1,5 @@
 ﻿using NUnit.Core;
 using NUnit.Framework;
-using System;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
@@ -16,7 +15,7 @@ namespace Redux.Tests
             var sut = new Store<int>(Reducers.PassThrough, 1);
             var mockObserver = new MockObserver<int>();
 
-            sut.Subscribe(mockObserver);
+            sut.StateChanged += mockObserver.StateChangedHandler;
 
             CollectionAssert.AreEqual(new[] { 1 }, mockObserver.Values);
         }
@@ -27,7 +26,7 @@ namespace Redux.Tests
             var sut = new Store<int>(Reducers.Replace, 1);
             var mockObserver = new MockObserver<int>();
 
-            sut.Subscribe(mockObserver);
+            sut.StateChanged += mockObserver.StateChangedHandler;
             sut.Dispatch(new FakeAction<int>(2));
 
             CollectionAssert.AreEqual(new[] { 1, 2 }, mockObserver.Values);
@@ -40,7 +39,7 @@ namespace Redux.Tests
             var mockObserver = new MockObserver<int>();
 
             sut.Dispatch(new FakeAction<int>(2));
-            sut.Subscribe(mockObserver);
+            sut.StateChanged += mockObserver.StateChangedHandler;
 
             CollectionAssert.AreEqual(new[] { 2 }, mockObserver.Values);
         }
@@ -57,8 +56,8 @@ namespace Redux.Tests
 
             var sut = new Store<int>(Reducers.Replace, 1, spyMiddleware);
             var mockObserver = new MockObserver<int>();
-            
-            sut.Subscribe(mockObserver);
+
+            sut.StateChanged += mockObserver.StateChangedHandler;
             sut.Dispatch(new FakeAction<int>(2));
 
             Assert.AreEqual(1, numberOfCalls);
@@ -71,13 +70,13 @@ namespace Redux.Tests
         {
             var sut = new Store<int>(Reducers.Replace, 1);
             var mockObserver = new MockObserver<int>();
-            sut.Subscribe(val =>
+            sut.StateChanged += (val =>
             {
                 if (val < 5)
                 {
                     sut.Dispatch(new FakeAction<int>(val + 1));
                 }
-                mockObserver.OnNext(val);
+                mockObserver.StateChangedHandler(val);
             });
 
             CollectionAssert.AreEqual(new[] { 1, 2, 3, 4, 5 }, mockObserver.Values);
