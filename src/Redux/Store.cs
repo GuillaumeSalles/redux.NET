@@ -14,6 +14,8 @@ namespace Redux
         object Dispatch(object action);
 
         TState GetState();
+        
+        IDisposable Subscribe(IObserver<TState> observer);
     }
         
     public class Store<TState> : IStore<TState>
