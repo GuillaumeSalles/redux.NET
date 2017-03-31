@@ -1,5 +1,4 @@
-﻿using System;
-using Windows.UI.Xaml;
+﻿using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
 using Newtonsoft.Json;
@@ -8,7 +7,6 @@ namespace Redux.DevTools.Universal
 {
     public sealed partial class TimeMachine : UserControl
     {
-        private IDisposable _storeSubscription;
         private TimeMachineState _lastState;
 
         public IStore<TimeMachineState> TimeMachineStore
@@ -19,32 +17,27 @@ namespace Redux.DevTools.Universal
 
         public static readonly DependencyProperty TimeMachineStoreProperty =
             DependencyProperty.Register("TimeMachineStore", typeof(IStore<TimeMachineState>), typeof(TimeMachine), new PropertyMetadata(null, OnTimeMachineStoreChanged));
-        
+
         private static void OnTimeMachineStoreChanged(object sender, DependencyPropertyChangedEventArgs args)
         {
             var timeMachine = (TimeMachine)sender;
 
             var oldTimeMachineStore = args.OldValue as IStore<TimeMachineState>;
-            if(oldTimeMachineStore != null)
+            if (oldTimeMachineStore != null)
             {
-                timeMachine._storeSubscription.Dispose();
+                oldTimeMachineStore.StateChanged -= timeMachine.OnStateChange;
             }
 
             var newTimeMachineStore = args.NewValue as IStore<TimeMachineState>;
-            if(newTimeMachineStore != null)
+            if (newTimeMachineStore != null)
             {
-                timeMachine.SubscribeToTimeMachineStore();
+                newTimeMachineStore.StateChanged -= timeMachine.OnStateChange;
             }
         }
-        
+
         public TimeMachine()
         {
             this.InitializeComponent();
-        }
-
-        private void SubscribeToTimeMachineStore()
-        {
-            _storeSubscription = TimeMachineStore.Subscribe(OnStateChange);
         }
 
         private void OnStateChange(TimeMachineState state)
@@ -74,7 +67,7 @@ namespace Redux.DevTools.Universal
 
         private void ActionPositionsSlider_ValueChanged(object sender, RangeBaseValueChangedEventArgs e)
         {
-            if (TimeMachineStore == null 
+            if (TimeMachineStore == null
                 || ActionPositionsSlider.Value == _lastState.Position)
             {
                 return;
