@@ -31,6 +31,6 @@ namespace Redux
         /// </returns>
         TState GetState();
 
-        event Action<TState> StateChanged;
+        Action Subscribe(Action listener);
     }
 }

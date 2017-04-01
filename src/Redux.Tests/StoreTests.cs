@@ -1,11 +1,20 @@
 ﻿using NUnit.Core;
 using NUnit.Framework;
+using System;
 using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 
 namespace Redux.Tests
 {
+    public static class StoreExtensions
+    {
+        public static IDisposable SubscribeAndGetState<TState>(this IStore<TState> store, Action<TState> listener)
+        {
+            return store.Subscribe(() => listener(store.GetState()));
+        }
+    }
+
     [TestFixture]
     public class StoreTests
     {
@@ -13,35 +22,35 @@ namespace Redux.Tests
         public void Should_push_initial_state()
         {
             var sut = new Store<int>(Reducers.PassThrough, 1);
-            var mockObserver = new MockObserver<int>();
+            var spyListener = new SpyListener<int>();
 
-            sut.StateChanged += mockObserver.StateChangedHandler;
+            sut.SubscribeAndGetState(spyListener.Listen);
 
-            CollectionAssert.AreEqual(new[] { 1 }, mockObserver.Values);
+            CollectionAssert.AreEqual(new[] { 1 }, spyListener.Values);
         }
 
         [Test]
         public void Should_push_state_on_dispatch()
         {
             var sut = new Store<int>(Reducers.Replace, 1);
-            var mockObserver = new MockObserver<int>();
+            var spyListener = new SpyListener<int>();
 
-            sut.StateChanged += mockObserver.StateChangedHandler;
+            sut.SubscribeAndGetState(spyListener.Listen);
             sut.Dispatch(new FakeAction<int>(2));
 
-            CollectionAssert.AreEqual(new[] { 1, 2 }, mockObserver.Values);
+            CollectionAssert.AreEqual(new[] { 1, 2 }, spyListener.Values);
         }
 
         [Test]
         public void Should_only_push_the_last_state_before_subscription()
         {
             var sut = new Store<int>(Reducers.Replace, 1);
-            var mockObserver = new MockObserver<int>();
+            var spyListener = new SpyListener<int>();
 
             sut.Dispatch(new FakeAction<int>(2));
-            sut.StateChanged += mockObserver.StateChangedHandler;
+            sut.SubscribeAndGetState(spyListener.Listen);
 
-            CollectionAssert.AreEqual(new[] { 2 }, mockObserver.Values);
+            CollectionAssert.AreEqual(new[] { 2 }, spyListener.Values);
         }
 
         [Test]
@@ -55,13 +64,13 @@ namespace Redux.Tests
             };
 
             var sut = new Store<int>(Reducers.Replace, 1, spyMiddleware);
-            var mockObserver = new MockObserver<int>();
+            var spyListener = new SpyListener<int>();
 
-            sut.StateChanged += mockObserver.StateChangedHandler;
+            sut.SubscribeAndGetState(spyListener.Listen);
             sut.Dispatch(new FakeAction<int>(2));
 
             Assert.AreEqual(1, numberOfCalls);
-            CollectionAssert.AreEqual(new[] { 1, 2 }, mockObserver.Values);
+            CollectionAssert.AreEqual(new[] { 1, 2 }, spyListener.Values);
         }
 
         [Test]
@@ -69,17 +78,17 @@ namespace Redux.Tests
         public void Should_push_state_to_end_of_queue_on_nested_dispatch()
         {
             var sut = new Store<int>(Reducers.Replace, 1);
-            var mockObserver = new MockObserver<int>();
-            sut.StateChanged += (val =>
+            var spyListener = new SpyListener<int>();
+            sut.SubscribeAndGetState(val =>
             {
                 if (val < 5)
                 {
                     sut.Dispatch(new FakeAction<int>(val + 1));
                 }
-                mockObserver.StateChangedHandler(val);
+                spyListener.Listen(val);
             });
 
-            CollectionAssert.AreEqual(new[] { 1, 2, 3, 4, 5 }, mockObserver.Values);
+            CollectionAssert.AreEqual(new[] { 1, 2, 3, 4, 5 }, spyListener.Values);
         }
 
         [Test]

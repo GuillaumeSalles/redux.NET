@@ -10,12 +10,12 @@ namespace Redux.Tests.Reactive
         public void ObserveState_should_push_store_states()
         {
             var sut = new Store<int>(Reducers.Replace, 1);
-            var mockObserver = new MockObserver<int>();
+            var spyListener = new SpyListener<int>();
 
-            sut.ObserveState().Subscribe(mockObserver.StateChangedHandler);
+            sut.ObserveState().Subscribe(spyListener.Listen);
             sut.Dispatch(new FakeAction<int>(2));
 
-            CollectionAssert.AreEqual(new[] { 1, 2 }, mockObserver.Values);
+            CollectionAssert.AreEqual(new[] { 1, 2 }, spyListener.Values);
         }
     }
 }

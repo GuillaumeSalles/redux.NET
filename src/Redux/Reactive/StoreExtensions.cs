@@ -7,9 +7,10 @@ namespace Redux.Reactive
     {
         public static IObservable<T> ObserveState<T>(this IStore<T> store)
         {
-            return Observable.FromEvent<T>(
-                h => store.StateChanged += h,
-                h => store.StateChanged -= h);
+            return Observable.Create<T>(observer =>
+            {
+                return store.Subscribe(() => observer.OnNext(store.GetState())).Dispose;
+            });
         }
     }
 }

@@ -1,12 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Redux
 {
     public class Store<TState> : IStore<TState>
     {
+        private readonly List<Action> _listeners = new List<Action>(); 
         private readonly object _syncRoot = new object();
         private readonly Dispatcher _dispatcher;
-        private Action<TState> _stateChanged;
         private readonly Reducer<TState> _reducer;
         private TState _lastState;
 
@@ -18,19 +19,6 @@ namespace Redux
             _lastState = initialState;
         }
 
-        public event Action<TState> StateChanged
-        {
-            add
-            {
-                _stateChanged += value;
-                value(_lastState);
-            }
-            remove
-            {
-                _stateChanged -= value;
-            }
-        }
-
         public object Dispatch(object action)
         {
             return _dispatcher(action);
@@ -39,6 +27,14 @@ namespace Redux
         public TState GetState()
         {
             return _lastState;
+        }
+
+        public Action Subscribe(Action listener)
+        {
+            _listeners.Add(listener);
+            //Todo : Add tests and Remove to behave like redux.js
+            listener();
+            return () => _listeners.Remove(listener);
         }
 
         private Dispatcher ApplyMiddlewares(params Middleware<TState>[] middlewares)
@@ -57,7 +53,12 @@ namespace Redux
             {
                 _lastState = _reducer(_lastState, action);
             }
-            _stateChanged?.Invoke(_lastState);
+
+            foreach(var listener in _listeners)
+            {
+                listener();
+            }
+
             return action;
         }
     }
