@@ -1,5 +1,6 @@
 ﻿using NUnit.Core;
 using NUnit.Framework;
+using Redux.Reactive;
 using System;
 using System.Linq;
 using System.Reactive.Linq;
@@ -9,13 +10,12 @@ namespace Redux.Tests
 {
     public static class StoreExtensions
     {
-        public static IDisposable SubscribeAndGetState<TState>(this IStore<TState> store, Action<TState> listener)
+        public static void SubscribeAndGetState<TState>(this IStore<TState> store, Action<TState> listener)
         {
-            return store.Subscribe(() => listener(store.GetState()));
+            store.StateChanged += () => listener(store.GetState());
         }
     }
-
-    [TestFixture]
+    
     public class StoreTests
     {
         [Test]
