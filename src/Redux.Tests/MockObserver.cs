@@ -2,12 +2,12 @@
 
 namespace Redux.Tests
 {
-    public class MockObserver<T>
+    public class SpyListener<T>
     {
         private readonly List<T> _values = new List<T>();
         public IEnumerable<T> Values => _values;
 
-        public void StateChangedHandler(T value)
+        public void Listen(T value)
         {
             _values.Add(value);
         }

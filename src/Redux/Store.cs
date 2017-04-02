@@ -6,9 +6,9 @@ namespace Redux
     {
         private readonly object _syncRoot = new object();
         private readonly Dispatcher _dispatcher;
-        private Action<TState> _stateChanged;
         private readonly Reducer<TState> _reducer;
         private TState _lastState;
+        private Action _stateChanged;
 
         public Store(Reducer<TState> reducer, TState initialState = default(TState), params Middleware<TState>[] middlewares)
         {
@@ -18,12 +18,13 @@ namespace Redux
             _lastState = initialState;
         }
 
-        public event Action<TState> StateChanged
+        public event Action StateChanged
         {
             add
             {
+                //Todo : Add tests and Remove to behave like redux.js
+                value();
                 _stateChanged += value;
-                value(_lastState);
             }
             remove
             {
@@ -57,7 +58,9 @@ namespace Redux
             {
                 _lastState = _reducer(_lastState, action);
             }
-            _stateChanged?.Invoke(_lastState);
+
+            _stateChanged?.Invoke();
+
             return action;
         }
     }

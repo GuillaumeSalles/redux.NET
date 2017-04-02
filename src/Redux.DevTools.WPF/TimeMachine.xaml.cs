@@ -1,4 +1,6 @@
 ﻿using Newtonsoft.Json;
+using Redux.Reactive;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -7,6 +9,7 @@ namespace Redux.DevTools.WPF
     public partial class TimeMachine : UserControl
     {
         private TimeMachineState _lastState;
+        private IDisposable _storeSubscription;
 
         public IStore<TimeMachineState> TimeMachineStore
         {
@@ -24,13 +27,15 @@ namespace Redux.DevTools.WPF
             var oldTimeMachineStore = args.OldValue as IStore<TimeMachineState>;
             if (oldTimeMachineStore != null)
             {
-                oldTimeMachineStore.StateChanged -= timeMachine.OnStateChange;
+                timeMachine._storeSubscription?.Dispose();
             }
 
             var newTimeMachineStore = args.NewValue as IStore<TimeMachineState>;
             if (newTimeMachineStore != null)
             {
-                newTimeMachineStore.StateChanged -= timeMachine.OnStateChange;
+                timeMachine._storeSubscription = newTimeMachineStore
+                    .ObserveState()
+                    .Subscribe(timeMachine.OnStateChange);
             }
         }
 

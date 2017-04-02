@@ -38,6 +38,7 @@
     <Compile Include="Delegates.cs" />
     <Compile Include="IStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reactive\StoreExtensions.cs" />
     <Compile Include="Store.cs" />
   </ItemGroup>
   <ItemGroup>
