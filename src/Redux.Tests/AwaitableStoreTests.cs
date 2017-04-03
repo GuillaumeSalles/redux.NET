@@ -64,6 +64,24 @@
         }
 
         [Test]
+        public async Task When_AwaitingMultipleDispatches_Should_GetFinalState()
+        {
+            // Arrange
+            var awaitableStore = new AwaitableStore<int>(Reducer, 0);
+            awaitableStore.Actions.OfType<IncrementAsyncAction>().RunsAsyncSaga(awaitableStore, this.DelayedIncrementSaga);
+
+            // Act
+            await awaitableStore.DispatchAsync(new IncrementAsyncAction());
+            await Task.Delay(100);
+            await awaitableStore.DispatchAsync(new IncrementAsyncAction());
+            await Task.Delay(100);
+            await awaitableStore.DispatchAsync(new IncrementAsyncAction());
+
+            // Assert
+            Assert.That(awaitableStore.GetState(), Is.EqualTo(3));
+        }
+
+        [Test]
         public void When_NormalDispatch_Should_GetOldState()
         {
             // Arrange
