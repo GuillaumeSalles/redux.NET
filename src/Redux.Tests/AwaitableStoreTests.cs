@@ -113,7 +113,7 @@
             awaitableStore.Actions.OfType<IncrementAsyncAction>().RunsSaga(awaitableStore, this.ImmediateIncrementSaga);
 
             // Act
-            awaitableStore.Dispatch(new IncrementAction());
+            awaitableStore.Dispatch(new IncrementAsyncAction());
 
             // Assert
             Assert.That(awaitableStore.GetState(), Is.EqualTo(1));
@@ -127,7 +127,7 @@
             awaitableStore.Actions.OfType<IncrementAsyncAction>().RunsSaga(awaitableStore, this.ImmediateIncrementSaga);
 
             // Act
-            awaitableStore.DispatchAsync(new IncrementAction());
+            awaitableStore.DispatchAsync(new IncrementAsyncAction());
 
             // Assert
             Assert.That(awaitableStore.GetState(), Is.EqualTo(1));
@@ -141,7 +141,7 @@
             awaitableStore.Actions.OfType<IncrementAsyncAction>().RunsSaga(awaitableStore, this.ImmediateIncrementSaga);
 
             // Act
-            await awaitableStore.DispatchAsync(new IncrementAction());
+            await awaitableStore.DispatchAsync(new IncrementAsyncAction());
 
             // Assert
             Assert.That(awaitableStore.GetState(), Is.EqualTo(1));
