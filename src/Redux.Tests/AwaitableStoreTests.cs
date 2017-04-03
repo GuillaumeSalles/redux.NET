@@ -120,7 +120,7 @@
         }
 
         [Test]
-        public void When_UsingNonAsyncSaga_Should_GetNewStateNonAwaitedAsyncDispatch()
+        public void When_UsingNonAsyncSaga_Should_GetNewStateWithNonAwaitedAsyncDispatch()
         {
             // Arrange
             var awaitableStore = new AwaitableStore<int>(Reducer, 0);
@@ -134,7 +134,7 @@
         }
 
         [Test]
-        public async Task When_UsingNonAsyncSaga_Should_GetNewStateAwaitedAsyncDispatch()
+        public async Task When_UsingNonAsyncSaga_Should_GetNewStateWithAwaitedAsyncDispatch()
         {
             // Arrange
             var awaitableStore = new AwaitableStore<int>(Reducer, 0);
