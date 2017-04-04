@@ -2,6 +2,7 @@
 {
     using System;
     using System.Reactive;
+    using System.Reactive.Disposables;
     using System.Reactive.Linq;
     using System.Reactive.Subjects;
     using System.Threading.Tasks;
@@ -38,15 +39,10 @@
                         // TODO: Find a way to call AddOperation and RemoveOperation below
                         // without specifying concrete class AwaitableStore above, but also
                         // without giving devs access to AddOperation and RemoveOperation
-                        store.AddOperation();
-                        try
+                        using (store.AsyncOperation())
                         {
                             await saga(action, store);
                             return Unit.Default;
-                        }
-                        finally
-                        {
-                            store.RemoveOperation();
                         }
                     })
                 .Subscribe();
@@ -100,14 +96,10 @@
 
         private IObservable<int> OngoingOperations => this.numOperationsSubject;
 
-        internal void AddOperation()
+        internal IDisposable AsyncOperation()
         {
             this.numOperationsSubject.OnNext(++this.numOperations);
-        }
-
-        internal void RemoveOperation()
-        {
-            this.numOperationsSubject.OnNext(--this.numOperations);
+            return Disposable.Create(() => this.numOperationsSubject.OnNext(--this.numOperations));
         }
 
         public async Task<object> DispatchAsync(object action)
