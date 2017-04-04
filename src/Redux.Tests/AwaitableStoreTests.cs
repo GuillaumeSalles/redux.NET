@@ -254,5 +254,21 @@
             // Assert
             Assert.That(awaitableStore.GetState(), Is.EqualTo(1));
         }
+
+        [Test]
+        public async Task When_StoreIsNotAwaitable_Should_WorkAsNormal()
+        {
+            // Arrange
+            var store = new ObservableActionStore<int>(Reducer, 0);
+            store.Actions.OfType<IncrementAsyncAction>().RunsAsyncSaga(store, this.DelayedIncrementSaga);
+
+            // Act
+            store.Dispatch(new IncrementAsyncAction());
+            
+            // Assert
+            Assert.That(store.GetState(), Is.EqualTo(0));
+            await Task.Delay(600);
+            Assert.That(store.GetState(), Is.EqualTo(1));
+        }
     }
 }

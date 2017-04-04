@@ -23,7 +23,7 @@
 
         public static IDisposable RunsAsyncSaga<TState, TAction>(
             this IObservable<TAction> source,
-            AwaitableStore<TState> store,
+            IStore<TState> store,
             AsyncSaga<TState, TAction> saga)
         {
             // Using SelectMany is the standard way of running async subscribers, otherwise they become
@@ -31,19 +31,24 @@
             // http://stackoverflow.com/a/37412422/2978652, http://stackoverflow.com/a/23011084/2978652.
             // 
             // Note that this will not block the queue while the saga runs; a new action can trigger
-            // the saga again while the previous runs. To avoid this, see http://stackoverflow.com/a/30030640/2978652.
-            // TODO: we should implement some kind of cancellation support, i.e. for TakeLatest semantics.
+            // the saga while the previous saga invocation still runs. This should be the expected
+            // behavior since otherwise, the sagas would have no control over cancellation of existing
+            // tasks when they are invoked again.
             return source.SelectMany(
                     async action =>
                     {
-                        // TODO: Find a way to call AddOperation and RemoveOperation below
-                        // without specifying concrete class AwaitableStore above, but also
-                        // without giving devs access to AddOperation and RemoveOperation
-                        using (store.AsyncOperation())
+                        if (store is AwaitableStore<TState> s)
+                        {
+                            using (s.AsyncOperation())
+                            {
+                                await saga(action, store);
+                            }
+                        }
+                        else
                         {
                             await saga(action, store);
-                            return Unit.Default;
                         }
+                        return Unit.Default;
                     })
                 .Subscribe();
         }
