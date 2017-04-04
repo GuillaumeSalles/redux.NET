@@ -30,10 +30,11 @@
             // async void and exceptions are swallowed. E.g. http://stackoverflow.com/a/24844934/2978652,
             // http://stackoverflow.com/a/37412422/2978652, http://stackoverflow.com/a/23011084/2978652.
             // 
-            // Note that this will not block the queue while the saga runs; a new action can trigger
-            // the saga while the previous saga invocation still runs. This should be the expected
-            // behavior since otherwise, the sagas would have no control over cancellation of existing
-            // tasks when they are invoked again.
+            // Note that this will NOT block the queue while the saga runs; a new action can trigger
+            // the saga while the previous saga invocation still runs (which can be accomplished with
+            // http://stackoverflow.com/a/30030640/2978652). Note that this should be the expected
+            // behavior since it allows the sagas themselves to control cancellation of existing tasks
+            // in response to new invocations.
             return source.SelectMany(
                     async action =>
                     {

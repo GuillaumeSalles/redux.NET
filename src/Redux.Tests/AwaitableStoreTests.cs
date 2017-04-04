@@ -270,5 +270,23 @@
             await Task.Delay(600);
             Assert.That(store.GetState(), Is.EqualTo(1));
         }
+
+        [Test]
+        public async Task Should_AllowSagaToRunConcurrently()
+        {
+            // Arrange
+            var awaitableStore = new AwaitableStore<int>(Reducer, 0);
+            awaitableStore.Actions.OfType<IncrementAsyncAction>().RunsAsyncSaga(awaitableStore, this.DelayedIncrementSaga);
+
+            // Act
+            awaitableStore.Dispatch(new IncrementAsyncAction());
+            awaitableStore.Dispatch(new IncrementAsyncAction());
+
+
+            // Assert
+            Assert.That(awaitableStore.GetState(), Is.EqualTo(0));
+            await Task.Delay(600);
+            Assert.That(awaitableStore.GetState(), Is.EqualTo(2));
+        }
     }
 }
