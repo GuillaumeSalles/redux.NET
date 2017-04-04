@@ -1,6 +1,7 @@
 ﻿namespace Redux
 {
     using System;
+    using System.Reactive;
     using System.Reactive.Linq;
     using System.Reactive.Subjects;
     using System.Threading.Tasks;
@@ -11,29 +12,44 @@
 
     public static class ObservableExtensions
     {
-        public static void RunsSaga<TState, TAction>(
+        public static IDisposable RunsSaga<TState, TAction>(
             this IObservable<TAction> source,
             IStore<TState> store,
             Saga<TState, TAction> saga)
         {
-            source.Subscribe(action => saga(action, store));
+            return source.Subscribe(action => saga(action, store));
         }
 
-        public static void RunsAsyncSaga<TState, TAction>(
+        public static IDisposable RunsAsyncSaga<TState, TAction>(
             this IObservable<TAction> source,
             AwaitableStore<TState> store,
             AsyncSaga<TState, TAction> saga)
         {
-            source.Subscribe(
-                async action =>
-                {
-                    // TODO: Find a way to call AddOperation and RemoveOperation below
-                    // without specifying concrete class AwaitableStore above, but also
-                    // without giving devs access to AddOperation and RemoveOperation
-                    store.AddOperation();
-                    await saga(action, (IStore<TState>)store);
-                    store.RemoveOperation();
-                });
+            // Using SelectMany is the standard way of running async subscribers, otherwise they become
+            // async void and exceptions are swallowed. E.g. http://stackoverflow.com/a/24844934/2978652,
+            // http://stackoverflow.com/a/37412422/2978652, http://stackoverflow.com/a/23011084/2978652.
+            // 
+            // Note that this will not block the queue while the saga runs; a new action can trigger
+            // the saga again while the previous runs. To avoid this, see http://stackoverflow.com/a/30030640/2978652.
+            // TODO: we should implement some kind of cancellation support, i.e. for TakeLatest semantics.
+            return source.SelectMany(
+                    async action =>
+                    {
+                        // TODO: Find a way to call AddOperation and RemoveOperation below
+                        // without specifying concrete class AwaitableStore above, but also
+                        // without giving devs access to AddOperation and RemoveOperation
+                        store.AddOperation();
+                        try
+                        {
+                            await saga(action, store);
+                            return Unit.Default;
+                        }
+                        finally
+                        {
+                            store.RemoveOperation();
+                        }
+                    })
+                .Subscribe();
         }
     }
 
@@ -66,14 +82,13 @@
 
     public interface IAwaitableStore<TState>
     {
-
         Task<object> DispatchAsync(object action);
     }
 
     public class AwaitableStore<TState> : ObservableActionStore<TState>, IAwaitableStore<TState>
     {
         private int numOperations;
-        private readonly ISubject<int> numOperationsSubject = new BehaviorSubject<int>(0); // TODO: start with 0
+        private readonly ISubject<int> numOperationsSubject = new BehaviorSubject<int>(0);
 
         /// <inheritdoc />
         public AwaitableStore(

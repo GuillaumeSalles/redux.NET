@@ -1,10 +1,13 @@
 ﻿namespace Redux.Tests
 {
+    using System;
     using System.Reactive.Linq;
     using System.Threading.Tasks;
 
     using NUnit.Framework;
 
+    [TestFixture]
+    [Timeout(5000)]
     public class AwaitableStoreTests
     {
         private class IncrementAction
@@ -26,8 +29,18 @@
 
         private async Task DelayedIncrementSaga(IncrementAsyncAction action, IStore<int> store)
         {
-            await Task.Delay(1000);
+            await Task.Delay(500);
             store.Dispatch(new IncrementAction());
+        }
+
+        private Task AsyncThrowingSaga(IncrementAsyncAction action, IStore<int> store)
+        {
+            throw new Exception();
+        }
+
+        private void ThrowingSaga(IncrementAsyncAction action, IStore<int> store)
+        {
+            throw new Exception();
         }
 
         private void ImmediateIncrementSaga(IncrementAsyncAction action, IStore<int> store)
@@ -159,6 +172,83 @@
             awaitableStore.Actions.OfType<IncrementAsyncAction>().RunsSaga(awaitableStore, this.ImmediateIncrementSaga);
 
             // Act
+            await awaitableStore.DispatchAsync(new IncrementAsyncAction());
+
+            // Assert
+            Assert.That(awaitableStore.GetState(), Is.EqualTo(1));
+        }
+
+        [Test]
+        public void When_SagaThrowsException_Should_BubbleUp()
+        {
+            // Arrange
+            var awaitableStore = new AwaitableStore<int>(Reducer, 0);
+            awaitableStore.Actions.OfType<IncrementAsyncAction>().RunsSaga(awaitableStore, this.ThrowingSaga);
+
+            // Act/Assert
+            Assert.That(() => awaitableStore.Dispatch(new IncrementAsyncAction()), Throws.Exception);
+        }
+
+        [Test]
+        public void When_AsyncSagaThrowsException_Should_BubbleUp()
+        {
+            // Arrange
+            var awaitableStore = new AwaitableStore<int>(Reducer, 0);
+            awaitableStore.Actions.OfType<IncrementAsyncAction>().RunsAsyncSaga(awaitableStore, this.AsyncThrowingSaga);
+
+            // Act/Assert
+            Assert.That(async () => await awaitableStore.DispatchAsync(new IncrementAsyncAction()), Throws.Exception);
+        }
+
+        [Test]
+        public async Task When_AsyncSagaThrowsException_Expect_DispatchIsStillAwaitable()
+        {
+            // Arrange
+            var awaitableStore = new AwaitableStore<int>(Reducer, 0);
+
+            // Subscribe a saga that throws an exception, run it and remove it
+            IDisposable sub = awaitableStore.Actions.OfType<IncrementAsyncAction>().RunsAsyncSaga(awaitableStore, this.AsyncThrowingSaga);
+            Assert.That(async () => await awaitableStore.DispatchAsync(new IncrementAsyncAction()), Throws.Exception);
+            sub.Dispose();
+
+            // Act
+            await awaitableStore.DispatchAsync(new IncrementAction());
+
+            // Assert: The test will time out if the async counter was not decremented after the exception
+        }
+
+        [Test]
+        public void When_SagaUnsubscribed_Should_NotRun()
+        {
+            // Arrange
+            var awaitableStore = new AwaitableStore<int>(Reducer, 0);
+            IDisposable sub = awaitableStore.Actions.OfType<IncrementAsyncAction>().RunsSaga(awaitableStore, this.ImmediateIncrementSaga);
+
+            // Sanity check
+            awaitableStore.Dispatch(new IncrementAsyncAction());
+            Assert.That(awaitableStore.GetState(), Is.EqualTo(1));
+
+            // Act
+            sub.Dispose();
+            awaitableStore.Dispatch(new IncrementAsyncAction());
+
+            // Assert
+            Assert.That(awaitableStore.GetState(), Is.EqualTo(1));
+        }
+
+        [Test]
+        public async Task When_AsyncSagaUnsubscribed_Should_NotRun()
+        {
+            // Arrange
+            var awaitableStore = new AwaitableStore<int>(Reducer, 0);
+            IDisposable sub = awaitableStore.Actions.OfType<IncrementAsyncAction>().RunsAsyncSaga(awaitableStore, this.DelayedIncrementSaga);
+
+            // Sanity check
+            await awaitableStore.DispatchAsync(new IncrementAsyncAction());
+            Assert.That(awaitableStore.GetState(), Is.EqualTo(1));
+
+            // Act
+            sub.Dispose();
             await awaitableStore.DispatchAsync(new IncrementAsyncAction());
 
             // Assert
