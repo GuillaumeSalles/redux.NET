@@ -82,7 +82,7 @@
         }
     }
 
-    public interface IAwaitableStore<TState>
+    public interface IAwaitableStore<TState> : IStore<TState>
     {
         Task<object> DispatchAsync(object action);
     }
