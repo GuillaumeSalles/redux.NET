@@ -13,5 +13,13 @@ namespace Redux.Reactive
                     h => store.StateChanged -= h)
                 .Select(_ => store.GetState());
         }
+
+        public static IObservable<object> ObserveActions<T>(this IStore<T> store)
+        {
+            return Observable
+                .FromEvent<object>(
+                    h => store.ActionDispatched += h,
+                    h => store.ActionDispatched -= h);
+        }
     }
 }

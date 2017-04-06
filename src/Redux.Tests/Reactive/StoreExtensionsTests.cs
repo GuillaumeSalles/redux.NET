@@ -17,5 +17,19 @@ namespace Redux.Tests.Reactive
 
             CollectionAssert.AreEqual(new[] { 1, 2 }, spyListener.Values);
         }
+
+        [Test]
+        public void ObserveActions_should_push_actions()
+        {
+            var sut = new Store<int>(Reducers.Replace, 0);
+            object receivedAction = null;
+
+            sut.ObserveActions().Subscribe(action => receivedAction = action);
+
+            var dispatchedAction = new object();
+            sut.Dispatch(dispatchedAction);
+
+            Assert.AreSame(receivedAction, dispatchedAction);
+        }
     }
 }
