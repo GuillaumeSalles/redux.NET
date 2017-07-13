@@ -25,6 +25,7 @@ namespace Redux.TodoMvc.Forms
 
             Store = new Store<ApplicationState>(initialState, Reducers.ReduceApplication);
 
+            masterDetail.Master = new ContentPage() {Title = "Redux.NET Example"};
             masterDetail.Detail =
                 new NavigationPage(
                     new MainPage() { Title = "Todo List" }
