@@ -1,3 +1,5 @@
+:warning: **This repository is no longer maintained** :warning:
+
 # Redux.NET
 
 Redux.NET is an attempt to bring [Redux](https://github.com/reactjs/redux) concepts to .NET application development. Redux.NET is a PCL project, so it can be used with Xamarin (IOS, Android, Forms), Windows Universal applications, Windows 8.1 applications, WPF, etc...
