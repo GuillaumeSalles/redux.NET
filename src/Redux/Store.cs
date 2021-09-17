@@ -32,6 +32,9 @@ namespace Redux
             }
         }
 
+        public event Action<object> ActionDispatched;
+
+
         public object Dispatch(object action)
         {
             return _dispatcher(action);
@@ -60,6 +63,7 @@ namespace Redux
             }
 
             _stateChanged?.Invoke();
+            ActionDispatched?.Invoke(action);
 
             return action;
         }

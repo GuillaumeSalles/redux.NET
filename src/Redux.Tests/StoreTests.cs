@@ -119,5 +119,31 @@ namespace Redux.Tests
 
             Assert.AreEqual(1000, sut.GetState());
         }
+
+        [Test]
+        public void Should_push_action_on_dispatch_to_reducer()
+        {
+            var sut = new Store<int>((state, action) => state + 1, 0);
+            object pushedAction = null;
+            sut.ActionDispatched += action => pushedAction = action;
+            var dispatchedAction = new object();
+
+            sut.Dispatch(dispatchedAction);
+
+            Assert.AreSame(dispatchedAction, pushedAction);
+        }
+
+        [Test]
+        public void Should_not_push_action_when_middleware_stops()
+        {
+            Middleware<int> stoppingMiddleware = store => next => action => null;
+            var sut = new Store<int>((state, action) => state + 1, 0, stoppingMiddleware);
+            var actionWasPushed = false;
+            sut.ActionDispatched += action => actionWasPushed = true;
+
+            sut.Dispatch(new object());
+
+            Assert.False(actionWasPushed);
+        }
     }
 }
