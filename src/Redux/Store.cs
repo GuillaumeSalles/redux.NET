@@ -32,7 +32,7 @@ namespace Redux
             }
         }
 
-        public object Dispatch(object action)
+        public virtual object Dispatch(object action)
         {
             return _dispatcher(action);
         }
@@ -42,7 +42,7 @@ namespace Redux
             return _lastState;
         }
 
-        private Dispatcher ApplyMiddlewares(params Middleware<TState>[] middlewares)
+        protected virtual Dispatcher ApplyMiddlewares(params Middleware<TState>[] middlewares)
         {
             Dispatcher dispatcher = InnerDispatch;
             foreach (var middleware in middlewares)
@@ -52,7 +52,7 @@ namespace Redux
             return dispatcher;
         }
 
-        private object InnerDispatch(object action)
+        protected virtual object InnerDispatch(object action)
         {
             lock (_syncRoot)
             {
