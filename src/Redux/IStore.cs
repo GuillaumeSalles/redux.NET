@@ -29,7 +29,7 @@ namespace Redux
         /// <returns>
         ///     The current state tree.
         /// </returns>
-        TState GetState();
+        TState State { get; }
 
         event Action StateChanged;
     }

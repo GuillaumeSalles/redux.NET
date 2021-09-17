@@ -37,9 +37,12 @@ namespace Redux
             return _dispatcher(action);
         }
 
-        public TState GetState()
+        public TState State
         {
-            return _lastState;
+            get
+            {
+                return _lastState;
+            }
         }
 
         private Dispatcher ApplyMiddlewares(params Middleware<TState>[] middlewares)

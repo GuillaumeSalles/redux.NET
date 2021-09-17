@@ -11,7 +11,7 @@ namespace Redux.Reactive
                 .FromEvent(
                     h => store.StateChanged += h,
                     h => store.StateChanged -= h)
-                .Select(_ => store.GetState());
+                .Select(_ => store.State);
         }
     }
 }

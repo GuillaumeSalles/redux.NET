@@ -12,7 +12,7 @@ namespace Redux.Tests
     {
         public static void SubscribeAndGetState<TState>(this IStore<TState> store, Action<TState> listener)
         {
-            store.StateChanged += () => listener(store.GetState());
+            store.StateChanged += () => listener(store.State);
         }
     }
     
@@ -96,7 +96,7 @@ namespace Redux.Tests
         {
             var sut = new Store<int>(Reducers.Replace, 1);
 
-            Assert.AreEqual(1, sut.GetState());
+            Assert.AreEqual(1, sut.State);
         }
 
         [Test]
@@ -106,7 +106,7 @@ namespace Redux.Tests
 
             sut.Dispatch(new FakeAction<int>(2));
 
-            Assert.AreEqual(2, sut.GetState());
+            Assert.AreEqual(2, sut.State);
         }
 
         [Test]
@@ -117,7 +117,7 @@ namespace Redux.Tests
             await Task.WhenAll(Enumerable.Range(0, 1000)
                 .Select(_ => Task.Factory.StartNew(() => sut.Dispatch(new FakeAction<int>(0)))));
 
-            Assert.AreEqual(1000, sut.GetState());
+            Assert.AreEqual(1000, sut.State);
         }
     }
 }
